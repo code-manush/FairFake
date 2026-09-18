@@ -1,0 +1,90 @@
+[
+  {
+    "id": "demo-img-real-1",
+    "mediaType": "image",
+    "verdict": "real",
+    "confidence": 0.92,
+    "faces": [
+      {
+        "boundingBox": [120, 80, 240, 240],
+        "attributes": {
+          "gender": "female",
+          "glasses": false,
+          "ageBracket": "25-34",
+          "skinTone": "light"
+        },
+        "heatmapUrl": "/mock-heatmaps/heatmap-real.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo-img-fake-1",
+    "mediaType": "image",
+    "verdict": "fake",
+    "confidence": 0.88,
+    "faces": [
+      {
+        "boundingBox": [150, 90, 260, 250],
+        "attributes": {
+          "gender": "male",
+          "glasses": true,
+          "ageBracket": "35-44",
+          "skinTone": "medium",
+          "facialHair": true
+        },
+        "heatmapUrl": "/mock-heatmaps/heatmap-fake.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo-vid-real-1",
+    "mediaType": "video",
+    "verdict": "real",
+    "confidence": 0.95,
+    "faces": [
+      {
+        "boundingBox": [200, 100, 320, 300],
+        "attributes": {
+          "gender": "male",
+          "glasses": false,
+          "ageBracket": "45-54",
+          "skinTone": "dark"
+        }
+      }
+    ],
+    "frames": [
+      { "frameIndex": 0, "timestamp": 0, "fakeProbability": 0.05 },
+      { "frameIndex": 10, "timestamp": 0.33, "fakeProbability": 0.06 },
+      { "frameIndex": 20, "timestamp": 0.66, "fakeProbability": 0.04 },
+      { "frameIndex": 30, "timestamp": 1.0, "fakeProbability": 0.08 },
+      { "frameIndex": 40, "timestamp": 1.33, "fakeProbability": 0.07 },
+      { "frameIndex": 50, "timestamp": 1.66, "fakeProbability": 0.05 }
+    ]
+  },
+  {
+    "id": "demo-vid-fake-1",
+    "mediaType": "video",
+    "verdict": "fake",
+    "confidence": 0.91,
+    "faces": [
+      {
+        "boundingBox": [180, 110, 290, 280],
+        "attributes": {
+          "gender": "female",
+          "glasses": false,
+          "ageBracket": "18-24",
+          "skinTone": "light",
+          "heavyMakeup": true
+        }
+      }
+    ],
+    "frames": [
+      { "frameIndex": 0, "timestamp": 0, "fakeProbability": 0.45 },
+      { "frameIndex": 10, "timestamp": 0.33, "fakeProbability": 0.55 },
+      { "frameIndex": 20, "timestamp": 0.66, "fakeProbability": 0.82 },
+      { "frameIndex": 30, "timestamp": 1.0, "fakeProbability": 0.91 },
+      { "frameIndex": 40, "timestamp": 1.33, "fakeProbability": 0.88 },
+      { "frameIndex": 50, "timestamp": 1.66, "fakeProbability": 0.65 }
+    ]
+  }
+]
