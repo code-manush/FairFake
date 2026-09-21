@@ -14,6 +14,7 @@ from typing import List, Optional
 
 from deepfake_detector.src.model import XceptionDetector
 from deepfake_detector.src.dataset import eval_transform
+from fairness_audit import run_audit
 
 app = FastAPI(title="FairFake Deepfake API")
 
@@ -216,6 +217,10 @@ async def analyze_video(video: UploadFile = File(...)):
             "attributes": get_mock_attributes()
         }]
     }
+
+@app.get("/api/audit/results")
+async def get_audit_data():
+    return run_audit()
 
 if __name__ == "__main__":
     import uvicorn
