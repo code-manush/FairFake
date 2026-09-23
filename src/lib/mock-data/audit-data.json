@@ -26,8 +26,16 @@
       "rp": 1.33,
       "crp": 0.45,
       "severity": "high",
-      "sampleCount": { "withAttribute": 1450, "withoutAttribute": 10590 },
-      "exampleMisclassifiedIds": ["demo-img-fake-1", "demo-img-fake-1"]
+      "sampleCount": {
+        "withAttribute": 1450,
+        "withoutAttribute": 10590
+      },
+      "exampleMisclassifiedIds": [
+        "demo-img-fake-1",
+        "demo-img-fake-1"
+      ],
+      "pdrp": 1.08,
+      "ddrp": 1.66
     },
     {
       "attribute": "Wearing_Glasses",
@@ -37,8 +45,15 @@
       "rp": 1.0,
       "crp": 0.25,
       "severity": "moderate",
-      "sampleCount": { "withAttribute": 1450, "withoutAttribute": 10590 },
-      "exampleMisclassifiedIds": ["demo-img-fake-1"]
+      "sampleCount": {
+        "withAttribute": 1450,
+        "withoutAttribute": 10590
+      },
+      "exampleMisclassifiedIds": [
+        "demo-img-fake-1"
+      ],
+      "pdrp": 0.76,
+      "ddrp": 1.15
     },
     {
       "attribute": "Male",
@@ -48,19 +63,31 @@
       "rp": 0.25,
       "crp": 0.1,
       "severity": "low",
-      "sampleCount": { "withAttribute": 6100, "withoutAttribute": 5940 },
-      "exampleMisclassifiedIds": ["demo-img-fake-1"]
+      "sampleCount": {
+        "withAttribute": 6100,
+        "withoutAttribute": 5940
+      },
+      "exampleMisclassifiedIds": [
+        "demo-img-fake-1"
+      ],
+      "pdrp": 0.13,
+      "ddrp": 0.24
     },
     {
       "attribute": "Male",
       "model": "EfficientNetB0",
       "errorWithAttribute": 0.11,
-      "errorWithoutAttribute": 0.10,
+      "errorWithoutAttribute": 0.1,
       "rp": 0.1,
       "crp": 0.05,
       "severity": "low",
-      "sampleCount": { "withAttribute": 6100, "withoutAttribute": 5940 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 6100,
+        "withoutAttribute": 5940
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.16,
+      "ddrp": 0.17
     },
     {
       "attribute": "Female",
@@ -70,30 +97,47 @@
       "rp": -0.2,
       "crp": 0.08,
       "severity": "low",
-      "sampleCount": { "withAttribute": 5940, "withoutAttribute": 6100 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 5940,
+        "withoutAttribute": 6100
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": -0.06,
+      "ddrp": -0.22
     },
     {
       "attribute": "Female",
       "model": "EfficientNetB0",
-      "errorWithAttribute": 0.10,
+      "errorWithAttribute": 0.1,
       "errorWithoutAttribute": 0.11,
       "rp": -0.09,
       "crp": 0.04,
       "severity": "low",
-      "sampleCount": { "withAttribute": 5940, "withoutAttribute": 6100 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 5940,
+        "withoutAttribute": 6100
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": -0.14,
+      "ddrp": -0.06
     },
     {
       "attribute": "Dark_Skin",
       "model": "Xception",
       "errorWithAttribute": 0.35,
-      "errorWithoutAttribute": 0.10,
+      "errorWithoutAttribute": 0.1,
       "rp": 2.5,
       "crp": 0.55,
       "severity": "high",
-      "sampleCount": { "withAttribute": 890, "withoutAttribute": 11150 },
-      "exampleMisclassifiedIds": ["demo-vid-real-1"]
+      "sampleCount": {
+        "withAttribute": 890,
+        "withoutAttribute": 11150
+      },
+      "exampleMisclassifiedIds": [
+        "demo-vid-real-1"
+      ],
+      "pdrp": 2.08,
+      "ddrp": 2.95
     },
     {
       "attribute": "Dark_Skin",
@@ -103,8 +147,15 @@
       "rp": 1.75,
       "crp": 0.42,
       "severity": "high",
-      "sampleCount": { "withAttribute": 890, "withoutAttribute": 11150 },
-      "exampleMisclassifiedIds": ["demo-vid-real-1"]
+      "sampleCount": {
+        "withAttribute": 890,
+        "withoutAttribute": 11150
+      },
+      "exampleMisclassifiedIds": [
+        "demo-vid-real-1"
+      ],
+      "pdrp": 1.37,
+      "ddrp": 2.15
     },
     {
       "attribute": "Young",
@@ -114,19 +165,29 @@
       "rp": 0.0,
       "crp": 0.02,
       "severity": "low",
-      "sampleCount": { "withAttribute": 4500, "withoutAttribute": 7540 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 4500,
+        "withoutAttribute": 7540
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.09,
+      "ddrp": -0.07
     },
     {
       "attribute": "Young",
       "model": "EfficientNetB0",
       "errorWithAttribute": 0.11,
-      "errorWithoutAttribute": 0.10,
+      "errorWithoutAttribute": 0.1,
       "rp": 0.1,
       "crp": 0.03,
       "severity": "low",
-      "sampleCount": { "withAttribute": 4500, "withoutAttribute": 7540 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 4500,
+        "withoutAttribute": 7540
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.0,
+      "ddrp": 0.17
     },
     {
       "attribute": "Senior",
@@ -136,8 +197,15 @@
       "rp": 1.16,
       "crp": 0.38,
       "severity": "moderate",
-      "sampleCount": { "withAttribute": 1200, "withoutAttribute": 10840 },
-      "exampleMisclassifiedIds": ["demo-img-fake-1"]
+      "sampleCount": {
+        "withAttribute": 1200,
+        "withoutAttribute": 10840
+      },
+      "exampleMisclassifiedIds": [
+        "demo-img-fake-1"
+      ],
+      "pdrp": 0.89,
+      "ddrp": 1.49
     },
     {
       "attribute": "Senior",
@@ -147,8 +215,13 @@
       "rp": 0.66,
       "crp": 0.18,
       "severity": "low",
-      "sampleCount": { "withAttribute": 1200, "withoutAttribute": 10840 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 1200,
+        "withoutAttribute": 10840
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.54,
+      "ddrp": 0.8
     },
     {
       "attribute": "Heavy_Makeup",
@@ -158,8 +231,15 @@
       "rp": 1.63,
       "crp": 0.48,
       "severity": "high",
-      "sampleCount": { "withAttribute": 1800, "withoutAttribute": 10240 },
-      "exampleMisclassifiedIds": ["demo-vid-fake-1"]
+      "sampleCount": {
+        "withAttribute": 1800,
+        "withoutAttribute": 10240
+      },
+      "exampleMisclassifiedIds": [
+        "demo-vid-fake-1"
+      ],
+      "pdrp": 1.31,
+      "ddrp": 1.89
     },
     {
       "attribute": "Heavy_Makeup",
@@ -169,8 +249,15 @@
       "rp": 2.0,
       "crp": 0.45,
       "severity": "high",
-      "sampleCount": { "withAttribute": 1800, "withoutAttribute": 10240 },
-      "exampleMisclassifiedIds": ["demo-vid-fake-1"]
+      "sampleCount": {
+        "withAttribute": 1800,
+        "withoutAttribute": 10240
+      },
+      "exampleMisclassifiedIds": [
+        "demo-vid-fake-1"
+      ],
+      "pdrp": 1.59,
+      "ddrp": 2.46
     },
     {
       "attribute": "Facial_Hair",
@@ -180,19 +267,31 @@
       "rp": 0.61,
       "crp": 0.22,
       "severity": "moderate",
-      "sampleCount": { "withAttribute": 2200, "withoutAttribute": 9840 },
-      "exampleMisclassifiedIds": ["demo-img-fake-1"]
+      "sampleCount": {
+        "withAttribute": 2200,
+        "withoutAttribute": 9840
+      },
+      "exampleMisclassifiedIds": [
+        "demo-img-fake-1"
+      ],
+      "pdrp": 0.43,
+      "ddrp": 0.81
     },
     {
       "attribute": "Facial_Hair",
       "model": "EfficientNetB0",
       "errorWithAttribute": 0.14,
-      "errorWithoutAttribute": 0.10,
+      "errorWithoutAttribute": 0.1,
       "rp": 0.4,
       "crp": 0.12,
       "severity": "low",
-      "sampleCount": { "withAttribute": 2200, "withoutAttribute": 9840 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 2200,
+        "withoutAttribute": 9840
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.27,
+      "ddrp": 0.52
     },
     {
       "attribute": "Blond_Hair",
@@ -202,19 +301,29 @@
       "rp": 0.38,
       "crp": 0.15,
       "severity": "low",
-      "sampleCount": { "withAttribute": 1600, "withoutAttribute": 10440 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 1600,
+        "withoutAttribute": 10440
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.33,
+      "ddrp": 0.49
     },
     {
       "attribute": "Blond_Hair",
       "model": "EfficientNetB0",
       "errorWithAttribute": 0.12,
-      "errorWithoutAttribute": 0.10,
+      "errorWithoutAttribute": 0.1,
       "rp": 0.2,
       "crp": 0.08,
       "severity": "low",
-      "sampleCount": { "withAttribute": 1600, "withoutAttribute": 10440 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 1600,
+        "withoutAttribute": 10440
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.1,
+      "ddrp": 0.3
     },
     {
       "attribute": "Bald",
@@ -224,8 +333,13 @@
       "rp": 1.66,
       "crp": 0.52,
       "severity": "high",
-      "sampleCount": { "withAttribute": 600, "withoutAttribute": 11440 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 600,
+        "withoutAttribute": 11440
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 1.25,
+      "ddrp": 2.06
     },
     {
       "attribute": "Bald",
@@ -235,8 +349,13 @@
       "rp": 1.11,
       "crp": 0.31,
       "severity": "moderate",
-      "sampleCount": { "withAttribute": 600, "withoutAttribute": 11440 },
-      "exampleMisclassifiedIds": []
+      "sampleCount": {
+        "withAttribute": 600,
+        "withoutAttribute": 11440
+      },
+      "exampleMisclassifiedIds": [],
+      "pdrp": 0.94,
+      "ddrp": 1.3
     }
   ]
 }

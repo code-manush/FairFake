@@ -1,4 +1,7 @@
 import os
+import sys
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding='utf-8')
 import shutil
 import tempfile
 import cv2
@@ -15,6 +18,7 @@ from typing import List, Optional
 from deepfake_detector.src.model import XceptionDetector
 from deepfake_detector.src.dataset import eval_transform
 from fairness_audit import run_audit
+from deepface import DeepFace
 
 app = FastAPI(title="FairFake Deepfake API")
 
@@ -93,15 +97,66 @@ def analyze_image_array(img: np.ndarray):
     
     return prob, gradcam_b64
 
-def get_mock_attributes():
-    import random
-    return {
-        "gender": random.choice(["Male", "Female"]),
-        "ageBracket": random.choice(["Young", "Middle-aged", "Senior"]),
-        "skinTone": random.choice(["Light_Skin", "Dark_Skin", "Medium_Skin"]),
-        "glasses": random.choice([True, False]),
-        "heavyMakeup": random.choice([True, False]),
+def get_face_attributes(img_array):
+    default_attr = {
+        "gender": "Unknown",
+        "ageBracket": "Unknown",
+        "skinTone": "Unknown",
+        "glasses": False,
+        "heavyMakeup": False,
     }
+    
+    if img_array is None:
+        return default_attr
+        
+    try:
+        img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+        objs = DeepFace.analyze(
+            img_path=img_bgr, 
+            actions=['age', 'gender', 'race'], 
+            enforce_detection=False,
+            detector_backend='skip'
+        )
+        
+        if isinstance(objs, list):
+            obj = objs[0]
+        else:
+            obj = objs
+            
+        gender_pred = obj.get("dominant_gender", "Unknown")
+        if gender_pred == "Woman":
+            gender = "Female"
+        elif gender_pred == "Man":
+            gender = "Male"
+        else:
+            gender = gender_pred
+            
+        age = obj.get("age", 25)
+        if age < 30:
+            age_bracket = "Young"
+        elif age < 55:
+            age_bracket = "Middle-aged"
+        else:
+            age_bracket = "Senior"
+            
+        race = obj.get("dominant_race", "")
+        if race in ["black", "indian"]:
+            skin_tone = "Dark_Skin"
+        elif race in ["asian", "latino hispanic", "middle eastern"]:
+            skin_tone = "Medium_Skin"
+        else:
+            skin_tone = "Light_Skin"
+            
+        return {
+            "gender": gender,
+            "ageBracket": age_bracket,
+            "skinTone": skin_tone,
+            "glasses": False,
+            "heavyMakeup": False,
+        }
+    except Exception as e:
+        print("DeepFace attribute error:", e)
+        return default_attr
 
 @app.post("/api/analyze/image")
 async def analyze_image(image: UploadFile = File(...)):
@@ -125,7 +180,7 @@ async def analyze_image(image: UploadFile = File(...)):
         }],
         "faces": [{
             "boundingBox": [10, 10, 100, 100], 
-            "attributes": get_mock_attributes()
+            "attributes": get_face_attributes(img)
         }]
     }
 
@@ -147,6 +202,7 @@ async def analyze_video(video: UploadFile = File(...)):
     frame_results = []
     all_probs = []
     anomaly_seconds = set()
+    first_frame = None
     
     for s in range(total_secs):
         start = int(s * video_fps)
@@ -164,6 +220,9 @@ async def analyze_video(video: UploadFile = File(...)):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             if frame.shape[0] < 50 or frame.shape[1] < 50:
                 continue
+                
+            if first_frame is None:
+                first_frame = frame
             
             prob, heatmap = analyze_image_array(frame)
             all_probs.append(prob)
@@ -214,7 +273,7 @@ async def analyze_video(video: UploadFile = File(...)):
         "frame_results": frame_results,
         "faces": [{
             "boundingBox": [10, 10, 100, 100],
-            "attributes": get_mock_attributes()
+            "attributes": get_face_attributes(first_frame)
         }]
     }
 

@@ -48,6 +48,8 @@ export type AttributeBiasResult = {
   errorWithoutAttribute: number;
   rp: number;                  // relative performance, can be negative
   crp: number;                 // corrected relative performance
+  pdrp: number;                // pristine data relative performance
+  ddrp: number;                // deepfake data relative performance
   severity: BiasSeverity;
   sampleCount: { withAttribute: number; withoutAttribute: number };
   exampleMisclassifiedIds: string[]; // point at mock face thumbnails

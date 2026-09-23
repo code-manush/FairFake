@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 
 class XceptionDetector(nn.Module):
-
     def __init__(self, pretrained=True, freeze_backbone=False):
         super().__init__()
         self.backbone = timm.create_model('legacy_xception', pretrained=pretrained, num_classes=0)
@@ -21,8 +20,35 @@ class XceptionDetector(nn.Module):
         feats = self.backbone(x)
         return self.classifier(feats).squeeze(1)
 
-class FrequencyAwareDetector(nn.Module):
+class EfficientNetB0Detector(nn.Module):
+    def __init__(self, pretrained=True, freeze_backbone=False):
+        super().__init__()
+        self.backbone = timm.create_model('efficientnet_b0', pretrained=pretrained, num_classes=0)
+        feat_dim = self.backbone.num_features
+        self.classifier = nn.Sequential(nn.Dropout(0.3), nn.Linear(feat_dim, 1))
+        if freeze_backbone:
+            for p in self.backbone.parameters():
+                p.requires_grad = False
 
+    def forward(self, x):
+        feats = self.backbone(x)
+        return self.classifier(feats).squeeze(1)
+
+class CapsuleForensicsV2Detector(nn.Module):
+    # Skeleton class for Capsule-Forensics-v2
+    # Full implementation requires custom routing layers which are out of scope for skeleton
+    def __init__(self, pretrained=False):
+        super().__init__()
+        # Simplified placeholder for the capsule network
+        self.features = timm.create_model('vgg19', pretrained=pretrained, num_classes=0)
+        feat_dim = self.features.num_features
+        self.classifier = nn.Sequential(nn.Linear(feat_dim, 1))
+
+    def forward(self, x):
+        feats = self.features(x)
+        return self.classifier(feats).squeeze(1)
+
+class FrequencyAwareDetector(nn.Module):
     def __init__(self, pretrained=True):
         super().__init__()
         self.rgb_backbone = timm.create_model('legacy_xception', pretrained=pretrained, num_classes=0)
@@ -44,8 +70,13 @@ def compute_fft_magnitude(gray_img_tensor):
     magnitude = np.log(np.abs(fshift) + 1)
     magnitude = (magnitude - magnitude.min()) / (magnitude.max() - magnitude.min() + 1e-08)
     return magnitude.astype(np.float32)
+
 if __name__ == '__main__':
     model = XceptionDetector(pretrained=False)
     dummy = torch.randn(2, 3, 224, 224)
     out = model(dummy)
-    print('Output shape:', out.shape)
+    print('Output shape Xception:', out.shape)
+    
+    model2 = EfficientNetB0Detector(pretrained=False)
+    out2 = model2(dummy)
+    print('Output shape EfficientNetB0:', out2.shape)

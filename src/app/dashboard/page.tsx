@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const [results, setResults] = useState<AttributeBiasResult[]>([]);
   const [loading, setLoading] = useState(true);
   
-  const [dataFilter, setDataFilter] = useState("both"); // pristine, fake, both
+  const [dataFilter, setDataFilter] = useState("general"); // "general" or "pristine_vs_fake"
   const [selectedAttribute, setSelectedAttribute] = useState<AttributeBiasResult | null>(null);
 
   useEffect(() => {
@@ -52,13 +52,25 @@ export default function DashboardPage() {
   }, [activeModel]);
 
   // Scatter plot data formatting
-  const scatterData = results.map(r => ({
-    x: r.crp * 100, // format as percentage
-    y: r.rp * 100,
-    z: r.sampleCount.withAttribute, // circle size
-    name: r.attribute,
-    severity: r.severity
-  }));
+  const scatterData = results.map(r => {
+    if (dataFilter === "pristine_vs_fake") {
+      return {
+        x: r.ddrp * 100,
+        y: r.pdrp * 100,
+        z: r.sampleCount.withAttribute,
+        name: r.attribute,
+        severity: r.severity
+      };
+    } else {
+      return {
+        x: r.crp * 100,
+        y: r.rp * 100,
+        z: r.sampleCount.withAttribute,
+        name: r.attribute,
+        severity: r.severity
+      };
+    }
+  });
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
@@ -67,6 +79,9 @@ export default function DashboardPage() {
       default: return "var(--color-bias-low)";
     }
   };
+
+  const xAxisLabel = dataFilter === "pristine_vs_fake" ? "Corrected Relative Performance on Fake (DDRP)" : "Corrected Relative Performance (CRP)";
+  const yAxisLabel = dataFilter === "pristine_vs_fake" ? "Corrected Relative Performance on Pristine (PDRP)" : "Relative Performance (RP)";
 
   return (
     <div className="min-h-screen bg-background p-6 pb-24">
@@ -150,17 +165,15 @@ export default function DashboardPage() {
               <Card className="lg:col-span-2">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <div className="space-y-1">
-                    <CardTitle>RP vs CRP by Attribute</CardTitle>
+                    <CardTitle>Bias Analysis by Attribute</CardTitle>
                     <CardDescription>
-                      Corrected Relative Performance (CRP) vs Relative Performance (RP). 
-                      Points further to the right indicate severe bias.
+                      Visualize the performance differences caused by specific attributes across datasets.
                     </CardDescription>
                   </div>
                   <Tabs value={dataFilter} onValueChange={setDataFilter}>
                     <TabsList>
-                      <TabsTrigger value="pristine">Pristine</TabsTrigger>
-                      <TabsTrigger value="fake">Fake</TabsTrigger>
-                      <TabsTrigger value="both">Both</TabsTrigger>
+                      <TabsTrigger value="general">General Bias</TabsTrigger>
+                      <TabsTrigger value="pristine_vs_fake">Pristine vs Fake</TabsTrigger>
                     </TabsList>
                   </Tabs>
                 </CardHeader>
@@ -172,20 +185,20 @@ export default function DashboardPage() {
                         <XAxis 
                           type="number" 
                           dataKey="x" 
-                          name="CRP (%)" 
+                          name="X" 
                           unit="%" 
-                          domain={[0, 'dataMax + 10']}
+                          domain={['dataMin - 10', 'dataMax + 10']}
                         >
-                          <Label value="Corrected Relative Performance (CRP)" offset={-10} position="insideBottom" />
+                          <Label value={xAxisLabel} offset={-10} position="insideBottom" />
                         </XAxis>
                         <YAxis 
                           type="number" 
                           dataKey="y" 
-                          name="RP (%)" 
+                          name="Y" 
                           unit="%" 
                           domain={['dataMin - 10', 'dataMax + 10']}
                         >
-                          <Label value="Relative Performance (RP)" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
+                          <Label value={yAxisLabel} angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
                         </YAxis>
                         <Tooltip 
                           cursor={{ strokeDasharray: '3 3' }} 
@@ -195,16 +208,15 @@ export default function DashboardPage() {
                               return (
                                 <div className="bg-popover text-popover-foreground border p-3 rounded-lg shadow-lg">
                                   <p className="font-bold mb-1">{data.name}</p>
-                                  <p className="text-sm">CRP: {data.x.toFixed(2)}%</p>
-                                  <p className="text-sm">RP: {data.y.toFixed(2)}%</p>
-                                  <p className="text-sm">Severity: <span style={{color: getSeverityColor(data.severity)}} className="uppercase font-semibold">{data.severity}</span></p>
+                                  <p className="text-sm">{dataFilter === "pristine_vs_fake" ? "DDRP" : "CRP"}: {data.x.toFixed(2)}%</p>
+                                  <p className="text-sm">{dataFilter === "pristine_vs_fake" ? "PDRP" : "RP"}: {data.y.toFixed(2)}%</p>
+                                  <p className="text-sm mt-1">Severity: <span style={{color: getSeverityColor(data.severity)}} className="uppercase font-semibold">{data.severity}</span></p>
                                 </div>
                               );
                             }
                             return null;
                           }}
                         />
-                        {/* Shading zones can be simulated using ReferenceAreas, but simple colored scatter works well */}
                         <Scatter 
                           name="Attributes" 
                           data={scatterData} 
@@ -218,9 +230,21 @@ export default function DashboardPage() {
                             <Cell key={`cell-${index}`} fill={getSeverityColor(entry.severity)} className="cursor-pointer hover:opacity-80 transition-opacity" />
                           ))}
                         </Scatter>
-                        {/* Bisector line */}
-                        <ReferenceLine x={20} stroke="var(--color-bias-moderate)" strokeDasharray="3 3" label={{ position: 'top', value: 'Moderate Threshold', fill: 'var(--color-bias-moderate)', fontSize: 12 }} />
-                        <ReferenceLine x={40} stroke="var(--color-bias-high)" strokeDasharray="3 3" label={{ position: 'top', value: 'High Threshold', fill: 'var(--color-bias-high)', fontSize: 12 }} />
+                        
+                        {/* Reference lines depending on mode */}
+                        {dataFilter === "general" ? (
+                          <>
+                            <ReferenceLine x={20} stroke="var(--color-bias-moderate)" strokeDasharray="3 3" label={{ position: 'top', value: 'Moderate Bias', fill: 'var(--color-bias-moderate)', fontSize: 10 }} />
+                            <ReferenceLine x={40} stroke="var(--color-bias-high)" strokeDasharray="3 3" label={{ position: 'top', value: 'High Bias', fill: 'var(--color-bias-high)', fontSize: 10 }} />
+                            <ReferenceLine x={-20} stroke="var(--color-bias-moderate)" strokeDasharray="3 3" />
+                            <ReferenceLine x={-40} stroke="var(--color-bias-high)" strokeDasharray="3 3" />
+                          </>
+                        ) : (
+                          <>
+                            <ReferenceLine x={0} stroke="gray" strokeDasharray="3 3" />
+                            <ReferenceLine y={0} stroke="gray" strokeDasharray="3 3" />
+                          </>
+                        )}
                       </ScatterChart>
                     </ResponsiveContainer>
                   </div>
@@ -231,11 +255,11 @@ export default function DashboardPage() {
               <Card className="flex flex-col h-[520px]">
                 <CardHeader>
                   <CardTitle>Attribute Details</CardTitle>
-                  <CardDescription>Select an attribute from the chart or table to view misclassifications.</CardDescription>
+                  <CardDescription>Select an attribute from the chart or table to view details.</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 overflow-hidden flex flex-col">
                   {selectedAttribute ? (
-                    <div className="space-y-6 h-full flex flex-col">
+                    <div className="space-y-4 h-full flex flex-col">
                       <div>
                         <div className="flex items-center justify-between mb-2">
                           <h3 className="text-2xl font-bold">{selectedAttribute.attribute}</h3>
@@ -258,6 +282,14 @@ export default function DashboardPage() {
                           <div className="bg-muted p-2 rounded">
                             <span className="text-muted-foreground">Error (W/O):</span><br/>
                             <span className="font-semibold">{(selectedAttribute.errorWithoutAttribute * 100).toFixed(1)}%</span>
+                          </div>
+                          <div className="bg-muted p-2 rounded">
+                            <span className="text-muted-foreground">PDRP (Pristine):</span><br/>
+                            <span className="font-semibold">{(selectedAttribute.pdrp * 100).toFixed(1)}%</span>
+                          </div>
+                          <div className="bg-muted p-2 rounded">
+                            <span className="text-muted-foreground">DDRP (Fake):</span><br/>
+                            <span className="font-semibold">{(selectedAttribute.ddrp * 100).toFixed(1)}%</span>
                           </div>
                         </div>
                       </div>
@@ -305,7 +337,7 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm text-left border-collapse">
+                  <table className="w-full text-sm text-left border-collapse whitespace-nowrap">
                     <thead className="text-xs text-muted-foreground uppercase bg-muted/50 border-b">
                       <tr>
                         <th className="px-4 py-3">Attribute</th>
@@ -313,6 +345,8 @@ export default function DashboardPage() {
                         <th className="px-4 py-3 text-right">Error (W/O)</th>
                         <th className="px-4 py-3 text-right">RP (%)</th>
                         <th className="px-4 py-3 text-right font-bold">CRP (%)</th>
+                        <th className="px-4 py-3 text-right">PDRP (%)</th>
+                        <th className="px-4 py-3 text-right">DDRP (%)</th>
                         <th className="px-4 py-3">Severity</th>
                       </tr>
                     </thead>
@@ -328,6 +362,8 @@ export default function DashboardPage() {
                           <td className="px-4 py-3 text-right">{(r.errorWithoutAttribute * 100).toFixed(1)}%</td>
                           <td className="px-4 py-3 text-right">{(r.rp * 100).toFixed(1)}%</td>
                           <td className="px-4 py-3 text-right font-bold">{(r.crp * 100).toFixed(1)}%</td>
+                          <td className="px-4 py-3 text-right">{(r.pdrp * 100).toFixed(1)}%</td>
+                          <td className="px-4 py-3 text-right">{(r.ddrp * 100).toFixed(1)}%</td>
                           <td className="px-4 py-3">
                             <Badge 
                               variant="outline"

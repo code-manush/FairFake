@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { DetectionResult } from "@/lib/types";
+import { getDetectionResult } from "@/lib/api/detection";
 
 // Mock helper to get bias severity note
 const getBiasNote = (attribute: string) => {
@@ -28,12 +29,28 @@ export default function AnalysisReport() {
   useEffect(() => {
     if (!params.id) return;
     
-    // Load from sessionStorage where page.tsx saved it
-    const stored = sessionStorage.getItem(`detection_${params.id}`);
-    if (stored) {
-      setResult(JSON.parse(stored));
-    }
-    setLoading(false);
+    const loadResult = async () => {
+      // 1. Try loading from sessionStorage (fresh upload)
+      const stored = sessionStorage.getItem(`detection_${params.id}`);
+      if (stored) {
+        setResult(JSON.parse(stored));
+        setLoading(false);
+        return;
+      }
+      
+      // 2. Try loading demo data (for pre-baked examples)
+      try {
+        const demoResult = await getDetectionResult(params.id as string);
+        if (demoResult) {
+          setResult(demoResult);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      setLoading(false);
+    };
+
+    loadResult();
   }, [params.id]);
 
   if (loading) {
