@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%" style="font-family:'Times New Roman',serif;background:#fff;">
+      <style>
+        .title { font-size: 13px; font-weight: bold; fill: #111; text-anchor: middle; }
+        .quad-label { font-size: 9.5px; font-weight: bold; fill: #6b7280; }
+        .axis { stroke: #374151; stroke-width: 1.2; }
+        .bisectrix { stroke: #3b82f6; stroke-width: 1.5; stroke-dasharray: 4,3; }
+        .dot { stroke-width: 1; }
+        .pt-label { font-size: 8.5px; fill: #111827; }
+      </style>
+      
+      <!-- Panel (a) Celeb-DF: EfficientNet-B0 -->
+      <g transform="translate(60, 40)">
+        <text x="180" y="-15" class="title">(a) Celeb-DF: EfficientNet-B0 (PDRP vs. DDRP)</text>
+        <rect x="0" y="0" width="360" height="340" fill="#fafafa" stroke="#e5e7eb"/>
+        <line x1="0" y1="170" x2="360" y2="170" class="axis"/>
+        <line x1="180" y1="0" x2="180" y2="340" class="axis"/>
+        <line x1="0" y1="340" x2="360" y2="0" class="bisectrix"/>
+        
+        <!-- Quadrant labels -->
+        <text x="350" y="20" class="quad-label" text-anchor="end">Quadrant I (+,+)</text>
+        <text x="10" y="20" class="quad-label">Quadrant II (-,+)</text>
+        <text x="10" y="330" class="quad-label">Quadrant III (-,-)</text>
+        <text x="350" y="330" class="quad-label" text-anchor="end">Quadrant IV (+,-)</text>
+
+        <text x="350" y="165" font-size="8.5" text-anchor="end">DDRP &gt; 0 (Missed Fakes)</text>
+        <text x="185" y="15" font-size="8.5">PDRP &gt; 0 (False Alarms)</text>
+        
+        <!-- Points: Scale: 1 unit = 55px -->
+        <!-- Dark Skin: PDRP = +1.37, DDRP = +2.15 -> x=180+118=298, y=170-75=95 -->
+        <circle cx="298" cy="95" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="210" y="92" class="pt-label" font-weight="bold">Dark Skin</text>
+
+        <!-- Heavy Makeup: PDRP = +1.59, DDRP = +2.46 -> x=180+135=315, y=170-87=83 -->
+        <circle cx="315" cy="83" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="235" y="78" class="pt-label" font-weight="bold">Heavy Makeup</text>
+
+        <!-- Bald: PDRP = +0.94, DDRP = +1.30 -> x=180+71=251, y=170-51=119 -->
+        <circle cx="251" cy="119" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="256" y="122" class="pt-label">Bald</text>
+
+        <!-- Wearing Hat: PDRP = -0.75, DDRP = +1.80 (Quadrant II: Attack Evasion Cover!) -->
+        <circle cx="279" cy="211" r="4.5" fill="#8b5cf6" stroke="#5b21b6" class="dot"/>
+        <text x="215" y="225" class="pt-label" font-weight="bold">Wearing Hat (Evasion Risk)</text>
+
+        <!-- Smiling: PDRP = +0.03, DDRP = +0.01 -->
+        <circle cx="182" cy="168" r="3" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="135" y="165" class="pt-label">Smiling</text>
+      </g>
+
+      <!-- Panel (b) Celeb-DF: Xception -->
+      <g transform="translate(500, 40)">
+        <text x="180" y="-15" class="title">(b) Celeb-DF: Xception (PDRP vs. DDRP)</text>
+        <rect x="0" y="0" width="360" height="340" fill="#fafafa" stroke="#e5e7eb"/>
+        <line x1="0" y1="170" x2="360" y2="170" class="axis"/>
+        <line x1="180" y1="0" x2="180" y2="340" class="axis"/>
+        <line x1="0" y1="340" x2="360" y2="0" class="bisectrix"/>
+
+        <text x="350" y="20" class="quad-label" text-anchor="end">Quadrant I (+,+)</text>
+        <text x="10" y="20" class="quad-label">Quadrant II (-,+)</text>
+        <text x="10" y="330" class="quad-label">Quadrant III (-,-)</text>
+        <text x="350" y="330" class="quad-label" text-anchor="end">Quadrant IV (+,-)</text>
+
+        <text x="350" y="165" font-size="8.5" text-anchor="end">DDRP &gt; 0</text>
+        <text x="185" y="15" font-size="8.5">PDRP &gt; 0</text>
+
+        <!-- Dark Skin: PDRP = +2.08, DDRP = +2.95 -> x=180+162=342, y=170-114=56 -->
+        <circle cx="342" cy="56" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="240" y="55" class="pt-label" font-weight="bold">Dark Skin (PDRP 2.08, DDRP 2.95)</text>
+
+        <!-- Heavy Makeup: PDRP = +1.31, DDRP = +1.89 -->
+        <circle cx="284" cy="98" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="200" y="105" class="pt-label" font-weight="bold">Heavy Makeup</text>
+
+        <!-- Eyeglasses: PDRP = +1.08, DDRP = +1.66 -->
+        <circle cx="271" cy="111" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="215" y="125" class="pt-label" font-weight="bold">Eyeglasses</text>
+
+        <!-- Bald: PDRP = +1.25, DDRP = +2.06 -->
+        <circle cx="293" cy="101" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="298" y="104" class="pt-label">Bald</text>
+
+        <!-- Senior: PDRP = +0.89, DDRP = +1.49 -->
+        <circle cx="262" cy="121" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="267" y="130" class="pt-label">Senior</text>
+
+        <!-- Female: PDRP = -0.06, DDRP = -0.22 (Quadrant III: Low overall error) -->
+        <circle cx="168" cy="173" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="95" y="176" class="pt-label">Female (-0.06, -0.22)</text>
+      </g>
+      
+      <g transform="translate(60, 425)">
+        <text x="400" y="0" class="sub">Notice that high-bias attributes consistently cluster in Quadrant I with DDRP &gt; PDRP (points below the blue bisectrix line), proving that deepfakes carrying facial accessories or dark tones evade detection at dramatically elevated rates.</text>
+      </g>
+    </svg>

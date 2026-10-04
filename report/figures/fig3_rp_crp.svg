@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%" style="font-family:'Times New Roman',serif;background:#fff;">
+      <style>
+        .title { font-size: 13px; font-weight: bold; fill: #111; text-anchor: middle; }
+        .sub { font-size: 10px; fill: #4b5563; text-anchor: middle; }
+        .axis { stroke: #374151; stroke-width: 1.2; }
+        .grid { stroke: #e5e7eb; stroke-width: 0.8; stroke-dasharray: 2,2; }
+        .bisectrix { stroke: #3b82f6; stroke-width: 1.5; stroke-dasharray: 4,3; }
+        .dot { stroke-width: 1; }
+        .pt-label { font-size: 8.5px; fill: #111827; }
+      </style>
+      
+      <!-- Panel 1: (a) Celeb-DF - EfficientNetB0 -->
+      <g transform="translate(60, 40)">
+        <text x="180" y="-15" class="title">(a) Celeb-DF: EfficientNet-B0</text>
+        <!-- Background tinted regions -->
+        <rect x="0" y="0" width="360" height="170" fill="#f0fdf4" opacity="0.6"/>
+        <rect x="0" y="170" width="360" height="170" fill="#fef2f2" opacity="0.6"/>
+        <!-- Axes -->
+        <line x1="0" y1="170" x2="360" y2="170" class="axis"/>
+        <line x1="180" y1="0" x2="180" y2="340" class="axis"/>
+        <line x1="0" y1="340" x2="360" y2="0" class="bisectrix"/>
+        
+        <!-- Axis labels -->
+        <text x="350" y="165" font-size="9" text-anchor="end">CRP &gt; 0 (Isolated Disparity)</text>
+        <text x="185" y="15" font-size="9">RP &gt; 0 (Higher Error)</text>
+        <text x="185" y="330" font-size="9">RP &lt; 0 (Lower Error)</text>
+        
+        <!-- Points -->
+        <!-- Center is at x=180, y=170. Scale: 1 CRP unit = 140px, 1 RP unit = 80px -->
+        <!-- Dark Skin: CRP=+0.42, RP=+1.75 -> x=180+58=238, y=170-140=30 -->
+        <circle cx="238" cy="35" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="245" y="38" class="pt-label" font-weight="bold">Dark Skin (+0.42, +1.75)</text>
+        
+        <!-- Heavy Makeup: CRP=+0.45, RP=+2.00 -->
+        <circle cx="243" cy="22" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="249" y="22" class="pt-label" font-weight="bold">Heavy Makeup</text>
+        
+        <!-- Bald: CRP=+0.31, RP=+1.11 -->
+        <circle cx="223" cy="81" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="229" y="83" class="pt-label">Bald</text>
+        
+        <!-- Eyeglasses: CRP=+0.25, RP=+1.00 -->
+        <circle cx="215" cy="90" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="221" y="93" class="pt-label">Eyeglasses</text>
+
+        <!-- Senior: CRP=+0.18, RP=+0.66 -->
+        <circle cx="205" cy="117" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="211" y="119" class="pt-label">Senior</text>
+
+        <!-- Chubby: CRP=+0.11, RP=+0.30 -->
+        <circle cx="195" cy="146" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="201" y="146" class="pt-label">Chubby</text>
+
+        <!-- Young: CRP=+0.03, RP=+0.10 -->
+        <circle cx="184" cy="162" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="190" y="162" class="pt-label">Young</text>
+
+        <!-- Male: CRP=+0.05, RP=+0.10 -->
+        <circle cx="187" cy="162" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="110" y="162" class="pt-label">Male (+0.05)</text>
+
+        <!-- Female: CRP=+0.04, RP=-0.09 -->
+        <circle cx="185" cy="177" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="110" y="180" class="pt-label">Female (+0.04)</text>
+
+        <!-- Smiling: CRP=+0.02, RP=0.00 -->
+        <circle cx="182" cy="170" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="120" y="195" class="pt-label">Smiling</text>
+      </g>
+
+      <!-- Panel 2: (b) Celeb-DF - Xception -->
+      <g transform="translate(500, 40)">
+        <text x="180" y="-15" class="title">(b) Celeb-DF: Xception</text>
+        <rect x="0" y="0" width="360" height="170" fill="#f0fdf4" opacity="0.6"/>
+        <rect x="0" y="170" width="360" height="170" fill="#fef2f2" opacity="0.6"/>
+        <line x1="0" y1="170" x2="360" y2="170" class="axis"/>
+        <line x1="180" y1="0" x2="180" y2="340" class="axis"/>
+        <line x1="0" y1="340" x2="360" y2="0" class="bisectrix"/>
+        
+        <text x="350" y="165" font-size="9" text-anchor="end">CRP &gt; 0</text>
+        <text x="185" y="15" font-size="9">RP &gt; 0 (Higher Error)</text>
+        <text x="185" y="330" font-size="9">RP &lt; 0 (Lower Error)</text>
+        
+        <!-- Dark Skin: CRP=+0.55, RP=+2.50 -->
+        <circle cx="257" cy="18" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="263" y="18" class="pt-label" font-weight="bold">Dark Skin (+0.55, +2.50)</text>
+
+        <!-- Bald: CRP=+0.52, RP=+1.66 -->
+        <circle cx="252" cy="45" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="258" y="47" class="pt-label" font-weight="bold">Bald (+0.52)</text>
+
+        <!-- Heavy Makeup: CRP=+0.48, RP=+1.63 -->
+        <circle cx="247" cy="50" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="253" y="60" class="pt-label" font-weight="bold">Heavy Makeup (+0.48)</text>
+
+        <!-- Eyeglasses: CRP=+0.45, RP=+1.33 -->
+        <circle cx="243" cy="68" r="4.5" fill="#ef4444" stroke="#991b1b" class="dot"/>
+        <text x="248" y="75" class="pt-label" font-weight="bold">Eyeglasses (+0.45)</text>
+
+        <!-- Senior: CRP=+0.38, RP=+1.16 -->
+        <circle cx="233" cy="85" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="238" y="93" class="pt-label">Senior (+0.38)</text>
+
+        <!-- Facial Hair: CRP=+0.22, RP=+0.61 -->
+        <circle cx="210" cy="122" r="4" fill="#f97316" stroke="#c2410c" class="dot"/>
+        <text x="216" y="125" class="pt-label">Facial Hair (+0.22)</text>
+
+        <!-- Chubby: CRP=+0.19, RP=+0.53 -->
+        <circle cx="206" cy="130" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="212" y="137" class="pt-label">Chubby</text>
+
+        <!-- Male: CRP=+0.10, RP=+0.25 -->
+        <circle cx="194" cy="150" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="120" y="148" class="pt-label">Male (+0.10)</text>
+
+        <!-- Female: CRP=+0.08, RP=-0.20 -->
+        <circle cx="191" cy="186" r="3.5" fill="#22c55e" stroke="#15803d" class="dot"/>
+        <text x="110" y="188" class="pt-label">Female (-0.20)</text>
+      </g>
+      
+      <g transform="translate(60, 425)">
+        <text x="400" y="0" class="sub">Legend: Blue dashed line is the parity bisectrix. Green zone denotes higher error rate with attribute (RP &gt; 0). Red dots = High Severity (|CRP| &gt; 0.40); Orange = Moderate; Green = Low.</text>
+      </g>
+    </svg>
