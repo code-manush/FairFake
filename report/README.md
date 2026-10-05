@@ -51,6 +51,7 @@ The formatting strictly mirrors the reference publication:
    - `fig4_pdrp_ddrp.png` & `fig4_pdrp_ddrp.pdf`: Four-quadrant disparity decomposition ($PDRP$ vs. $DDRP$) demonstrating false alarms vs. attack evasion vulnerabilities.
    - `fig5_pipeline.png` & `fig5_pipeline.pdf`: FairFake multimodal system architecture with Grad-CAM and DeepFace biometric parsing.
    - `fig6_test_cases.png` & `fig6_test_cases.pdf`: Four experimental test scenarios evaluating real vs. fake predictions, Grad-CAM attention heatmaps, and failure mode analysis.
+   - `confusion_matrix_test1.png` & `confusion_matrix_test1.pdf`: Empirical confusion matrix for Test 1 baseline benchmark on $N=2{,}000$ test faces (Accuracy: $85.80\%$, AUC: $0.9328$).
 
 ---
 

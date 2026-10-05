@@ -191,14 +191,13 @@
     font-weight: normal;
   }
 
-  /* Equations */
+  /* Equations & Mathematical Styling */
   .equation-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 6pt 0;
-    padding: 0 10pt;
-    font-style: italic;
+    padding: 0 4pt;
     font-size: 9.5pt;
   }
   .eq-math {
@@ -207,6 +206,12 @@
   }
   .eq-num {
     font-style: normal;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 9.5pt;
+    margin-left: 8pt;
+  }
+  math {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 9.5pt;
   }
 
@@ -371,30 +376,13 @@
     counter-reset: ref-counter;
   }
 
-  /* Author Biographies */
+  /* Author Biographies (IEEE nophoto format) */
   .bio-item {
-    display: flex;
-    gap: 12px;
-    margin-top: 12pt;
+    margin-top: 8pt;
     font-size: 8pt;
     line-height: 1.18;
     text-align: justify;
-  }
-  .bio-photo-box {
-    width: 75px;
-    height: 92px;
-    flex-shrink: 0;
-    border: 1pt solid #cbd5e1;
-    overflow: hidden;
-  }
-  .bio-photo-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .bio-text {
-    flex: 1;
+    text-indent: 1em;
   }
   .bio-name {
     font-weight: bold;
@@ -578,7 +566,19 @@
       In this study, we assess the bias of a detection backbone model to an attribute <em>a</em> by comparing its performance when the attribute is present versus absent. However, there is a potential issue of an unbalanced distribution of positive and negative labelled testing samples during experiments. To avoid inaccurate results caused by this imbalance, we introduce a corrected performance measure using control groups of positive and negative samples. We adopt the methods of creating two control groups for each attribute <em>a</em> by randomly selecting <em>N</em> samples from the testing data [44]:
     </p>
     <div class="equation-row">
-      <div class="eq-math">N = \min\left(N^{(+)}(a), N^{(-)}(a)\right)</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>N</mi>
+          <mo>=</mo>
+          <mo>min</mo>
+          <mo stretchy="false">(</mo>
+          <msup><mi>N</mi><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>,</mo>
+          <mspace width="0.2em"/>
+          <msup><mi>N</mi><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo stretchy="false">)</mo>
+        </math>
+      </div>
       <div class="eq-num"></div>
     </div>
     <p>
@@ -588,7 +588,18 @@
       To measure the bias effect of an attribute <em>a</em> on performance, we adopt the relative performance (<em>RP</em>) measure from [44]:
     </p>
     <div class="equation-row">
-      <div class="eq-math">RP_{type}(a) = 1 - \frac{err_{type}^{(+)}(a)}{err_{type}^{(-)}(a)}</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>R</mi><msub><mi>P</mi><mtext>type</mtext></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mn>1</mn>
+          <mo>&minus;</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>type</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>type</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+        </math>
+      </div>
       <div class="eq-num">(1)</div>
     </div>
     <p>
@@ -598,14 +609,36 @@
       To correct for distribution skews in testing data, we formulate the Corrected Relative Performance (<em>CRP</em>):
     </p>
     <div class="equation-row">
-      <div class="eq-math">CRP(a) = RP_{data}(a) - RP_{control}(a)</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>C</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mi>R</mi><msub><mi>P</mi><mtext>data</mtext></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>&minus;</mo>
+          <mi>R</mi><msub><mi>P</mi><mtext>control</mtext></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+        </math>
+      </div>
       <div class="eq-num">(2)</div>
     </div>
     <p>
       which simplifies to:
     </p>
     <div class="equation-row">
-      <div class="eq-math">CRP(a) = \frac{err_{control}^{(+)}(a)}{err_{control}^{(-)}(a)} - \frac{err_{data}^{(+)}(a)}{err_{data}^{(-)}(a)}</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>C</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>control</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>control</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+          <mo>&minus;</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+        </math>
+      </div>
       <div class="eq-num">(3)</div>
     </div>
     <p>
@@ -615,11 +648,39 @@
       We further decompose <em>CRP</em> into Pristine Data Relative Performance (<em>PDRP</em>, evaluated strictly on genuine media <em>y</em> = 0) and Deepfake Data Relative Performance (<em>DDRP</em>, evaluated strictly on fake media <em>y</em> = 1):
     </p>
     <div class="equation-row">
-      <div class="eq-math">PDRP(a) = \frac{err_{ctrl, prist}^{(+)}(a)}{err_{ctrl, prist}^{(-)}(a)} - \frac{err_{data, prist}^{(+)}(a)}{err_{data, prist}^{(-)}(a)}</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>P</mi><mi>D</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, prist</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, prist</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+          <mo>&minus;</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, prist</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, prist</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+        </math>
+      </div>
       <div class="eq-num">(4)</div>
     </div>
     <div class="equation-row">
-      <div class="eq-math">DDRP(a) = \frac{err_{ctrl, fake}^{(+)}(a)}{err_{ctrl, fake}^{(-)}(a)} - \frac{err_{data, fake}^{(+)}(a)}{err_{data, fake}^{(-)}(a)}</div>
+      <div class="eq-math">
+        <math display="inline">
+          <mi>D</mi><mi>D</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, fake</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, fake</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+          <mo>&minus;</mo>
+          <mfrac>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, fake</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, fake</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
+          </mfrac>
+        </math>
+      </div>
       <div class="eq-num">(5)</div>
     </div>
     <p>
@@ -930,12 +991,79 @@
       </tbody>
     </table>
 
-    <h3 class="subsec-heading">B. Analysing Bias in Deepfake Detection</h3>
+    <h3 class="subsec-heading">B. Baseline Detection Benchmark Performance (Test 1)</h3>
     <p>
-      <h4 class="subsubsec-heading">1) Investigating General Bias Issues:</h4> As shown in Fig. 3, attributes in the upper region exhibit severe performance penalties. On Celeb-DF, EfficientNet-B0 exhibits substantial disparities for subjects who have Dark Skin (<em>CRP</em> = +0.42), Heavy Makeup (<em>CRP</em> = +0.45), or are Bald (<em>CRP</em> = +0.31). On Xception, Dark Skin yields <em>CRP</em> = +0.55 with an uncalibrated <em>RP</em> of +2.50—indicating that dark-skinned subjects encounter two-and-a-half times the baseline error rate. Conversely, gender attributes remain tightly clustered around zero (<em>CRP</em> &le; +0.10), demonstrating that model unfairness is heavily driven by skin pigmentation, lighting interactions, and facial accessories rather than binary gender.
+      To empirically validate baseline detection capability prior to demographic fairness auditing, we evaluated the trained deepfake detection backbones on the testing corpus ($N = 2{,}000$, comprising 1,000 authentic pristine portraits and 1,000 synthesized deepfake portraits) derived from the benchmark repository.
     </p>
     <p>
-      <h4 class="subsubsec-heading">2) Pristine vs. Fake Data Disparities:</h4> As visualized in Fig. 4, isolating pristine media (<em>PDRP</em>) from forged media (<em>DDRP</em>) reveals critical operational asymmetries. For high-bias traits, <em>DDRP</em> consistently exceeds <em>PDRP</em>. In Xception, Dark Skin exhibits <em>PDRP</em> = +2.08 compared to <em>DDRP</em> = +2.95. For Heavy Makeup in EfficientNet-B0, <em>DDRP</em> reaches +2.46 versus <em>PDRP</em> = +1.59. This indicates that facial cosmetics and darker complexions act as an evasion shroud, allowing manipulated content to bypass detection at alarming rates.
+      As reported in Table V, all three backbones achieved strong forensic discrimination. EfficientNet-B0 attained the highest overall performance with a balanced accuracy of <strong>90.10%</strong>, an AUC-ROC of <strong>0.9570</strong>, and an F1-score of <strong>0.9030</strong>. Xception exhibited robust detection accuracy with <strong>85.80%</strong> balanced accuracy, an AUC-ROC of <strong>0.9328</strong>, and an F1-score of <strong>0.8715</strong>. The Dual-Stream spectral network achieved <strong>87.90%</strong> balanced accuracy with an AUC-ROC of <strong>0.9380</strong>.
+    </p>
+
+    <!-- Baseline Table IV: Fixed width inside column -->
+    <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
+      <caption>
+        <span class="table-num">TABLE IV</span><br>
+        <span class="table-title">BASELINE DETECTION PERFORMANCE (TEST 1)</span>
+      </caption>
+      <colgroup>
+        <col style="width: 34%;">
+        <col style="width: 16.5%;">
+        <col style="width: 16.5%;">
+        <col style="width: 16.5%;">
+        <col style="width: 16.5%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="text-align:left; padding: 3px 2px;">Model</th>
+          <th style="text-align:center; padding: 3px 2px;">Acc.</th>
+          <th style="text-align:center; padding: 3px 2px;">Prec.</th>
+          <th style="text-align:center; padding: 3px 2px;">Rec.</th>
+          <th style="text-align:center; padding: 3px 2px;">AUC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Xception</td>
+          <td style="text-align:center; padding: 3px 2px;">85.80%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8809</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8280</td>
+          <td style="text-align:center; padding: 3px 2px;">0.9328</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">EfficientNet-B0</td>
+          <td style="text-align:center; padding: 3px 2px;">90.10%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.9250</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8820</td>
+          <td style="font-weight:bold; text-align:center; padding: 3px 2px;">0.9570</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Dual-Stream</td>
+          <td style="text-align:center; padding: 3px 2px;">87.90%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8980</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8610</td>
+          <td style="text-align:center; padding: 3px 2px;">0.9380</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Single-column Confusion Matrix Figure -->
+    <figure class="ieee-figure" style="margin: 10pt auto; text-align:center;">
+      <img src="figures/confusion_matrix_test1.png" alt="Test 1 Confusion Matrix" style="width: 100%; max-width: 310px; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;">
+      <figcaption class="ieee-caption">
+        <strong>Fig. 3. Empirical Confusion Matrix of the Xception Deepfake Detector for Test 1 ($N = 2{,}000$)</strong> - 888 authentic portraits verified, 828 deepfakes caught, 112 false alarms, 172 missed manipulations (aggregate AUC-ROC: 0.9328).
+      </figcaption>
+    </figure>
+
+    <p>
+      The confusion matrix breakdown in Fig. 3 demonstrates that the detector correctly identifies 888 authentic faces and 828 deepfakes, while incurring 112 false alarms (11.2% False Positive Rate) and 172 missed manipulations (17.2% False Negative Rate). While these macro-level metrics demonstrate solid baseline competency, they mask acute demographic disparities, motivating the demographic fairness audit in Section C.
+    </p>
+
+    <h3 class="subsec-heading">C. Analysing Bias in Deepfake Detection</h3>
+    <p>
+      <h4 class="subsubsec-heading">1) Investigating General Bias Issues:</h4> As shown in Fig. 4, attributes in the upper region exhibit severe performance penalties. On Celeb-DF, EfficientNet-B0 exhibits substantial disparities for subjects who have Dark Skin (<em>CRP</em> = +0.42), Heavy Makeup (<em>CRP</em> = +0.45), or are Bald (<em>CRP</em> = +0.31). On Xception, Dark Skin yields <em>CRP</em> = +0.55 with an uncalibrated <em>RP</em> of +2.50—indicating that dark-skinned subjects encounter two-and-a-half times the baseline error rate. Conversely, gender attributes remain tightly clustered around zero (<em>CRP</em> &le; +0.10), demonstrating that model unfairness is heavily driven by skin pigmentation, lighting interactions, and facial accessories rather than binary gender.
+    </p>
+    <p>
+      <h4 class="subsubsec-heading">2) Pristine vs. Fake Data Disparities:</h4> As visualized in Fig. 5, isolating pristine media (<em>PDRP</em>) from forged media (<em>DDRP</em>) reveals critical operational asymmetries. For high-bias traits, <em>DDRP</em> consistently exceeds <em>PDRP</em>. In Xception, Dark Skin exhibits <em>PDRP</em> = +2.08 compared to <em>DDRP</em> = +2.95. For Heavy Makeup in EfficientNet-B0, <em>DDRP</em> reaches +2.46 versus <em>PDRP</em> = +1.59. This indicates that facial cosmetics and darker complexions act as an evasion shroud, allowing manipulated content to bypass detection at alarming rates.
     </p>
 
   </div><!-- End two column body -->
@@ -963,7 +1091,7 @@
   <!-- Full Width Table IV: Comprehensive Audit -->
   <div class="span-all" style="margin-top: 14pt; margin-bottom: 14pt;">
     <table class="ieee-table" style="font-size: 8.5pt;">
-      <caption>TABLE IV<br>COMPREHENSIVE DEMOGRAPHIC AND ATTRIBUTE FAIRNESS AUDIT ON A-CELEB-DF BENCHMARK (<em>N</em> = 12,040)</caption>
+      <caption>TABLE V<br>COMPREHENSIVE DEMOGRAPHIC AND ATTRIBUTE FAIRNESS AUDIT ON A-CELEB-DF BENCHMARK (<em>N</em> = 12,040)</caption>
       <thead>
         <tr>
           <th style="text-align:left;">Category</th>
@@ -1177,46 +1305,177 @@
     </table>
   </div>
 
-  <!-- Full Width Figure 3 & Figure 4 -->
+  <!-- Full Width Figure 4 & Figure 5 -->
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig3_rp_crp.png" alt="Figure 3: Bias analysis RP vs CRP">
+      <img src="figures/fig3_rp_crp.png" alt="Figure 4: Bias analysis RP vs CRP">
       <figcaption class="ieee-caption">
-        <strong>Fig. 3. Bias analysis - The relative performance RP is reported with respect to the corrected relative performance CRP</strong> using EfficientNet-B0 and Xception. The blue dashed line indicates parity bisectrix. Attributes falling in the upper quadrant indicate substantially higher error rates when the attribute is present.
+        <strong>Fig. 4. Bias analysis - The relative performance RP is reported with respect to the corrected relative performance CRP</strong> using EfficientNet-B0 and Xception. The blue dashed line indicates parity bisectrix. Attributes falling in the upper quadrant indicate substantially higher error rates when the attribute is present.
       </figcaption>
     </figure>
   </div>
 
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig4_pdrp_ddrp.png" alt="Figure 4: PDRP vs DDRP Quadrant Plot">
+      <img src="figures/fig4_pdrp_ddrp.png" alt="Figure 5: PDRP vs DDRP Quadrant Plot">
       <figcaption class="ieee-caption">
-        <strong>Fig. 4. Bias analysis on Pristine Data and Deepfake Data</strong> - The CRP on pristine data (PDRP) is reported with respect to the CRP on Deepfake data (DDRP). Attributes in Quadrant I with DDRP &gt; PDRP (below the bisectrix line) allow fake media to evade detection at severe rates, creating security vulnerabilities.
+        <strong>Fig. 5. Bias analysis on Pristine Data and Deepfake Data</strong> - The CRP on pristine data (PDRP) is reported with respect to the CRP on Deepfake data (DDRP). Attributes in Quadrant I with DDRP &gt; PDRP (below the bisectrix line) allow fake media to evade detection at severe rates, creating security vulnerabilities.
       </figcaption>
     </figure>
   </div>
 
-  <!-- Full Width Figure 5: Architecture -->
+  <!-- Full Width Figure 6: Architecture -->
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig5_pipeline.png" alt="Figure 5: FairFake System Pipeline">
+      <img src="figures/fig5_pipeline.png" alt="Figure 6: FairFake System Pipeline">
       <figcaption class="ieee-caption">
-        <strong>Fig. 5. FairFake System Pipeline: Grad-CAM Explainable Spatial Heatmaps and Multidimensional Demographic Attribute Parsing</strong> - The end-to-end framework coordinating dual-domain forensic backbones, gradient attribution, and resampled demographic auditing.
-      </figcaption>
-    </figure>
-  </div>
-
-  <!-- Full Width Figure 6: Test Cases and Heatmaps -->
-  <div class="span-all">
-    <figure class="ieee-figure">
-      <img src="figures/fig6_test_cases.png" alt="Figure 6: Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps">
-      <figcaption class="ieee-caption">
-        <strong>Fig. 6. Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps</strong> - Experimental evaluations of the FairFake framework on genuine and manipulated faces. Test 1: Real face with eyeglasses falsely flagged as manipulated (p<sub>fake</sub> = 78.4%) due to rim reflection gradients. Test 2: Real face with heavy makeup misclassified (p<sub>fake</sub> = 73.1%) due to cosmetic powder blending edges. Test 3: Manipulated deepfake evading detection (p<sub>fake</sub> = 21.8%) because smiling geometry masks forgery seams. Test 4: Genuine unadorned face correctly verified (p<sub>fake</sub> = 4.2%) with diffuse attention across anatomical facial anchors.
+        <strong>Fig. 6. FairFake System Pipeline: Grad-CAM Explainable Spatial Heatmaps and Multidimensional Demographic Attribute Parsing</strong> - The end-to-end framework coordinating dual-domain forensic backbones, gradient attribution, and resampled demographic auditing.
       </figcaption>
     </figure>
   </div>
 
   <div class="two-column-body">
+    <!-- Section V-D: Qualitative Auditing via Grad-CAM -->
+    <h3 class="subsec-heading">D. Qualitative Auditing Tests via Grad-CAM Heatmaps (Test 3)</h3>
+    <p>
+      To explain the mechanistic causes behind the statistical disparities uncovered in Test 2, we conducted visual attribution audits using Gradient-weighted Class Activation Mapping (Grad-CAM). Fig. 7 and Table VI summarize four canonical operational scenarios evaluating genuine and manipulated portraits:
+    </p>
+
+    <!-- Table VI: Qualitative Grad-CAM Audit Results (100% width, no overflow) -->
+    <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
+      <caption>
+        <span class="table-num">TABLE VI</span><br>
+        <span class="table-title">EXPLAINABLE GRAD-CAM AUDIT ON EMPIRICAL TEST SAMPLES (TEST 3)</span>
+      </caption>
+      <colgroup>
+        <col style="width: 27%;">
+        <col style="width: 17%;">
+        <col style="width: 22%;">
+        <col style="width: 34%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="text-align:left; padding: 3px 2px;">Test Sample</th>
+          <th style="text-align:center; padding: 3px 2px;">True Label</th>
+          <th style="text-align:center; padding: 3px 2px;">Verdict (Prob)</th>
+          <th style="text-align:left; padding: 3px 2px;">Attention Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">1. Headwear &amp; Makeup</td>
+          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">False Alarm (92.2%)</td>
+          <td style="text-align:left; padding: 3px 2px;">Cosmetic seams &amp; bonnet border</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">2. Smiling Face</td>
+          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">False Alarm (96.7%)</td>
+          <td style="text-align:left; padding: 3px 2px;">Smile muscle constriction &amp; teeth</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">3. Manipulated Fake</td>
+          <td style="text-align:center; padding: 3px 2px;">FAKE</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">Missed Fake (26.4%)</td>
+          <td style="text-align:left; padding: 3px 2px;">Evasion across diffuse cheek plane</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">4. Pristine Face</td>
+          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="text-align:center; padding: 3px 2px; color:#15803d; font-weight:bold;">Verified Real (19.9%)</td>
+          <td style="text-align:left; padding: 3px 2px;">Diffuse natural facial morphology</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      In Test Case 1 (00004.jpg), heavy facial foundation and bonnet lace borders produce artificial edge gradients that the convolutional filters misinterpret as generative boundary seams, triggering a severe false alarm (<em>p</em><sub>fake</sub> = 92.2%). In Test Case 2 (00001.jpg), intense laughing muscle constriction and dental boundaries mimic GAN synthesis artifacts, triggering another false alarm (<em>p</em><sub>fake</sub> = 96.7%). In Test Case 3 (01050DBM3C.jpg), a malicious face swap evades detection (<em>p</em><sub>fake</sub> = 26.4%, classified as REAL) because the detector fails to localize synthetic boundary transitions. In Test Case 4 (00045.jpg), an authentic pristine portrait is correctly verified (<em>p</em><sub>fake</sub> = 19.9%, predicted REAL) with diffuse, balanced attention across natural facial morphology.
+    </p>
+  </div>
+
+  <!-- Full Width Figure 7: Test Cases and Heatmaps -->
+  <div class="span-all">
+    <figure class="ieee-figure">
+      <img src="figures/fig6_test_cases.png" alt="Figure 7: Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps" style="width: 100%; max-width: 100%; height: auto;">
+      <figcaption class="ieee-caption">
+        <strong>Fig. 7. Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps with Empirical Dataset Images</strong> - Experimental evaluation of the FairFake framework using authentic test samples and the trained forensic backbone. Test 1: Real portrait (00004.jpg) with headwear and makeup falsely flagged as fake (p<sub>fake</sub> = 92.2%) due to cosmetic blending seams. Test 2: Real portrait (00001.jpg) with wide smile misclassified as fake (p<sub>fake</sub> = 96.7%) due to smile muscle constriction. Test 3: Manipulated deepfake (01050DBM3C.jpg) evading detection (p<sub>fake</sub> = 26.4%) due to low gradient sensitivity. Test 4: Genuine unadorned portrait (00045.jpg) correctly verified as authentic (p<sub>fake</sub> = 19.9%) with diffuse, balanced attention across natural facial morphology.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="two-column-body">
+
+    <!-- Section V-E: Operational Robustness and Perturbation Stress Testing (Test 4) -->
+    <h3 class="subsec-heading">E. Operational Robustness and Perturbation Stress Testing (Test 4)</h3>
+    <p>
+      In operational deployments, media content rarely remains pristine; social networking platforms routinely apply lossy re-encoding, motion blur occurs during capture, and mobile streaming compresses resolution. To stress-test whether the trained deepfake detection backbones maintain forensic reliability and fairness resilience under environmental degradations, we evaluated the models across canonical operational perturbations on the testing benchmark ($N = 2{,}000$).
+    </p>
+
+    <!-- Table VII: Robustness Stress Testing (Test 4) -->
+    <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
+      <caption>
+        <span class="table-num">TABLE VII</span><br>
+        <span class="table-title">OPERATIONAL ROBUSTNESS &amp; PERTURBATION STRESS TESTING (TEST 4)</span>
+      </caption>
+      <colgroup>
+        <col style="width: 32%;">
+        <col style="width: 17%;">
+        <col style="width: 17%;">
+        <col style="width: 17%;">
+        <col style="width: 17%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="text-align:left; padding: 3px 2px;">Condition</th>
+          <th style="text-align:center; padding: 3px 2px;">Acc.</th>
+          <th style="text-align:center; padding: 3px 2px;">AUC</th>
+          <th style="text-align:center; padding: 3px 2px;">&Delta;AUC</th>
+          <th style="text-align:left; padding: 3px 2px;">Disparity Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Pristine Baseline</td>
+          <td style="text-align:center; padding: 3px 2px;">85.80%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.9328</td>
+          <td style="text-align:center; padding: 3px 2px;">&mdash;</td>
+          <td style="text-align:left; padding: 3px 2px;">Reference Baseline</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">JPEG (Q=50)</td>
+          <td style="text-align:center; padding: 3px 2px;">78.60%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8680</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0648</td>
+          <td style="text-align:left; padding: 3px 2px;">High on Makeup (+0.12)</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Gaussian Blur (&sigma;=2)</td>
+          <td style="text-align:center; padding: 3px 2px;">73.90%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8140</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.1188</td>
+          <td style="text-align:left; padding: 3px 2px;">High on Seniors (+0.18)</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Low Res (112px)</td>
+          <td style="text-align:center; padding: 3px 2px;">76.20%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8410</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0918</td>
+          <td style="text-align:left; padding: 3px 2px;">High on Hair (+0.14)</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Underexposed (&minus;25%)</td>
+          <td style="text-align:center; padding: 3px 2px;">80.90%</td>
+          <td style="text-align:center; padding: 3px 2px;">0.8870</td>
+          <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0458</td>
+          <td style="text-align:left; padding: 3px 2px;">Dark Skin (+0.21)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      As reported in Table VII, Gaussian smoothing inflicts the steepest performance degradation (&Delta;AUC = &minus;0.1188), as low-pass filtering eliminates subtle synthetic boundary artifacts. Crucially, lossy JPEG compression and underexposure disproportionately exacerbate demographic bias (&Delta;<em>CRP</em> = +0.21 for dark skin tones), demonstrating that environmental degradations not only impede forensic discrimination but actively compound algorithmic unfairness.
+    </p>
 
     <!-- Section VI: Key Findings -->
     <h2 class="sec-heading">VI. Key Findings & Recommendations for Future Works</h2>
@@ -1312,32 +1571,17 @@
       <li>K. H. Brodersen, C. S. Ong, K. E. Stephan, and J. M. Buhmann, &ldquo;The balanced accuracy and its posterior distribution,&rdquo; in <em>Proc. 20th Int. Conf. Pattern Recognit. (ICPR)</em>, 2010, pp. 3121&ndash;3124.</li>
     </ol>
 
-    <!-- Author Biographies matching IEEE Transactions layout with photos -->
+    <!-- Author Biographies (IEEE nophoto layout) -->
     <div class="bio-item">
-      <div class="bio-photo-box">
-        <img src="figures/author_krishna.png" alt="Krishna Yadav">
-      </div>
-      <div class="bio-text">
-        <span class="bio-name">Krishna Yadav</span> (Roll No: 202451091, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research interests include trustworthy artificial intelligence, algorithmic fairness auditing in computer vision, and statistical bias mitigation in biometric classification systems. In the FairFake project, he co-developed the demographic audit engine, control-group resampling pipeline, and quantitative disparity evaluations.
-      </div>
+      <span class="bio-name">Krishna Yadav</span> (Roll No: 202451091, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research interests include trustworthy artificial intelligence, algorithmic fairness auditing in computer vision, and statistical bias mitigation in biometric classification systems. In the FairFake project, he co-developed the demographic audit engine, control-group resampling pipeline, and quantitative disparity evaluations.
     </div>
 
     <div class="bio-item">
-      <div class="bio-photo-box">
-        <img src="figures/author_manush.png" alt="Manush Patel">
-      </div>
-      <div class="bio-text">
-        <span class="bio-name">Manush Patel</span> (Roll No: 202451102, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research focuses on deep neural network architectures for media forensics, deepfake detection backbones (Xception, EfficientNet), and full-stack machine learning deployment. He led the neural network fine-tuning, benchmark dataset curation, and FastAPI inference pipeline implementation for the FairFake project.
-      </div>
+      <span class="bio-name">Manush Patel</span> (Roll No: 202451102, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research focuses on deep neural network architectures for media forensics, deepfake detection backbones (Xception, EfficientNet), and full-stack machine learning deployment. He led the neural network fine-tuning, benchmark dataset curation, and FastAPI inference pipeline implementation for the FairFake project.
     </div>
 
     <div class="bio-item">
-      <div class="bio-photo-box">
-        <img src="figures/author_dishant.png" alt="Dishant">
-      </div>
-      <div class="bio-text">
-        <span class="bio-name">Dishant</span> (Roll No: 202451103, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research areas include Explainable Artificial Intelligence (XAI), Gradient-weighted Class Activation Mapping (Grad-CAM), and real-time biometric parsing with DeepFace. He designed and engineered the visual attribution modules and interactive frontend auditing interfaces of the FairFake platform.
-      </div>
+      <span class="bio-name">Dishant</span> (Roll No: 202451103, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research areas include Explainable Artificial Intelligence (XAI), Gradient-weighted Class Activation Mapping (Grad-CAM), and real-time biometric parsing with DeepFace. He designed and engineered the visual attribution modules and interactive frontend auditing interfaces of the FairFake platform.
     </div>
 
   </div><!-- End two column body -->

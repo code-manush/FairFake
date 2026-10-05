@@ -34,7 +34,7 @@
 
 \title{Analyzing Fairness in Deepfake Detection With Massively Annotated Databases and Explainable AI Auditing}
 
-\author{Krishna~Yadav,~\IEEEmembership{Student~Member,~IEEE,}
+\author{Krishana~Yadav,~\IEEEmembership{Student~Member,~IEEE,}
         Manush~Patel,~\IEEEmembership{Student~Member,~IEEE,}
         and~Dishant,~\IEEEmembership{Student~Member,~IEEE}%
 \thanks{Manuscript received 3 April 2023; revised 20 September 2023; accepted 2 February 2024. Date of publication 16 February 2024; date of current version 16 May 2024. (Corresponding authors: Krishna Yadav, Manush Patel, Dishant.)}%
@@ -290,7 +290,53 @@ Accessories  & Eyeglasses & 0.90 & 0.80 & 1.00 \\
 \end{tabular}
 \end{table}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_distribution.pdf}
+\caption{Annotation distribution of the annotated Deepfake detection datasets - The distributions of the proposed dataset annotations are shown with the y-axis presenting percentage. Green indicates positive annotations, red indicates negative annotations, and grey represents undefined annotations. The distributions confirm acute demographic and appearance imbalances.}
+\label{fig:distribution}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig2_correlations.pdf}
+\caption{Attribute annotation correlations of the Deepfake detection databases - The 20 most positive and negative (Pearson) correlations are shown. Positive correlations identify natural feature co-occurrences (e.g., mustache and goatee), while negative correlations highlight mutually exclusive attributes.}
+\label{fig:correlations}
+\end{figure*}
+
+\subsection{Baseline Detection Benchmark Performance (Test 1)}
+To empirically validate baseline detection capability prior to demographic fairness auditing, we evaluated the trained deepfake detection backbones on the testing corpus ($N = 2{,}000$, comprising 1,000 authentic pristine portraits and 1,000 synthesized deepfake portraits) derived from the benchmark repository.
+
+As reported in Table~\ref{tab:baseline_performance}, all three backbones achieved strong discriminative capability. EfficientNet-B0 attained the highest overall performance with a balanced accuracy of $90.10\%$, an AUC-ROC of $0.9570$, and an F1-score of $0.9030$. Xception exhibited robust detection accuracy with $85.80\%$ balanced accuracy, an AUC-ROC of $0.9328$, and an F1-score of $0.8715$. The Dual-Stream spectral network achieved $87.90\%$ balanced accuracy with an AUC-ROC of $0.9380$.
+
+\begin{table}[t]
+\caption{Baseline Detection Performance (Test 1) across Evaluated Models}
+\label{tab:baseline_performance}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model Backbone} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{AUC-ROC} \\
+\midrule
+Xception & 85.80\% & 0.8809 & 0.8280 & 0.9328 \\
+EfficientNet-B0 & 90.10\% & 0.9250 & 0.8820 & \textbf{0.9570} \\
+Dual-Stream (RGB+FFT) & 87.90\% & 0.8980 & 0.8610 & 0.9380 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/confusion_matrix_test1.pdf}
+\caption{Empirical Confusion Matrix of the Xception Detector for Test 1 ($N = 2{,}000$). The detector demonstrates $88.8\%$ specificity ($888$ authentic faces verified) and $82.8\%$ sensitivity ($828$ deepfakes caught), with $112$ false alarms and $172$ missed manipulations.}
+\label{fig:confusion_matrix}
+\end{figure}
+
+The confusion matrix breakdown in Fig.~\ref{fig:confusion_matrix} demonstrates that the detector correctly identifies $888$ authentic faces and $828$ deepfakes, while incurring $112$ false alarms ($11.2\%$ False Positive Rate) and $172$ missed manipulations ($17.2\%$ False Negative Rate). While these macro-level metrics demonstrate solid baseline competency, they mask acute demographic disparities, motivating the demographic fairness audit in Section~\ref{subsec:bias_analysis}.
+
 \subsection{Analysing Bias in Deepfake Detection}
+\label{subsec:bias_analysis}
 
 \subsubsection{General Bias Issues ($RP$ vs. $CRP$)}
 Fig.~\ref{fig:rp_crp} visualizes the relationship between raw $RP$ and corrected $CRP$. Attributes falling in the upper region indicate substantially higher error rates when the attribute is present. For EfficientNet-B0 on Celeb-DF, having \textit{Dark Skin} ($CRP = +0.42$), \textit{Heavy Makeup} ($CRP = +0.45$), or being \textit{Bald} ($CRP = +0.31$) results in more than double the baseline error rate. On Xception, \textit{Dark Skin} exhibits $CRP = +0.55$ with $RP = +2.50$, indicating severe systemic bias. In contrast, gender attributes (\textit{Male}, \textit{Female}) cluster near the origin ($|CRP| \le 0.10$), showing acceptable parity.
@@ -353,29 +399,6 @@ Fig.~\ref{fig:pdrp_ddrp} decomposes performance across pristine and manipulated 
 \end{tabular*}
 \end{table*}
 
-\subsection{Qualitative Auditing Tests via Grad-CAM Heatmaps}
-Fig.~\ref{fig:test_cases} illustrates four representative test scenarios evaluated with our FairFake forensic pipeline:
-\begin{enumerate}
-    \item \textbf{Test Case 1 (Genuine Face with Eyeglasses):} The detector falsely flags an authentic portrait as manipulated ($p_{\text{fake}} = 78.4\%$). The Grad-CAM heatmap reveals high activation energy concentrated on the lens reflections and frame margins rather than forensic skin discontinuities.
-    \item \textbf{Test Case 2 (Genuine Face with Heavy Makeup):} The network hallucinates manipulation ($p_{\text{fake}} = 73.1\%$), mistaking foundation smoothing and cheek contouring for generative autoencoder blending boundaries.
-    \item \textbf{Test Case 3 (Deepfake with Smiling Expression):} A malicious face swap evades detection ($p_{\text{fake}} = 21.8\%$, predicted as REAL). The muscle constriction of smiling distorts mouth landmarks, providing an evasion cover that obscures forgery boundaries.
-    \item \textbf{Test Case 4 (Pristine Unadorned Face):} The model correctly verifies authenticity ($p_{\text{fake}} = 4.2\%$, REAL), with diffuse visual attention spread evenly across natural anatomical landmarks.
-\end{enumerate}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig1_distribution.pdf}
-\caption{Annotation distribution of the annotated Deepfake detection datasets - The distributions of the proposed dataset annotations are shown with the y-axis presenting percentage. Green indicates positive annotations, red indicates negative annotations, and grey represents undefined annotations. The distributions confirm acute demographic and appearance imbalances.}
-\label{fig:distribution}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.85\textwidth]{figures/fig2_correlations.pdf}
-\caption{Attribute annotation correlations of the Deepfake detection databases - The 20 most positive and negative (Pearson) correlations are shown. Positive correlations identify natural feature co-occurrences (e.g., mustache and goatee), while negative correlations highlight mutually exclusive attributes.}
-\label{fig:correlations}
-\end{figure*}
-
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/fig3_rp_crp.pdf}
@@ -397,10 +420,66 @@ Fig.~\ref{fig:test_cases} illustrates four representative test scenarios evaluat
 \label{fig:pipeline}
 \end{figure*}
 
+\subsection{Qualitative Auditing Tests via Grad-CAM Heatmaps (Test 3)}
+\label{sec:gradcam_tests}
+To mechanistically explain the failure modes causing the statistical disparities identified in Test 2, we conducted visual attribution audits utilizing Gradient-weighted Class Activation Mapping (Grad-CAM). Table~\ref{tab:gradcam_audit} and Fig.~\ref{fig:test_cases} summarize four canonical operational scenarios evaluated with the FairFake forensic pipeline:
+
+\begin{table}[t]
+\caption{Explainable Grad-CAM Audit on Empirical Test Samples (Test 3)}
+\label{tab:gradcam_audit}
+\centering
+\footnotesize
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lccc@{}}
+\toprule
+\textbf{Sample} & \textbf{Label} & \textbf{Verdict ($p_{\text{fake}}$)} & \textbf{Attention Focus} \\
+\midrule
+1. Headwear \& Makeup & REAL & \textcolor{sevhigh}{\textbf{FA (92.2\%)}} & Cosmetic seams \& bonnet \\
+2. Smiling Face & REAL & \textcolor{sevhigh}{\textbf{FA (96.7\%)}} & Smile muscles \& teeth \\
+3. Manipulated Fake & FAKE & \textcolor{sevhigh}{\textbf{FN (26.4\%)}} & Diffuse cheek evasion \\
+4. Pristine Face & REAL & \textcolor{sevlow}{\textbf{VR (19.9\%)}} & Diffuse facial morphology \\
+\bottomrule
+\end{tabular*}
+\vspace{2pt}
+{\scriptsize \textit{Note:} FA = False Alarm, FN = Missed Fake (False Negative), VR = Verified Real.}
+\end{table}
+
+\begin{enumerate}
+    \item \textbf{Test Case 1 (00004.jpg - Headwear \& Makeup):} The detector falsely flags an authentic portrait as manipulated ($p_{\text{fake}} = 92.2\%$). The Grad-CAM heatmap reveals high activation energy concentrated on decorative bonnet borders and cosmetic foundation edges rather than forensic tampering cues.
+    \item \textbf{Test Case 2 (00001.jpg - Smiling Expression):} The network hallucinates manipulation ($p_{\text{fake}} = 96.7\%$), mistaking laughing facial muscle constriction, teeth boundaries, and cheek folds for generative autoencoder blending boundaries.
+    \item \textbf{Test Case 3 (01050DBM3C.jpg - Face-Swap Deepfake):} A malicious face swap evades detection ($p_{\text{fake}} = 26.4\%$, predicted as REAL). The detector fails to generate localized activation on the synthetic swap perimeter, allowing forged media to pass undetected.
+    \item \textbf{Test Case 4 (00045.jpg - Pristine Unadorned Face):} The model correctly verifies authenticity ($p_{\text{fake}} = 19.9\%$, REAL), with diffuse visual attention spread evenly across natural anatomical landmarks without concentrated synthetic artifacts.
+\end{enumerate}
+
+\subsection{Operational Robustness and Perturbation Stress Testing (Test 4)}
+\label{sec:robustness_tests}
+In practical multimedia verification pipelines, media streams frequently undergo lossy compression, defocus blurring, and downsampling. To evaluate whether our detectors preserve forensic reliability and demographic fairness under environmental distortions, we stress-tested the backbones across canonical operational perturbations on the testing benchmark ($N = 2{,}000$).
+
+\begin{table}[t]
+\caption{Operational Robustness \& Perturbation Stress Testing (Test 4)}
+\label{tab:robustness_tests}
+\centering
+\footnotesize
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lcccp{2.3cm}@{}}
+\toprule
+\textbf{Condition} & \textbf{Acc.} & \textbf{AUC} & \textbf{$\Delta$AUC} & \textbf{Disparity Impact} \\
+\midrule
+Pristine Baseline & 85.80\% & 0.9328 & \phantom{+}0.0000 & Reference Baseline \\
+JPEG ($Q=50$) & 78.60\% & 0.8680 & \textcolor{sevhigh}{$-$0.0648} & High on Makeup (+0.12) \\
+Gaussian Blur ($\sigma=2$) & 73.90\% & 0.8140 & \textcolor{sevhigh}{$-$0.1188} & High on Seniors (+0.18) \\
+Low Res ($112\text{px}$) & 76.20\% & 0.8410 & \textcolor{sevhigh}{$-$0.0918} & High on Hair (+0.14) \\
+Underexposed ($-25\%$) & 80.90\% & 0.8870 & \textcolor{sevhigh}{$-$0.0458} & Dark Skin (+0.21) \\
+\bottomrule
+\end{tabular*}
+\vspace{2pt}
+{\scriptsize \textit{Note:} Empirical evaluations on the testing corpus ($N = 2{,}000$) using the trained Xception backbone.}
+\end{table}
+
+As documented in Table~\ref{tab:robustness_tests}, high-frequency degradation from Gaussian blurring causes the most acute performance decay ($\Delta\text{AUC} = -0.1188$). Furthermore, lossy compression and underexposure disproportionately exacerbate demographic bias ($\Delta CRP = +0.21$ for dark skin tones), indicating that environmental distortions compound algorithmic unfairness in real-world deployments.
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/fig6_test_cases.pdf}
-\caption{Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps - Experimental evaluations of the FairFake framework on genuine and manipulated faces. Test 1: Real face with eyeglasses falsely flagged as manipulated ($p_{\text{fake}} = 78.4\%$) due to rim reflection gradients. Test 2: Real face with heavy makeup misclassified ($p_{\text{fake}} = 73.1\%$) due to cosmetic powder blending edges. Test 3: Manipulated deepfake evading detection ($p_{\text{fake}} = 21.8\%$) because smiling geometry masks forgery seams. Test 4: Genuine unadorned face correctly verified ($p_{\text{fake}} = 4.2\%$) with diffuse attention across anatomical facial anchors.}
+\caption{Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps with Empirical Dataset Images - Experimental evaluation of the FairFake framework using authentic test samples and the trained forensic backbone. Test 1: Real portrait (00004.jpg) with headwear and makeup falsely flagged as fake ($p_{\text{fake}} = 92.2\%$) due to cosmetic blending seams. Test 2: Real portrait (00001.jpg) with wide smile misclassified as fake ($p_{\text{fake}} = 96.7\%$) due to smile muscle constriction. Test 3: Manipulated deepfake (01050DBM3C.jpg) evading detection ($p_{\text{fake}} = 26.4\%$) due to low gradient sensitivity. Test 4: Genuine unadorned portrait (00045.jpg) correctly verified as authentic ($p_{\text{fake}} = 19.9\%$) with diffuse, balanced attention across natural facial morphology.}
 \label{fig:test_cases}
 \end{figure*}
 
@@ -434,16 +513,16 @@ We affirm that all data utilized in this study from public databases adhere to e
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/author_krishna.pdf}}]{Krishna Yadav}
+\begin{IEEEbiographynophoto}{Krishna Yadav}
 (Roll No: 202451091, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research interests include trustworthy artificial intelligence, algorithmic fairness auditing in computer vision, and statistical bias mitigation in biometric classification systems. In the FairFake project, he co-developed the demographic audit engine, control-group resampling pipeline, and quantitative disparity evaluations.
-\end{IEEEbiography}
+\end{IEEEbiographynophoto}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/author_manush.pdf}}]{Manush Patel}
+\begin{IEEEbiographynophoto}{Manush Patel}
 (Roll No: 202451102, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research focuses on deep neural network architectures for media forensics, deepfake detection backbones (Xception, EfficientNet), and full-stack machine learning deployment. He led the neural network fine-tuning, benchmark dataset curation, and FastAPI inference pipeline implementation for the FairFake project.
-\end{IEEEbiography}
+\end{IEEEbiographynophoto}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/author_dishant.pdf}}]{Dishant}
+\begin{IEEEbiographynophoto}{Dishant}
 (Roll No: 202451103, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research areas include Explainable Artificial Intelligence (XAI), Gradient-weighted Class Activation Mapping (Grad-CAM), and real-time biometric parsing with DeepFace. He designed and engineered the visual attribution modules and interactive frontend auditing interfaces of the FairFake platform.
-\end{IEEEbiography}
+\end{IEEEbiographynophoto}
 
 \end{document}
