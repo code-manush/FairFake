@@ -12,11 +12,11 @@ The formatting strictly mirrors the reference publication:
 ---
 
 ## 👥 Student Authors & Researchers
-1. **Krishna Yadav** (Roll No: **202451091**), *Student Member, IEEE*
-2. **Manush Patel** (Roll No: **202451102**), *Student Member, IEEE*
-3. **Dishant** (Roll No: **202451103**), *Student Member, IEEE*
+1. **Krishna Yadav** (Roll No: **202451091**, Email: `202451091@iiitvadodara.ac.in`)
+2. **Manush Patel** (Roll No: **202451102**, Email: `202451102@iiitvadodara.ac.in`)
+3. **Dishant** (Roll No: **202451103**, Email: `202451103@iiitvadodara.ac.in`)
 
-*Department of Computer Science and Engineering, College of Engineering and Technology.*
+*Department of Computer Science and Engineering, Indian Institute of Information Technology Vadodara (IIIT Vadodara), Gandhinagar Campus, Gujarat 382028, India.*
 
 ---
 

@@ -21,14 +21,19 @@ cmd = [
     url
 ]
 
+if os.path.exists(out_pdf):
+    try:
+        os.remove(out_pdf)
+    except Exception:
+        pass
+
 print("Launching Edge print...")
 proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # Poll for file update and process exit
 start_time = time.time()
-while time.time() - start_time < 30:
-    if os.path.exists(out_pdf) and os.path.getmtime(out_pdf) > start_time - 1:
-        # Give a small moment for file handle to close
+while time.time() - start_time < 35:
+    if os.path.exists(out_pdf) and os.path.getsize(out_pdf) > 1000:
         time.sleep(2)
         break
     time.sleep(0.5)
@@ -46,8 +51,13 @@ size = os.path.getsize(out_pdf)
 print(f"FairFake_IEEE_Paper.pdf generated: {size} bytes")
 
 # Copy to root PDF
-shutil.copy2(out_pdf, root_pdf)
-print(f"Copied to root PDF: {root_pdf} ({os.path.getsize(root_pdf)} bytes)")
+try:
+    with open(out_pdf, 'rb') as fsrc, open(root_pdf, 'wb') as fdst:
+        fdst.write(fsrc.read())
+    print(f"Copied to root PDF: {root_pdf} ({os.path.getsize(root_pdf)} bytes)")
+except Exception as e:
+    subprocess.run(["powershell", "-Command", f'Copy-Item -Force "{out_pdf}" "{root_pdf}"'])
+    print(f"Copied via powershell: {root_pdf}")
 
 # Verify and render sample pages with pymupdf
 doc = pymupdf.open(out_pdf)

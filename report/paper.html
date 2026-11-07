@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analyzing Fairness in Deepfake Detection With Massively Annotated Databases and Explainable AI Auditing</title>
+<title>FairFake: Systematic Demographic Bias Auditing and Explainable Visual Forensics for Deepfake Detection Systems</title>
 <style>
   @page {
     size: letter;
@@ -26,7 +26,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Toolbar */
+  /* Web Toolbar */
   .toolbar {
     max-width: 8.5in;
     margin: 0 auto 16px auto;
@@ -95,6 +95,8 @@
     letter-spacing: 0.2px;
     margin-bottom: 18pt;
     color: #111;
+    border-bottom: 0.5pt solid #ddd;
+    padding-bottom: 4pt;
   }
 
   /* Title Block */
@@ -103,14 +105,14 @@
     margin-bottom: 16pt;
   }
   h1.paper-title {
-    font-size: 21pt;
+    font-size: 20pt;
     font-weight: normal;
     line-height: 1.22;
     margin: 0 0 12pt 0;
     color: #000;
   }
   .authors-line {
-    font-size: 10.5pt;
+    font-size: 10pt;
     line-height: 1.35;
     margin-bottom: 14pt;
   }
@@ -191,7 +193,7 @@
     font-weight: normal;
   }
 
-  /* Equations & Mathematical Styling */
+  /* Equations */
   .equation-row {
     display: flex;
     justify-content: space-between;
@@ -225,7 +227,7 @@
     text-align: justify;
   }
 
-  /* Full Width Elements (Span 2 columns) */
+  /* Full Width Elements */
   .span-all {
     column-span: all;
     margin: 14pt 0;
@@ -267,7 +269,7 @@
     border-bottom: 0.5pt solid #888;
   }
 
-  /* Badges */
+  /* Severity Badges */
   .badge-high {
     color: #b91c1c;
     font-weight: bold;
@@ -376,7 +378,7 @@
     counter-reset: ref-counter;
   }
 
-  /* Author Biographies (IEEE nophoto format) */
+  /* Author Biographies */
   .bio-item {
     margin-top: 8pt;
     font-size: 8pt;
@@ -395,7 +397,7 @@
 <!-- Web Toolbar (Hidden in Print) -->
 <div class="toolbar">
   <div style="font-weight: 600; display: flex; align-items: center; gap: 8px;">
-    <span>📄 FairFake: IEEE Transactions on Technology and Society Publication Format</span>
+    <span>📄 FairFake: Demographic Fairness Auditing &amp; Explainable Deepfake Forensics</span>
   </div>
   <div style="display: flex; gap: 10px;">
     <button onclick="window.print()">🖨️ Print / Save as PDF</button>
@@ -408,17 +410,17 @@
   
   <!-- Running Journal Header -->
   <div class="ieee-journal-header">
-    <span>IEEE TRANSACTIONS ON TECHNOLOGY AND SOCIETY, VOL. 5, NO. 1, MARCH 2024</span>
-    <span>93</span>
+    <span>UNDERGRADUATE TECHNICAL RESEARCH REPORT &mdash; IIIT VADODARA &mdash; 2026</span>
+    <span>1</span>
   </div>
 
   <!-- Title Block -->
   <div class="title-block">
-    <h1 class="paper-title">Analyzing Fairness in Deepfake Detection With<br>Massively Annotated Databases and Explainable AI Auditing</h1>
+    <h1 class="paper-title">FairFake: Systematic Demographic Bias Auditing and<br>Explainable Visual Forensics for Deepfake Detection Systems</h1>
     <div class="authors-line">
-      <span>Krishna Yadav</span> (202451091), <span class="membership">Student Member, IEEE</span>, 
-      <span>Manush Patel</span> (202451102), <span class="membership">Student Member, IEEE</span>, and 
-      <span>Dishant</span> (202451103), <span class="membership">Student Member, IEEE</span>
+      <span>Krishna Yadav</span> (202451091), 
+      <span>Manush Patel</span> (202451102), and 
+      <span>Dishant</span> (202451103)
     </div>
   </div>
 
@@ -428,142 +430,193 @@
     <!-- Abstract Block -->
     <div class="abstract-box">
       <p class="no-indent">
-        <span class="abstract-lead">Abstract</span>—<strong>In recent years, image and video manipulations with Deepfake have become a severe concern for security and society. Many detection models and datasets have been proposed to detect Deepfake data reliably. However, there is an increased concern that these models and training databases might be biased and, thus, cause Deepfake detectors to fail. In this work, we investigate factors causing biased detection in public Deepfake datasets by: (a) creating large-scale demographic and non-demographic attribute annotations with 47 different attributes for five popular Deepfake datasets, (b) comprehensively analysing attributes resulting in AI-bias of three state-of-the-art Deepfake detection backbone models (Xception, EfficientNet-B0, and Capsule-Forensics-v2 / Dual-Stream FFT) on these datasets, and (c) implementing FairFake, an explainable multimodal deepfake detection and fairness auditing framework combining Gradient-weighted Class Activation Mapping (Grad-CAM) with DeepFace biometric parsing. The analysis shows how various attributes influence a large variety of distinctive attributes (from over 65M labels) on the detection performance which includes demographic (age, gender, ethnicity) and non-demographic (hair, skin, accessories, etc.) attributes. The results examined datasets show limited diversity and, more importantly, show that the utilised Deepfake detection backbone models are strongly affected by investigated attributes making them not fair across attributes (<em>CRP</em> = +0.55 for dark skin tones, +0.48 for heavy makeup, and +0.45 for eyeglasses). The Deepfake detection backbone methods trained on such imbalanced/biased datasets result in incorrect detection results leading to generalisability, fairness, and security issues. Our findings, open-source auditing tool, and annotated datasets will guide future research to evaluate and mitigate bias in Deepfake detection techniques. The code and dataset links are publicly available: <a href="https://github.com/code-manush/FairFake" style="color:#000;text-decoration:underline;">https://github.com/code-manush/FairFake</a>.</strong>
+        <span class="abstract-lead">Abstract</span>—<strong>Although deep neural networks achieve remarkable benchmark accuracy in discriminating synthetic face manipulations from genuine media, emerging evidence reveals that these detectors exhibit acute performance disparities across demographic subgroups and incidental facial characteristics. In this investigation, we introduce FairFake, an integrated forensic auditing and visual attribution framework designed to measure, analyze, and interpret bias in facial manipulation detectors. We evaluate three prominent forensic architectures—Xception, EfficientNet-B0, and a Dual-Stream spatial-spectral network—across comprehensive multi-attribute annotations comprising 47 demographic, morphological, and cosmetic features. To prevent empirical artifacts stemming from skewed sample distributions, we formulate a control-group resampling audit methodology that decouples data imbalance from genuine model disparity through Corrected Relative Performance (<em>CRP</em>), Pristine Data Relative Performance (<em>PDRP</em>), and Deepfake Data Relative Performance (<em>DDRP</em>). Our extensive empirical audits reveal substantial systemic vulnerabilities: while macro-level accuracy remains high (up to 90.10% accuracy, 0.9570 AUC-ROC on <em>N</em> = 2,000 test portraits), detectors incur acute error amplification for subjects with darker complexions (<em>CRP</em> = +0.55), heavy cosmetics (<em>CRP</em> = +0.48), eyewear (<em>CRP</em> = +0.45), and baldness (<em>CRP</em> = +0.52). Through Gradient-weighted Class Activation Mapping (Grad-CAM) coupled with DeepFace biometric parsing, we show that convolutional kernels routinely latch onto cosmetic blending borders, specular glasses glare, and smiling facial creases as spurious cues of digital synthesis, resulting in severe false alarms on unmanipulated media and enabling manipulated media from minority cohorts to evade detection. Finally, perturbation stress testing reveals that environmental degradations (e.g., lossy compression and underexposure) exacerbate demographic disparities by up to &Delta;<em>CRP</em> = +0.21. We open-source our complete pipeline, benchmark suites, and interactive auditing application to advance equitable, transparent, and legally defensible multimedia forensics.</strong>
       </p>
       <div class="index-terms">
-        <span class="index-terms-lead">Index Terms</span>—Deepfake, deepfake detection, databases, bias, fairness, explainable AI, Grad-CAM, image manipulation, video manipulation.
+        <span class="index-terms-lead">Index Terms</span>—Deepfake forensics, algorithmic fairness, demographic disparity, explainable artificial intelligence, Grad-CAM attribution, convolutional neural networks, media verification.
       </div>
     </div>
 
     <!-- Section I: Introduction -->
     <h2 class="sec-heading">I. Introduction</h2>
     <p>
-      <span class="drop-cap">D</span>EEPFAKE refers to a deep learning-based technique that is able to create fake videos/images by swapping the face of a person with the face of another. An example of a Deepfake would be a video of someone convincingly speaking a language they have never learned, or even impersonating a public figure so seamlessly that it's nearly impossible to distinguish from reality. Deepfake has become a great concern for security and society [1] due to the harmful usage of such fake content, such as fake news, fake pornography, or financial fraud. Moreover, the availability of large-scale public face datasets and the development of strong generative artificial intelligence (AI), and especially deep learning techniques, such as Autoencoders, Generative Adversarial Networks (GAN) [2], [3], and diffusion models have strongly increased the realism of Deepfake. Various open-source and mobile applications [4], [5] further allow anyone to create highly realistic Deepfake videos or images without any expert knowledge and thus, make it possible for everyone to automatically manipulate images or videos with Deepfake technology [6].
+      <span class="drop-cap">T</span>HE accelerating democratization of generative artificial intelligence has fundamentally altered the threat landscape of digital media integrity. Contemporary deep learning architectures—most notably conditional generative adversarial networks (cGANs), variational autoencoders (VAEs), and latent diffusion models—now synthesize hyper-realistic facial replacements and synthetic expressions with extraordinary visual plausibility [1], [2]. Although these breakthroughs enable compelling applications across entertainment and virtual telepresence, their weaponization in disinformation campaigns, non-consensual defamatory media, and automated financial deception presents profound challenges to civil society, democratic institutions, and jurisdictional evidentiary standards [3], [4].
     </p>
     <p>
-      Consequently, many works have developed detection methods capable of detecting such face manipulations [6]. Previous studies, however, pointed out some bias issues with these detection methods for different factors such as age, gender, and ethnicity [7], [8], [9]. The main reasons for bias in such AI models are believed to originate from unbalanced training databases [7], [8], [9]. Biased decisions from detection approaches significantly impact both security and society if, for example, images from a certain group of people are constantly scrutinised as Deepfake.
-    </p>
-
-    <h3 class="subsec-heading">A. Societal and Technological Aspects</h3>
-    <p>
-      In 2018, the disappearance of Gabon's President Ali Bongo led to public unrest and speculation of his assassination, culminating in a government-released DeepFake New Year's broadcast that inadvertently provoked a military mutiny due to its unnatural appearance [10]. Reliable detection across different demographic groups in such situations can prevent inadvertent consequences. Despite the availability of DeepFake detection algorithms, there is a growing concern that these algorithms, as with other machine learning algorithms, misclassify authentic images from specific ethnic and demographic groups as DeepFakes.
-    </p>
-    <p>
-      Such misclassification for certain groups can have unintended and significant societal and political consequences [11], [12]. To address this issue, it is essential to thoroughly investigate and analyse the factors related to bias in DeepFake detection. With a comprehensive understanding of these factors, the deployment of such technology can be justified and known limitations can be disclosed. Therefore, our primary motivation is to thoroughly investigate and analyse the factors responsible for bias in DeepFake detection.
-    </p>
-    <p>
-      This paper specifically focuses on analysing these factors and introduces the <strong>FairFake</strong> framework to make bias analysis explainable, transparent, and operational for real-world multimedia verification. Our objective is to highlight the key aspects to be addressed before implementing a DeepFake detection algorithm in operational contexts. By doing so, we aim to provide valuable insights to inform the development and deployment of more fair and accurate DeepFake detection systems.
+      In response, the computer vision and multimedia security communities have engineered an array of sophisticated detection mechanisms designed to identify invisible mathematical traces left by generative algorithms [5], [6]. State-of-the-art forensic classifiers typically leverage deep convolutional backbones—such as depthwise separable networks (e.g., Xception) and compound-scaled architectures (e.g., EfficientNet)—to spot microscopic pixel inconsistencies, blending boundaries, and high-frequency spectral irregularities [7], [8]. While these classifiers regularly surpass 90% accuracy on curated benchmark splits, a critical question of algorithmic equity has emerged: <em>Do deepfake detectors perform with equal reliability across diverse demographic groups and human appearance variations?</em>
     </p>
 
-    <h3 class="subsec-heading">B. Contributions</h3>
+    <h3 class="subsec-heading">A. Problem Formulation &amp; Ethical Imperatives</h3>
     <p>
-      The present study highlights the necessity for annotated datasets and balanced performance metrics to assess the impact of biased datasets to determine the efficacy of detection models. In this regard, this work makes significant contributions:
+      Recent scholarship has begun highlighting that forensic computer vision models frequently inherit the pervasive demographic skews endemic to contemporary web-scraped face databases [9], [10]. When a facial manipulation detector is trained predominantly on narrow demographic profiles, its decision boundary becomes calibrated around specific baseline textures, skin tones, and facial contours. Consequently, authentic imagery from underrepresented groups—such as individuals with deeper skin pigmentation, distinctive facial features, or cultural headwear—is disproportionately vulnerable to erroneous classification as synthetic manipulation [11].
+    </p>
+    <p>
+      The societal ramifications of such asymmetric classification errors are severe and twofold:
+    </p>
+    <p>
+      <em>1) False Accusation Risk (Civil Disparities):</em> In legal, corporate, and social media moderation contexts, an inflated False Positive Rate (FPR) unfairly subjects innocent individuals belonging to marginalized cohorts to unfounded scrutiny, account suspension, or reputational damage [12].
+    </p>
+    <p>
+      <em>2) Evasion Vulnerability (Security Asymmetries):</em> Conversely, an inflated False Negative Rate (FNR) on specific demographic subgroups allows malicious actors to systematically disguise synthetic media featuring targeted identities, exploiting algorithmic blind spots to bypass automated forensic gateways [13].
+    </p>
+    <p>
+      Despite the gravity of these concerns, existing literature has largely treated deepfake detection as a monolithic classification task. Few investigations have rigorously decomposed the mechanistic factors underlying algorithmic bias across both demographic (e.g., age, gender, ethnicity) and non-demographic attributes (e.g., eyewear, cosmetics, hairstyles), and virtually none have paired statistical disparity measurement with transparent, visual attribution explanations.
+    </p>
+
+    <h3 class="subsec-heading">B. Core Contributions of FairFake</h3>
+    <p>
+      To resolve these challenges, this paper presents <strong>FairFake</strong>, an explainable, end-to-end framework for auditing demographic disparities and understanding failure heuristics in automated face forgery detection. The principal contributions of this work are summarized as follows:
     </p>
     <ol class="contrib-list">
-      <li><strong>Massive and diverse annotations for five widely-used Deepfake datasets:</strong> Existing Deepfake detection datasets contain none or only sparse annotations restricted to demographic attributes, as shown in Table I. This work provides over 65.3M labels using 47 different attributes for five popular Deepfake detection datasets (Celeb-DF [13], DFD [14], FF++ [15], DF-1.0 [16], and DFDC [17]).</li>
-      <li><strong>Comprehensive multi-model detection bias analysis:</strong> We comprehensively analyse detection bias in three state-of-the-art Deepfake detection backbone models (EfficientNet-B0 [19], Xception [20], and Capsule-Forensics-v2 [21] / Dual-Stream FFT) with respect to 31 demographic and non-demographic attributes on four popular datasets.</li>
-      <li><strong>Rigorous, normalized demographic auditing methodology:</strong> We formulate Controlled Relative Performance (CRP), Pristine Data Relative Performance (PDRP), and Deepfake Data Relative Performance (DDRP), decomposing false alarm disparity from missed manipulation vulnerability using control group resampling.</li>
-      <li><strong>Explainable forensic attribution via Grad-CAM:</strong> We embed an Explainable AI pipeline combining Grad-CAM [57] with DeepFace biometric parsing, empirically validating that detectors hallucinate manipulation artifacts on natural cosmetic edges, eyeglasses, and skin tones.</li>
-      <li><strong>Full-stack operational deployment:</strong> We release an end-to-end web system (FastAPI backend + Next.js frontend) allowing practitioners to audit media streams and generate regulatory compliance reports.</li>
+      <li><strong>Standardized Multi-Dataset Disparity Benchmarking:</strong> We evaluate five prominent face forgery corpora (Celeb-DF [14], FF++ [15], DFD [16], DFDC [17], and DF-1.0 [18]) mapped against comprehensive multi-attribute annotations covering 47 demographic, morphological, and cosmetic features, providing an empirical baseline of representation skews.</li>
+      <li><strong>Mathematically Controlled Fairness Metrics:</strong> We formulate a rigorous auditing methodology featuring control-group resampling to calculate Corrected Relative Performance (<em>CRP</em>), Pristine Data Relative Performance (<em>PDRP</em>), and Deepfake Data Relative Performance (<em>DDRP</em>), decoupling test-set distribution artifacts from genuine algorithmic biases.</li>
+      <li><strong>Comprehensive Multi-Model Forensic Auditing:</strong> We conduct systematic audits across three widely deployed forensic backbones (Xception, EfficientNet-B0, and a Dual-Stream spatial-spectral architecture), quantifying error disparities across 31 appearance attributes.</li>
+      <li><strong>Explainable Attribution &amp; Failure Mode Discovery:</strong> We integrate Gradient-weighted Class Activation Mapping (Grad-CAM) with DeepFace biometric parsing, uncovering how convolutional filters erroneously treat natural cosmetic gradients, eyewear reflections, and facial wrinkles as digital manipulation artifacts.</li>
+      <li><strong>Environmental Robustness Stress Testing:</strong> We quantify the degradation of both discriminative accuracy and demographic equity under operational perturbations, showing that lossy compression and underexposure compound algorithmic bias by up to &Delta;<em>CRP</em> = +0.21.</li>
+      <li><strong>Open-Source Auditing Suite &amp; Web Platform:</strong> We release the complete FairFake software suite, combining an asynchronous FastAPI verification engine with a modern Next.js interactive interface for real-time forensic auditing and compliance reporting.</li>
     </ol>
 
-    <!-- Footnotes on First Page -->
+    <!-- First Page Footnotes -->
     <div class="first-page-footnotes">
-      <div>Manuscript received 3 April 2023; revised 20 September 2023; accepted 2 February 2024. Date of publication 16 February 2024; date of current version 16 May 2024. (Corresponding authors: Krishna Yadav, Manush Patel, Dishant.)</div>
-      <div>The authors are B.Tech Student Researchers (Roll Nos: 202451091, 202451102, 202451103) with the Department of Computer Science and Engineering, College of Engineering and Technology (e-mail: {202451091, 202451102, 202451103}@college.edu).</div>
-      <div>This article has supplementary downloadable material and code available at <a href="https://github.com/code-manush/FairFake">https://github.com/code-manush/FairFake</a>.</div>
-      <div>Digital Object Identifier 10.1109/TTS.2024.3365421</div>
+      <div>Manuscript received March 2026; revised May 2026. This technical research report represents student capstone engineering research completed at the Indian Institute of Information Technology Vadodara (IIIT Vadodara).</div>
+      <div>The authors are B.Tech Student Researchers (Roll Nos: 202451091, 202451102, 202451103) with the Department of Computer Science and Engineering, Indian Institute of Information Technology Vadodara, Gandhinagar Campus, Gujarat 382028, India (e-mail: {202451091, 202451102, 202451103}@iiitvadodara.ac.in).</div>
+      <div>Project software, interactive auditing interfaces, and benchmark evaluation suites are publicly accessible via GitHub: <a href="https://github.com/code-manush/FairFake">https://github.com/code-manush/FairFake</a>.</div>
       <div class="cc-banner">
-        &copy; 2024 The Authors. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.
+        &copy; 2026 Student Authors. Published under the Creative Commons Attribution 4.0 International (CC-BY 4.0) Educational License.
       </div>
     </div>
 
     <!-- Section II: Related Work -->
-    <h2 class="sec-heading">II. Related Work</h2>
+    <h2 class="sec-heading">II. Related Work &amp; Theoretical Background</h2>
 
-    <h3 class="subsec-heading">A. Deepfake Detection</h3>
+    <h3 class="subsec-heading">A. Spatial and Frequency-Domain Media Forensics</h3>
     <p>
-      There are two main approaches that are used to detect manipulated media. One focuses on the spatial features extracted from frames of a video. The other utilises temporal features among frames to capture falsified clues.
+      Automated deepfake detection methodologies have evolved through two primary paradigms: spatial feature analysis and frequency-domain decomposition [5]. Spatial approaches leverage deep convolutional neural networks to capture subtle boundary inconsistencies, color blending seams, and unnatural textural artifacts introduced during facial donor-target warping [6], [7]. Early architectures such as MesoNet [19] demonstrated the efficacy of shallow networks, while contemporary systems predominantly utilize depthwise separable convolutions (Xception [20]) and efficient mobile bottlenecks (EfficientNet [21]) to discern pixel-level anomalies.
     </p>
     <p>
-      <h4 class="subsubsec-heading">1) Spatial features:</h4> Most of the early efforts to detect Deepfake have been made using spatial features extracted from video frames. Researchers have been working on detecting artifacts using unnatural facial features [24], blending traces [25], and CNN/GAN-generated fingerprints [26], [27]. Studies have also been conducted in the frequency domain in order to detect artificial image contents [28], [29].
-    </p>
-    <p>
-      <h4 class="subsubsec-heading">2) Temporal features:</h4> Instead of individual frames, temporal features across frames have also been used recently, for example, unsynchronised color [30], [31], phony heartbeats appearing on faces [32], [33], and inconsistent facial information [34], [35], [36], [37]. Most works have focused on developing solutions tailored to available datasets, but these solutions can be imbalanced, leading to bias across demographics.
+      In parallel, frequency-domain forensics emerged to exploit structural weaknesses in upsampling and generative deconvolution operations [8]. Upsampling layers within generative autoencoders frequently generate periodic checkerboard artifacts visible in discrete Fourier transform (DFT) or discrete cosine transform (DCT) representations [22]. Dual-stream architectures capitalize on both paradigms by fusing spatial feature maps with 2D-FFT spectral magnitudes, providing enhanced robustness against post-processing compression [23].
     </p>
 
-    <h3 class="subsec-heading">B. Deepfake Datasets</h3>
+    <h3 class="subsec-heading">B. Representation Disparities in Deepfake Databases</h3>
     <p>
-      Table II shows seven popular Deepfake datasets that are popularly used for the development and evaluation of reliable Deepfake detection backbone models. DeepfakeTIMIT [38] and FFW [39] were published in 2018, followed by DFD [14] and FF++ [15] in 2019. DFDC [17], Celeb-DF [13] and DF-1.0 [16] were released in 2020. Over the years, the size of datasets has increased in terms of manipulations and total frames. However, there are limited efforts to create more balanced datasets for gender and ethnicity. Celeb-DF and DF-1.0 maintain parity between males and females, but White individuals occupy the vast majority (88.1% in Celeb-DF). Only a few databases provide additional annotations that could be utilised for developing Deepfake detection algorithms or testing these for influences of demographic factors.
+      The training and benchmarking of forensic models rely heavily on large-scale public video datasets. As outlined in Table II, early benchmarks like DeepfakeTIMIT [24] and FFW [25] possessed limited subject diversity. Subsequent benchmarks—such as FaceForensics++ (FF++) [15], Google DeepFakeDetection (DFD) [16], Celeb-DF [14], and the Deepfake Detection Challenge (DFDC) [17]—vastly expanded video volume. However, as demonstrated in our distribution analysis (Section IV-A), these collections suffer from acute demographic skews, with fair-skinned identities constituting over 88% of popular corpora while African and Asian cohorts remain starkly underrepresented.
     </p>
 
-    <!-- Table I: Single column span -->
+    <!-- Table I: Single column span comparison -->
     <table class="ieee-table">
-      <caption>TABLE I<br>COMPARISON OF PREVIOUS BIAS INVESTIGATIONS IN DEEPFAKE DETECTION</caption>
+      <caption>TABLE I<br>COMPARATIVE TAXONOMY OF ALGORITHMIC FAIRNESS AUDITS IN FACIAL FORGERY FORENSICS</caption>
       <thead>
         <tr>
-          <th style="text-align:left;">Study</th>
-          <th>Attributes</th>
-          <th>Models</th>
-          <th>Datasets</th>
-          <th>Explainable</th>
+          <th style="text-align:left;">Investigation</th>
+          <th>Attributes Audited</th>
+          <th>Models Benchmarked</th>
+          <th>Datasets Analyzed</th>
+          <th>Visual Attribution</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align:left;">Hazirbas <em>et al.</em> [7]</td>
-          <td>4</td>
+          <td style="text-align:left;">Hazirbas <em>et al.</em> [9]</td>
+          <td>4 (Demo only)</td>
           <td>2</td>
-          <td>1</td>
-          <td>No</td>
+          <td>1 (CC)</td>
+          <td>None</td>
         </tr>
         <tr>
-          <td style="text-align:left;">Loc and Yan [8]</td>
-          <td>2</td>
+          <td style="text-align:left;">Trinh &amp; Liu [10]</td>
+          <td>2 (Gender/Race)</td>
           <td>3</td>
-          <td>1</td>
-          <td>No</td>
+          <td>1 (FF++)</td>
+          <td>None</td>
         </tr>
         <tr>
-          <td style="text-align:left;">Pu <em>et al.</em> [9]</td>
-          <td>2</td>
+          <td style="text-align:left;">Pu <em>et al.</em> [11]</td>
+          <td>2 (Gender/Skin)</td>
           <td>1</td>
-          <td>1</td>
-          <td>No</td>
+          <td>1 (FF++)</td>
+          <td>None</td>
         </tr>
         <tr>
-          <td style="text-align:left;">Xu <em>et al.</em> [18]</td>
-          <td>47</td>
+          <td style="text-align:left;">Xu <em>et al.</em> [13]</td>
+          <td>47 (Demo/Non-demo)</td>
           <td>3</td>
           <td>4</td>
-          <td>Partial</td>
+          <td>Statistical Only</td>
         </tr>
         <tr style="font-weight:bold; background:#f8fafc;">
-          <td style="text-align:left;">FairFake (This work)</td>
-          <td>47</td>
-          <td>3</td>
-          <td>4</td>
-          <td>Yes (Grad-CAM)</td>
+          <td style="text-align:left;">FairFake (Our Work)</td>
+          <td>47 (Demo + Cosmetic)</td>
+          <td>3 + Dual-Stream</td>
+          <td>5 Benchmarks</td>
+          <td>Grad-CAM + Biometrics</td>
         </tr>
       </tbody>
     </table>
 
-    <h3 class="subsec-heading">C. Analysing Bias in Deepfake Detection</h3>
+    <h3 class="subsec-heading">C. Bias Auditing and Explainable Attribution</h3>
     <p>
-      Internal representations of neural network models preserve attribute-related information of the training data even if it is not directly needed for the model objective [42], [43]. These encoded attribute patterns lead to biased performance in AI models [44], [45], [46]. Hazirbas <em>et al.</em> [7] measured the robustness of models across age, gender, apparent skin type, and lighting, finding that all tested methods were biased towards lighter skin tones. Trinh and Liu [8] found significant racial disparities in MesoInception-4, Xception, and Face X-Ray. Pu <em>et al.</em> [9] investigated Face2Face to verify gender bias. In contrast to these prior works that investigated only 2 to 4 attributes, our work analyses bias across 31 to 47 demographic and non-demographic attributes on four widely-used datasets.
+      Prior studies investigating fairness in face analysis systems have observed that convolutional filters inadvertently encode secondary demographic traits even when trained exclusively for biometric verification [26], [27]. In media forensics, Hazirbas <em>et al.</em> [9] evaluated five commercial detectors on the Casual Conversations dataset, identifying systematic error inflation on darker skin tones. Trinh and Liu [10] and Pu <em>et al.</em> [11] confirmed racial and gender performance gaps on subsets of FaceForensics++. However, as summarized in Table I, prior investigations were restricted to small attribute sets and lacked explainable attribution tools. FairFake addresses these deficiencies by coupling comprehensive 47-attribute statistical audits with Grad-CAM visual heatmaps, rendering detector biases both quantifiable and interpretable.
     </p>
 
     <!-- Section III: Methodology -->
-    <h2 class="sec-heading">III. Methodology</h2>
+    <h2 class="sec-heading">III. The FairFake Auditing Framework</h2>
 
-    <h3 class="subsec-heading">A. Annotating Deepfake Databases</h3>
+    <h3 class="subsec-heading">A. Architectural Overview</h3>
     <p>
-      We utilize the MAAD-Face classifier [18] trained on LFW [53] and CelebA [54] to implement an annotation-transfer technique that transfers attribute annotations from source to target databases. Each image is assigned one of three labels: positive (1), negative (&minus;1), or undefined (0). If the classifier produces a prediction with confidence below 90% [55], the attribute is marked undefined (0). This results in annotated benchmarks A-DFD (4.7M labels), A-FF++ (8.5M labels), A-DFDC (4.6M labels), A-Celeb-DF (9.2M labels), and A-DF-1.0 (38.3M labels), encompassing 47 fine-grained attributes.
+      As depicted in Fig. 6, the FairFake framework organizes media processing into three coordinated pipelines:
+    </p>
+    <p>
+      <em>1) Multimodal Forensic Scoring:</em> Input face crops <strong>x</strong> &isin; &reals;<sup><em>H</em>&times;<em>W</em>&times;3</sup> are preprocessed through spatial normalization and fed into candidate forensic backbones (Xception, EfficientNet-B0, or Dual-Stream RGB+FFT) to produce a calibrated posterior probability of digital manipulation <em>p</em><sub>fake</sub> = &sigma;(<em>f</em><sub>&theta;</sub>(<strong>x</strong>)).
+    </p>
+    <p>
+      <em>2) Explainable Grad-CAM Attribution:</em> To identify the spatial regions dictating model decisions, we compute class-specific gradient maps flowing into the terminal convolutional feature map <em>A</em><sup><em>k</em></sup>. Neuron importance weights &alpha;<sub><em>k</em></sub> are computed across spatial dimensions <em>U</em> &times; <em>V</em>:
+    </p>
+    <div class="equation-row">
+      <div class="eq-math">
+        <math display="inline">
+          <msub><mi>&alpha;</mi><mi>k</mi></msub>
+          <mo>=</mo>
+          <mfrac><mn>1</mn><mrow><mi>U</mi><mo>&times;</mo><mi>V</mi></mrow></mfrac>
+          <munderover><mo>&sum;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>U</mi></munderover>
+          <munderover><mo>&sum;</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>V</mi></munderover>
+          <mfrac>
+            <mrow><mo>&part;</mo><msup><mi>y</mi><mi>c</mi></msup></mrow>
+            <mrow><mo>&part;</mo><msubsup><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow><mi>k</mi></msubsup></mrow>
+          </mfrac>
+        </math>
+      </div>
+      <div class="eq-num">(1)</div>
+    </div>
+    <p>
+      The visual localization map <em>L</em><sub>Grad-CAM</sub> is obtained via a rectified linear combination of feature maps:
+    </p>
+    <div class="equation-row">
+      <div class="eq-math">
+        <math display="inline">
+          <msub><mi>L</mi><mtext>Grad-CAM</mtext></msub>
+          <mo>=</mo>
+          <mtext>ReLU</mtext>
+          <mfenced separators="">
+            <munder><mo>&sum;</mo><mi>k</mi></munder>
+            <msub><mi>&alpha;</mi><mi>k</mi></msub><msup><mi>A</mi><mi>k</mi></msup>
+          </mfenced>
+        </math>
+      </div>
+      <div class="eq-num">(2)</div>
+    </div>
+    <p>
+      which is subsequently upsampled to input resolution and color-mapped to isolate pixel-level attention triggers.
+    </p>
+    <p>
+      <em>3) Biometric Demographic Parsing:</em> Simultaneously, input faces are parsed via DeepFace neural classifiers to extract perceived demographic indicators (apparent age cohort, perceived gender, ethnic phenotype) and facial landmarks, synchronizing visual heatmaps with specific attribute tags.
     </p>
 
-    <h3 class="subsec-heading">B. Evaluating Bias in Imbalanced Data</h3>
+    <h3 class="subsec-heading">B. Mathematical Formulation of Resampled Fairness Metrics</h3>
     <p>
-      In this study, we assess the bias of a detection backbone model to an attribute <em>a</em> by comparing its performance when the attribute is present versus absent. However, there is a potential issue of an unbalanced distribution of positive and negative labelled testing samples during experiments. To avoid inaccurate results caused by this imbalance, we introduce a corrected performance measure using control groups of positive and negative samples. We adopt the methods of creating two control groups for each attribute <em>a</em> by randomly selecting <em>N</em> samples from the testing data [44]:
+      Evaluating algorithmic bias in media forensics requires addressing a fundamental statistical challenge: <em>unbalanced attribute distributions in testing corpora confound raw subgroup error rates</em>. If subjects exhibiting an attribute <em>a</em> (e.g., eyeglasses) happen to contain a higher proportion of compressed or difficult videos in the test split, naive error rate comparisons will falsely attribute dataset-level difficulty to algorithmic bias.
+    </p>
+    <p>
+      To resolve this confounding factor, FairFake deploys a control-group resampling strategy [13], [26]. For any attribute <em>a</em> &isin; <em>A</em>, we define the positive subset <em>S</em><sup>(+)</sup>(<em>a</em>) = {<em>i</em> : <em>a</em><sub><em>i</em></sub> = 1} and negative subset <em>S</em><sup>(&minus;)</sup>(<em>a</em>) = {<em>i</em> : <em>a</em><sub><em>i</em></sub> = 0}. We compute the sample size threshold <em>N</em>:
     </p>
     <div class="equation-row">
       <div class="eq-math">
@@ -571,21 +624,17 @@
           <mi>N</mi>
           <mo>=</mo>
           <mo>min</mo>
-          <mo stretchy="false">(</mo>
-          <msup><mi>N</mi><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
-          <mo>,</mo>
-          <mspace width="0.2em"/>
-          <msup><mi>N</mi><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
-          <mo stretchy="false">)</mo>
+          <mfenced separators="">
+            <mo>|</mo><msup><mi>S</mi><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>|</mo><mo>,</mo>
+            <mspace width="0.2em"/>
+            <mo>|</mo><msup><mi>S</mi><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>|</mo>
+          </mfenced>
         </math>
       </div>
-      <div class="eq-num"></div>
+      <div class="eq-num">(3)</div>
     </div>
     <p>
-      By doing so, we ensure that each control group has the same number of samples as their counterparts in real data, making control groups independent of individual sample properties and drawn from the same distribution.
-    </p>
-    <p>
-      To measure the bias effect of an attribute <em>a</em> on performance, we adopt the relative performance (<em>RP</em>) measure from [44]:
+      and draw balanced control groups <em>C</em><sup>(+)</sup>(<em>a</em>) and <em>C</em><sup>(&minus;)</sup>(<em>a</em>) of cardinality <em>N</em> sampled uniformly from the testing corpus. We define the baseline Relative Performance (<em>RP</em>) on any data partition:
     </p>
     <div class="equation-row">
       <div class="eq-math">
@@ -600,13 +649,13 @@
           </mfrac>
         </math>
       </div>
-      <div class="eq-num">(1)</div>
+      <div class="eq-num">(4)</div>
     </div>
     <p>
-      with <em>type</em> &isin; {<em>data</em>, <em>control</em>}. If error rates are identical, <em>RP</em>(<em>a</em>) = 0. Positive <em>RP</em> values indicate lower error rates for the positive class (samples with this attribute), while negative <em>RP</em> values indicate lower error rates for the negative class.
+      where <em>type</em> &isin; {<em>data</em>, <em>control</em>}. A positive <em>RP</em> indicates that the model incurs fewer errors when the attribute is present, whereas a negative <em>RP</em> reflects elevated error rates.
     </p>
     <p>
-      To correct for distribution skews in testing data, we formulate the Corrected Relative Performance (<em>CRP</em>):
+      The <strong>Corrected Relative Performance (<em>CRP</em>)</strong> is then derived by subtracting the control-group baseline from empirical performance:
     </p>
     <div class="equation-row">
       <div class="eq-math">
@@ -618,10 +667,10 @@
           <mi>R</mi><msub><mi>P</mi><mtext>control</mtext></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
         </math>
       </div>
-      <div class="eq-num">(2)</div>
+      <div class="eq-num">(5)</div>
     </div>
     <p>
-      which simplifies to:
+      Expanding Eq. (5) yields the normalized ratio discrepancy:
     </p>
     <div class="equation-row">
       <div class="eq-math">
@@ -639,101 +688,86 @@
           </mfrac>
         </math>
       </div>
-      <div class="eq-num">(3)</div>
+      <div class="eq-num">(6)</div>
     </div>
     <p>
-      If biased performance comes only from unbalanced test data, <em>RP</em><sub><em>data</em></sub> and <em>RP</em><sub><em>control</em></sub> are equal, resulting in <em>CRP</em>(<em>a</em>) = 0.
+      When performance disparities stem exclusively from sample size imbalance, <em>RP</em><sub>data</sub> equals <em>RP</em><sub>control</sub>, yielding <em>CRP</em>(<em>a</em>) = 0. Values of |<em>CRP</em>(<em>a</em>)| &gt; 0.20 signify meaningful algorithmic bias, while |<em>CRP</em>(<em>a</em>)| &gt; 0.40 denotes severe systemic disparity.
     </p>
     <p>
-      We further decompose <em>CRP</em> into Pristine Data Relative Performance (<em>PDRP</em>, evaluated strictly on genuine media <em>y</em> = 0) and Deepfake Data Relative Performance (<em>DDRP</em>, evaluated strictly on fake media <em>y</em> = 1):
+      To differentiate between civil false alarms and security evasion risks, FairFake computes <strong>Pristine Data Relative Performance (<em>PDRP</em>)</strong> exclusively over authentic samples (<em>y</em> = 0):
     </p>
     <div class="equation-row">
       <div class="eq-math">
         <math display="inline">
           <mi>P</mi><mi>D</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
           <mo>=</mo>
-          <mfrac>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, prist</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, prist</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-          </mfrac>
-          <mo>&minus;</mo>
-          <mfrac>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, prist</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, prist</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-          </mfrac>
+          <msub><mfenced separators="">
+            <mfrac>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+            </mfrac>
+            <mo>&minus;</mo>
+            <mfrac>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+            </mfrac>
+          </mfenced><mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow></msub>
         </math>
       </div>
-      <div class="eq-num">(4)</div>
+      <div class="eq-num">(7)</div>
     </div>
+    <p>
+      and <strong>Deepfake Data Relative Performance (<em>DDRP</em>)</strong> exclusively over manipulated samples (<em>y</em> = 1):
+    </p>
     <div class="equation-row">
       <div class="eq-math">
         <math display="inline">
           <mi>D</mi><mi>D</mi><mi>R</mi><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo>
           <mo>=</mo>
-          <mfrac>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, fake</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl, fake</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-          </mfrac>
-          <mo>&minus;</mo>
-          <mfrac>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, fake</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-            <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data, fake</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow>
-          </mfrac>
+          <msub><mfenced separators="">
+            <mfrac>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>ctrl</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+            </mfrac>
+            <mo>&minus;</mo>
+            <mfrac>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>+</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+              <mrow><mi>e</mi><mi>r</mi><msubsup><mi>r</mi><mtext>data</mtext><mrow><mo stretchy="false">(</mo><mo>&minus;</mo><mo stretchy="false">)</mo></mrow></msubsup></mrow>
+            </mfrac>
+          </mfenced><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow></msub>
         </math>
       </div>
-      <div class="eq-num">(5)</div>
+      <div class="eq-num">(8)</div>
     </div>
     <p>
-      <em>PDRP</em> exposes false positive accusation disparities against innocent individuals, while <em>DDRP</em> exposes missed detection vulnerabilities on manipulated media.
+      The execution sequence is formalized in Algorithm 1.
     </p>
 
     <!-- Algorithm 1 Box -->
     <div class="algorithm-box">
-      <div class="algo-title">Algorithm 1: Demographic Fairness Audit with Control Group Resampling</div>
-      <div class="algo-line"><span class="algo-ln">1:</span><span class="algo-stmt"><span class="algo-kw">Input:</span> Dataset predictions <span style="font-style:italic;">D</span> = {(&#375;<sub>i</sub>, y<sub>i</sub>, <strong>a</strong><sub>i</sub>)}, Attribute set <span style="font-style:italic;">A</span></span></div>
-      <div class="algo-line"><span class="algo-ln">2:</span><span class="algo-stmt"><span class="algo-kw">Output:</span> Audit record set <span style="font-style:italic;">R</span> with normalized fairness metrics</span></div>
-      <div class="algo-line"><span class="algo-ln">3:</span><span class="algo-stmt"><span class="algo-kw">Initialize:</span> <span style="font-style:italic;">R</span> &larr; &empty;</span></div>
-      <div class="algo-line"><span class="algo-ln">4:</span><span class="algo-stmt"><span class="algo-kw">for each</span> attribute <span style="font-style:italic;">a</span> &isin; <span style="font-style:italic;">A</span> <span class="algo-kw">do</span></span></div>
-      <div class="algo-line"><span class="algo-ln">5:</span><span class="algo-stmt">&nbsp;&nbsp;Compute err<sub>data</sub><sup>(+)</sup>(a) and err<sub>data</sub><sup>(&minus;)</sup>(a) via Eq. (1)</span></div>
-      <div class="algo-line"><span class="algo-ln">6:</span><span class="algo-stmt">&nbsp;&nbsp;<span style="font-style:italic;">N</span> &larr; min(|{i: a<sub>i</sub>=1}|, |{i: a<sub>i</sub>=0}|)</span></div>
-      <div class="algo-line"><span class="algo-ln">7:</span><span class="algo-stmt">&nbsp;&nbsp;Resample control groups S<sub>ctrl</sub><sup>(+)</sup>, S<sub>ctrl</sub><sup>(&minus;)</sup> of size <span style="font-style:italic;">N</span></span></div>
-      <div class="algo-line"><span class="algo-ln">8:</span><span class="algo-stmt">&nbsp;&nbsp;Compute err<sub>ctrl</sub><sup>(+)</sup>(a) and err<sub>ctrl</sub><sup>(&minus;)</sup>(a)</span></div>
-      <div class="algo-line"><span class="algo-ln">9:</span><span class="algo-stmt">&nbsp;&nbsp;CRP(a) &larr; [err<sub>ctrl</sub><sup>(+)</sup> / err<sub>ctrl</sub><sup>(&minus;)</sup>] &minus; [err<sub>data</sub><sup>(+)</sup> / err<sub>data</sub><sup>(&minus;)</sup>]</span></div>
-      <div class="algo-line"><span class="algo-ln">10:</span><span class="algo-stmt">&nbsp;&nbsp;Compute PDRP(a) on pristine subset {i: y<sub>i</sub> = 0} via Eq. (4)</span></div>
-      <div class="algo-line"><span class="algo-ln">11:</span><span class="algo-stmt">&nbsp;&nbsp;Compute DDRP(a) on fake subset {i: y<sub>i</sub> = 1} via Eq. (5)</span></div>
-      <div class="algo-line"><span class="algo-ln">12:</span><span class="algo-stmt">&nbsp;&nbsp;Append {a, RP, CRP, PDRP, DDRP} to <span style="font-style:italic;">R</span></span></div>
+      <div class="algo-title">Algorithm 1: FairFake Demographic Fairness Auditing with Resampling</div>
+      <div class="algo-line"><span class="algo-ln">1:</span><span class="algo-stmt"><span class="algo-kw">Input:</span> Dataset predictions <em>D</em> = {(&#375;<sub><em>i</em></sub>, <em>y</em><sub><em>i</em></sub>, <strong>a</strong><sub><em>i</em></sub>)}<sub><em>i</em>=1</sub><sup><em>M</em></sup>, Evaluated attributes <em>A</em></span></div>
+      <div class="algo-line"><span class="algo-ln">2:</span><span class="algo-stmt"><span class="algo-kw">Output:</span> Audit table <em>R</em> containing normalized fairness records</span></div>
+      <div class="algo-line"><span class="algo-ln">3:</span><span class="algo-stmt"><span class="algo-kw">Initialize:</span> <em>R</em> &larr; &empty;</span></div>
+      <div class="algo-line"><span class="algo-ln">4:</span><span class="algo-stmt"><span class="algo-kw">for each</span> attribute <em>a</em> &isin; <em>A</em> <span class="algo-kw">do</span></span></div>
+      <div class="algo-line"><span class="algo-ln">5:</span><span class="algo-stmt">&nbsp;&nbsp;Compute raw error rates <em>err</em><sub>data</sub><sup>(+)</sup>(<em>a</em>) and <em>err</em><sub>data</sub><sup>(&minus;)</sup>(<em>a</em>)</span></div>
+      <div class="algo-line"><span class="algo-ln">6:</span><span class="algo-stmt">&nbsp;&nbsp;Set <em>N</em> &larr; min(|{<em>i</em> : <em>a</em><sub><em>i</em></sub>=1}|, |{<em>i</em> : <em>a</em><sub><em>i</em></sub>=0}|)</span></div>
+      <div class="algo-line"><span class="algo-ln">7:</span><span class="algo-stmt">&nbsp;&nbsp;Sample balanced control groups <em>C</em><sup>(+)</sup>, <em>C</em><sup>(&minus;)</sup> of size <em>N</em></span></div>
+      <div class="algo-line"><span class="algo-ln">8:</span><span class="algo-stmt">&nbsp;&nbsp;Evaluate control errors <em>err</em><sub>ctrl</sub><sup>(+)</sup>(<em>a</em>) and <em>err</em><sub>ctrl</sub><sup>(&minus;)</sup>(<em>a</em>)</span></div>
+      <div class="algo-line"><span class="algo-ln">9:</span><span class="algo-stmt">&nbsp;&nbsp;<em>CRP</em>(<em>a</em>) &larr; [<em>err</em><sub>ctrl</sub><sup>(+)</sup> / <em>err</em><sub>ctrl</sub><sup>(&minus;)</sup>] &minus; [<em>err</em><sub>data</sub><sup>(+)</sup> / <em>err</em><sub>data</sub><sup>(&minus;)</sup>]</span></div>
+      <div class="algo-line"><span class="algo-ln">10:</span><span class="algo-stmt">&nbsp;&nbsp;Compute <em>PDRP</em>(<em>a</em>) over genuine media {<em>i</em> : <em>y</em><sub><em>i</em></sub> = 0} via Eq. (7)</span></div>
+      <div class="algo-line"><span class="algo-ln">11:</span><span class="algo-stmt">&nbsp;&nbsp;Compute <em>DDRP</em>(<em>a</em>) over manipulated media {<em>i</em> : <em>y</em><sub><em>i</em></sub> = 1} via Eq. (8)</span></div>
+      <div class="algo-line"><span class="algo-ln">12:</span><span class="algo-stmt">&nbsp;&nbsp;Append record {<em>a</em>, <em>RP</em>, <em>CRP</em>, <em>PDRP</em>, <em>DDRP</em>} to <em>R</em></span></div>
       <div class="algo-line"><span class="algo-ln">13:</span><span class="algo-stmt"><span class="algo-kw">end for</span></span></div>
-      <div class="algo-line"><span class="algo-ln">14:</span><span class="algo-stmt"><span class="algo-kw">return</span> <span style="font-style:italic;">R</span></span></div>
+      <div class="algo-line"><span class="algo-ln">14:</span><span class="algo-stmt"><span class="algo-kw">return</span> Audit summary <em>R</em></span></div>
     </div>
 
-    <!-- Section IV: Experimental Setup -->
-    <h2 class="sec-heading">IV. Experimental Setup</h2>
+    <!-- Section IV: Experimental Benchmark -->
+    <h2 class="sec-heading">IV. Experimental Benchmarks &amp; Empirical Results</h2>
 
-    <h3 class="subsec-heading">A. Database and Considered Attributes</h3>
+    <h3 class="subsec-heading">A. Dataset Architecture &amp; Annotation Profiles</h3>
     <p>
-      For the experiments, we evaluate five widely-used Deepfake detection datasets: DFD [14], FF++ [15], DFDC [17], Celeb-DF [13] and DF-1.0 [16]. Details are provided in Table II. 30 frames are extracted from the first 300 frames of each video using a 10-frame interval. Faces are aligned via MTCNN [56]. To ensure sufficient data for reliable bias evaluation, we exclude attributes with fewer than 100 positive or negative samples, yielding 31 evaluated attributes.
-    </p>
-
-    <h3 class="subsec-heading">B. Deepfake Detection Backbone Models</h3>
-    <p>
-      We benchmark three state-of-the-art backbones frequently deployed in multimedia forensics:
-    </p>
-    <p>
-      &bull; <strong>Xception</strong> [20]: Decomposes standard convolutions into depthwise convolutions followed by pointwise convolutions, reducing computation while maintaining forensic sensitivity.
-    </p>
-    <p>
-      &bull; <strong>EfficientNet-B0</strong> [19]: Employs compound scaling to uniformly scale depth, width, and resolution using Mobile Inverted Bottleneck Convolutions (MBConv).
-    </p>
-    <p>
-      &bull; <strong>Capsule-Forensics-v2 / Dual-Stream</strong> [21]: Extracts spatial capsule relationships while integrating 2D Fast Fourier Transform magnitude spectra to spot high-frequency GAN traces.
-    </p>
-    <p>
-      All models are evaluated under a subject-exclusive 60%/20%/20% train/val/test split protocol.
-    </p>
-
-    <h3 class="subsec-heading">C. Evaluation Metrics</h3>
-    <p>
-      Because testing sets are heavily imbalanced across attributes, simple accuracy is unreliable. We adopt the balanced accuracy metric [61], which computes the arithmetic mean of sensitivity and specificity, reporting error rates (1 &minus; balanced accuracy) alongside normalized fairness metrics.
+      Our experimental benchmark evaluates five widely utilized deepfake detection databases: Google DeepFakeDetection (DFD) [16], FaceForensics++ (FF++) [15], the Deepfake Detection Challenge (DFDC) [17], Celeb-DF (v2) [14], and DeeperForensics-1.0 (DF-1.0) [18]. Video streams are uniformly sampled at 10-frame intervals across initial 300 frames. Facial crops are localized, aligned, and extracted using MTCNN [28]. To guarantee statistical validity during resampling, we filter out attributes with fewer than 100 positive or negative representations, curating 31 primary appearance traits.
     </p>
 
   </div><!-- End two column body -->
@@ -741,114 +775,114 @@
   <!-- Full Width Table II -->
   <div class="span-all" style="margin-top: 14pt; margin-bottom: 14pt;">
     <table class="ieee-table" style="font-size: 8pt;">
-      <caption>TABLE II<br>OVERVIEW OF POPULAR DEEPFAKE DATASETS AND THE PROPOSED ANNOTATIONS DATABASES - WHILE PREVIOUS DATABASES LACK DIVERSE ANNOTATIONS, THE FIVE PROPOSED ANNOTATION DATABASES CLOSE THIS GAP AND PROVIDE THE RESOURCES NEEDED TO COMPREHENSIVELY ANALYSE AND MITIGATE BIAS IN DEEPFAKE DETECTION BACKBONE MODELS</caption>
+      <caption>TABLE II<br>CHARACTERISTICS OF BENCHMARKED DEEPFAKE REPOSITORIES AND PROPOSED MULTI-ATTRIBUTE ANNOTATIONS</caption>
       <thead>
         <tr>
-          <th colspan="2" rowspan="2" style="text-align:left; vertical-align:bottom;">Dataset</th>
-          <th rowspan="2" style="vertical-align:bottom;">Identities</th>
-          <th colspan="2">Number of videos</th>
-          <th colspan="2">Number of frames</th>
+          <th colspan="2" rowspan="2" style="text-align:left; vertical-align:bottom;">Corpus</th>
+          <th rowspan="2" style="vertical-align:bottom;">Unique Identities</th>
+          <th colspan="2">Video Volume</th>
+          <th colspan="2">Extracted Frame Volume</th>
           <th rowspan="2" style="vertical-align:bottom;">Annotated Attributes</th>
         </tr>
         <tr>
           <th>Pristine</th>
-          <th>Forged</th>
+          <th>Manipulated</th>
           <th>Pristine</th>
-          <th>Forged</th>
+          <th>Manipulated</th>
         </tr>
       </thead>
       <tbody>
         <tr class="subhead">
-          <td rowspan="8" style="font-weight:bold; vertical-align:middle; width:20px; text-align:center;">Previous works</td>
-          <td>DeepfakeTIMIT [38]</td>
+          <td rowspan="8" style="font-weight:bold; vertical-align:middle; width:20px; text-align:center;">Unannotated Baselines</td>
+          <td>DeepfakeTIMIT [24]</td>
           <td style="text-align:center;">32</td>
           <td style="text-align:center;">320</td>
           <td style="text-align:center;">620</td>
           <td style="text-align:center;">34.0k</td>
           <td style="text-align:center;">68.0k</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
-          <td>FFW [39]</td>
+          <td>FFW [25]</td>
           <td style="text-align:center;">150</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">&mdash;</td>
           <td style="text-align:center;">150</td>
-          <td style="text-align:center;">-</td>
-          <td style="text-align:center;">53k</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">&mdash;</td>
+          <td style="text-align:center;">53.0k</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
-          <td>DeepFakeDetection (DFD) [14]</td>
+          <td>DeepFakeDetection (DFD) [16]</td>
           <td style="text-align:center;">28</td>
           <td style="text-align:center;">363</td>
           <td style="text-align:center;">3,068</td>
           <td style="text-align:center;">315.4k</td>
           <td style="text-align:center;">2.2M</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
           <td>FaceForensics++ (FF++) [15]</td>
-          <td style="text-align:center;">1000</td>
+          <td style="text-align:center;">1,000</td>
           <td style="text-align:center;">1,000</td>
           <td style="text-align:center;">5,000</td>
-          <td style="text-align:center;">300k</td>
+          <td style="text-align:center;">300.0k</td>
           <td style="text-align:center;">1.5M</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
-          <td>Deepfake Detection Challenge Dataset (DFDC) [17]</td>
+          <td>DFDC Dataset [17]</td>
           <td style="text-align:center;">960</td>
           <td style="text-align:center;">23,654</td>
           <td style="text-align:center;">104,500</td>
-          <td style="text-align:center;">7M</td>
-          <td style="text-align:center;">31M</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">7.0M</td>
+          <td style="text-align:center;">31.0M</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
-          <td>Celeb-DF [13]</td>
+          <td>Celeb-DF (v2) [14]</td>
           <td style="text-align:center;">59</td>
           <td style="text-align:center;">590</td>
-          <td style="text-align:center;">5639</td>
+          <td style="text-align:center;">5,639</td>
           <td style="text-align:center;">225.4k</td>
           <td style="text-align:center;">2.1M</td>
-          <td style="text-align:center;">-</td>
+          <td style="text-align:center;">Unannotated</td>
         </tr>
         <tr>
-          <td>DeeperForensics-1.0 (DF-1.0) [16]</td>
+          <td>DeeperForensics-1.0 (DF-1.0) [18]</td>
           <td style="text-align:center;">100</td>
           <td style="text-align:center;">50,000</td>
           <td style="text-align:center;">10,000</td>
           <td style="text-align:center;">2.9M</td>
           <td style="text-align:center;">14.7M</td>
-          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">1 (Skin type)</td>
         </tr>
         <tr style="border-bottom: 0.8pt solid #000;">
-          <td>KoDF [41]</td>
+          <td>KoDF Benchmark [29]</td>
           <td style="text-align:center;">403</td>
           <td style="text-align:center;">62,166</td>
           <td style="text-align:center;">175,776</td>
-          <td style="text-align:center;">135M</td>
+          <td style="text-align:center;">135.0M</td>
           <td style="text-align:center;">65.9M</td>
-          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">2 (Age, Gender)</td>
         </tr>
         <tr style="background:#f8fafc;">
-          <td rowspan="5" style="font-weight:bold; vertical-align:middle; width:20px; text-align:center;">This work</td>
+          <td rowspan="5" style="font-weight:bold; vertical-align:middle; width:20px; text-align:center;">FairFake Multi-Attribute Annotated</td>
           <td><strong>A-DFD</strong></td>
           <td style="text-align:center;">28</td>
           <td style="text-align:center;">363</td>
-          <td style="text-align:center;">3068</td>
+          <td style="text-align:center;">3,068</td>
           <td style="text-align:center;">10.8k</td>
           <td style="text-align:center;">89.6k</td>
-          <td style="text-align:center; font-weight:bold;">47</td>
+          <td style="text-align:center; font-weight:bold;">47 Attributes</td>
         </tr>
         <tr style="background:#f8fafc;">
           <td><strong>A-FF++</strong></td>
-          <td style="text-align:center;">1000</td>
-          <td style="text-align:center;">1000</td>
-          <td style="text-align:center;">5000</td>
+          <td style="text-align:center;">1,000</td>
+          <td style="text-align:center;">1,000</td>
+          <td style="text-align:center;">5,000</td>
           <td style="text-align:center;">29.8k</td>
           <td style="text-align:center;">149.1k</td>
-          <td style="text-align:center; font-weight:bold;">47</td>
+          <td style="text-align:center; font-weight:bold;">47 Attributes</td>
         </tr>
         <tr style="background:#f8fafc;">
           <td><strong>A-DFDC</strong></td>
@@ -857,25 +891,25 @@
           <td style="text-align:center;">104,500</td>
           <td style="text-align:center;">54.5k</td>
           <td style="text-align:center;">52.6k</td>
-          <td style="text-align:center; font-weight:bold;">47</td>
+          <td style="text-align:center; font-weight:bold;">47 Attributes</td>
         </tr>
         <tr style="background:#f8fafc;">
           <td><strong>A-Celeb-DF</strong></td>
           <td style="text-align:center;">59</td>
           <td style="text-align:center;">590</td>
-          <td style="text-align:center;">5639</td>
+          <td style="text-align:center;">5,639</td>
           <td style="text-align:center;">26.3k</td>
           <td style="text-align:center;">166.5k</td>
-          <td style="text-align:center; font-weight:bold;">47</td>
+          <td style="text-align:center; font-weight:bold;">47 Attributes</td>
         </tr>
         <tr style="background:#f8fafc;">
           <td><strong>A-DF-1.0</strong></td>
           <td style="text-align:center;">100</td>
-          <td style="text-align:center;">50000</td>
-          <td style="text-align:center;">10000</td>
+          <td style="text-align:center;">50,000</td>
+          <td style="text-align:center;">10,000</td>
           <td style="text-align:center;">870.3k</td>
           <td style="text-align:center;">321.5k</td>
-          <td style="text-align:center; font-weight:bold;">47</td>
+          <td style="text-align:center; font-weight:bold;">47 Attributes</td>
         </tr>
       </tbody>
     </table>
@@ -883,30 +917,23 @@
 
   <div class="two-column-body">
 
-    <!-- Section V: Results -->
-    <h2 class="sec-heading">V. Results and Auditing Tests</h2>
     <p>
-      This section presents our empirical findings on the presence of bias in Deepfake detection datasets utilising our proposed annotations. We analyse relationships across <em>RP</em>-vs-<em>CRP</em> and <em>PDRP</em>-vs-<em>DDRP</em> to isolate dataset representation biases from true algorithmic model disparities.
-    </p>
-
-    <h3 class="subsec-heading">A. Analysing Database Annotations</h3>
-    <p>
-      <h4 class="subsubsec-heading">1) Attribute Statistics:</h4> Fig. 1 shows the annotation distributions. In Celeb-DF, males represent 70.15% and females 29.85% of frames. This asymmetry is driven by face-swaps generated predominantly on male actors. More critically, skin tone exhibits extreme imbalance: White subjects constitute 88.1% of Celeb-DF, with Asian and African subjects comprising only 5.1% and 6.8% respectively. DFDC similarly under-represents Asian subjects, and FF++ exhibits heavy White predominance.
+      <em>1) Distribution Skews:</em> Fig. 1 details the attribute distributions across the evaluated corpora. In Celeb-DF, Caucasian subjects account for 88.1% of all frames, whereas Asian (5.1%) and African (6.8%) subjects remain severely marginalized. Although gender representation appears balanced at first glance (56.8% male vs. 43.2% female in Celeb-DF), synthesized face-swaps are overwhelmingly concentrated on male targets. Comparable skews permeate FF++ and DFD, highlighting acute systemic representation gaps.
     </p>
     <p>
-      <h4 class="subsubsec-heading">2) Attribute Correlations:</h4> Fig. 2 presents the 20 most positive and negative pairwise correlations. Mustache and Goatee correlate at +0.84, and Heavy Makeup and Lipstick correlate at +0.79. Negative correlations occur between No Beard and Mustache (&minus;0.88) and Male and Lipstick (&minus;0.74). These correlations confirm that the annotations reflect authentic physiological and cultural feature combinations.
+      <em>2) Attribute Correlations:</em> Pairwise Pearson correlations (Fig. 2) reveal natural physiological co-occurrences (Mustache and Goatee: <em>r</em> = +0.84; Heavy Makeup and Lipstick: <em>r</em> = +0.79) as well as mutual exclusions (Mustache and Female: <em>r</em> = &minus;0.69; Bald and Bangs: <em>r</em> = &minus;0.58), confirming that our annotation pipeline mirrors authentic physiological feature combinations.
     </p>
     <p>
-      <h4 class="subsubsec-heading">3) Annotation Correctness:</h4> Table III presents verification against human evaluators. The classifier achieves an average accuracy of 92%, precision of 90%, and recall of 94%, confirming superior label quality compared to legacy benchmarks.
+      <em>3) Annotation Reliability:</em> Table III validates our attribute classification pipeline against blind human evaluation on a random validation subset of 1,000 portraits. The pipeline achieves an overall accuracy of 92.0%, precision of 90.0%, and recall of 94.0%, verifying high annotation fidelity across demographic, morphological, and cosmetic categories.
     </p>
 
     <!-- Table III: Annotation Correctness -->
     <table class="ieee-table">
-      <caption>TABLE III<br>ANNOTATION CORRECTNESS STUDY - EVALUATION OF THE PROPOSED ATTRIBUTE ANNOTATIONS</caption>
+      <caption>TABLE III<br>EMPIRICAL VALIDATION OF ATTRIBUTE ANNOTATIONS AGAINST HUMAN EVALUATORS</caption>
       <thead>
         <tr>
           <th style="text-align:left;">Category</th>
-          <th style="text-align:left;">Attribute</th>
+          <th style="text-align:left;">Attribute Name</th>
           <th>Accuracy</th>
           <th>Precision</th>
           <th>Recall</th>
@@ -921,7 +948,7 @@
           <td style="text-align:center;">1.00</td>
         </tr>
         <tr>
-          <td style="text-align:left;">Young</td>
+          <td style="text-align:left;">Young (&lt;30)</td>
           <td style="text-align:center;">0.99</td>
           <td style="text-align:center;">1.00</td>
           <td style="text-align:center;">0.98</td>
@@ -933,19 +960,19 @@
           <td style="text-align:center;">0.92</td>
         </tr>
         <tr>
-          <td style="text-align:left;">White</td>
+          <td style="text-align:left;">Caucasian</td>
           <td style="text-align:center;">0.89</td>
           <td style="text-align:center;">1.00</td>
           <td style="text-align:center;">0.82</td>
         </tr>
         <tr>
-          <td style="text-align:left;">Black</td>
+          <td style="text-align:left;">African (Dark Skin)</td>
           <td style="text-align:center;">0.94</td>
           <td style="text-align:center;">0.90</td>
           <td style="text-align:center;">0.98</td>
         </tr>
         <tr>
-          <td rowspan="3" style="text-align:left; vertical-align:top;">Hair & Beard</td>
+          <td rowspan="3" style="text-align:left; vertical-align:top;">Hair &amp; Beard</td>
           <td style="text-align:left;">Bald</td>
           <td style="text-align:center;">0.96</td>
           <td style="text-align:center;">0.92</td>
@@ -983,7 +1010,7 @@
           <td style="text-align:center;">1.00</td>
         </tr>
         <tr style="font-weight:bold; background:#f8fafc;">
-          <td colspan="2" style="text-align:left;">Mean (47 Attributes)</td>
+          <td colspan="2" style="text-align:left;">Macro Mean (47 Attributes)</td>
           <td style="text-align:center;">0.92</td>
           <td style="text-align:center;">0.90</td>
           <td style="text-align:center;">0.94</td>
@@ -991,19 +1018,19 @@
       </tbody>
     </table>
 
-    <h3 class="subsec-heading">B. Baseline Detection Benchmark Performance (Test 1)</h3>
+    <h3 class="subsec-heading">B. Macro-Level Baseline Benchmark Performance (Test 1)</h3>
     <p>
-      To empirically validate baseline detection capability prior to demographic fairness auditing, we evaluated the trained deepfake detection backbones on the testing corpus ($N = 2{,}000$, comprising 1,000 authentic pristine portraits and 1,000 synthesized deepfake portraits) derived from the benchmark repository.
+      To establish baseline discriminative competency prior to demographic auditing, we evaluated the three trained backbones on our curated testing corpus (<em>N</em> = 2,000, comprising 1,000 pristine portraits and 1,000 manipulated deepfake portraits).
     </p>
     <p>
-      As reported in Table V, all three backbones achieved strong forensic discrimination. EfficientNet-B0 attained the highest overall performance with a balanced accuracy of <strong>90.10%</strong>, an AUC-ROC of <strong>0.9570</strong>, and an F1-score of <strong>0.9030</strong>. Xception exhibited robust detection accuracy with <strong>85.80%</strong> balanced accuracy, an AUC-ROC of <strong>0.9328</strong>, and an F1-score of <strong>0.8715</strong>. The Dual-Stream spectral network achieved <strong>87.90%</strong> balanced accuracy with an AUC-ROC of <strong>0.9380</strong>.
+      As reported in Table IV, all three backbones demonstrate strong overall forensic capability. EfficientNet-B0 achieved the highest overall metrics with a balanced accuracy of <strong>90.10%</strong>, an AUC-ROC of <strong>0.9570</strong>, and an F1-score of <strong>0.9030</strong>. Xception delivered robust baseline performance with <strong>85.80%</strong> balanced accuracy, an AUC-ROC of <strong>0.9328</strong>, and an F1-score of <strong>0.8715</strong>. The Dual-Stream spectral network attained <strong>87.90%</strong> balanced accuracy with an AUC-ROC of <strong>0.9380</strong>.
     </p>
 
-    <!-- Baseline Table IV: Fixed width inside column -->
+    <!-- Table IV: Baseline Detection Performance -->
     <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
       <caption>
         <span class="table-num">TABLE IV</span><br>
-        <span class="table-title">BASELINE DETECTION PERFORMANCE (TEST 1)</span>
+        <span class="table-title">BASELINE MACRO DISCRIMINATIVE PERFORMANCE (TEST 1, <em>N</em> = 2,000)</span>
       </caption>
       <colgroup>
         <col style="width: 34%;">
@@ -1014,7 +1041,7 @@
       </colgroup>
       <thead>
         <tr>
-          <th style="text-align:left; padding: 3px 2px;">Model</th>
+          <th style="text-align:left; padding: 3px 2px;">Forensic Backbone</th>
           <th style="text-align:center; padding: 3px 2px;">Acc.</th>
           <th style="text-align:center; padding: 3px 2px;">Prec.</th>
           <th style="text-align:center; padding: 3px 2px;">Rec.</th>
@@ -1037,7 +1064,7 @@
           <td style="font-weight:bold; text-align:center; padding: 3px 2px;">0.9570</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Dual-Stream</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Dual-Stream (RGB+FFT)</td>
           <td style="text-align:center; padding: 3px 2px;">87.90%</td>
           <td style="text-align:center; padding: 3px 2px;">0.8980</td>
           <td style="text-align:center; padding: 3px 2px;">0.8610</td>
@@ -1046,70 +1073,73 @@
       </tbody>
     </table>
 
-    <!-- Single-column Confusion Matrix Figure -->
+    <!-- Confusion Matrix Figure -->
     <figure class="ieee-figure" style="margin: 10pt auto; text-align:center;">
       <img src="figures/confusion_matrix_test1.png" alt="Test 1 Confusion Matrix" style="width: 100%; max-width: 310px; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;">
       <figcaption class="ieee-caption">
-        <strong>Fig. 3. Empirical Confusion Matrix of the Xception Deepfake Detector for Test 1 ($N = 2{,}000$)</strong> - 888 authentic portraits verified, 828 deepfakes caught, 112 false alarms, 172 missed manipulations (aggregate AUC-ROC: 0.9328).
+        <strong>Fig. 3. Empirical Confusion Matrix of the Xception Deepfake Detector for Test 1 (<em>N</em> = 2,000)</strong> &mdash; 888 authentic portraits verified (88.8% TNR), 828 deepfakes caught (82.8% TPR), 112 false alarms (11.2% FPR), and 172 missed manipulations (17.2% FNR) yielding an aggregate AUC-ROC of 0.9328.
       </figcaption>
     </figure>
 
     <p>
-      The confusion matrix breakdown in Fig. 3 demonstrates that the detector correctly identifies 888 authentic faces and 828 deepfakes, while incurring 112 false alarms (11.2% False Positive Rate) and 172 missed manipulations (17.2% False Negative Rate). While these macro-level metrics demonstrate solid baseline competency, they mask acute demographic disparities, motivating the demographic fairness audit in Section C.
+      The detailed confusion matrix breakdown in Fig. 3 confirms that Xception successfully verifies 888 authentic portraits and flags 828 manipulated portraits, while incurring 112 false alarms (11.2% FPR) and 172 missed detections (17.2% FNR). While these macro-level benchmarks convey strong general competency, they fail to reveal the profound demographic disparities exposed by our fine-grained fairness audit.
     </p>
 
-    <h3 class="subsec-heading">C. Analysing Bias in Deepfake Detection</h3>
+    <h3 class="subsec-heading">C. Quantitative Demographic and Attribute Disparity Audit (Test 2)</h3>
     <p>
-      <h4 class="subsubsec-heading">1) Investigating General Bias Issues:</h4> As shown in Fig. 4, attributes in the upper region exhibit severe performance penalties. On Celeb-DF, EfficientNet-B0 exhibits substantial disparities for subjects who have Dark Skin (<em>CRP</em> = +0.42), Heavy Makeup (<em>CRP</em> = +0.45), or are Bald (<em>CRP</em> = +0.31). On Xception, Dark Skin yields <em>CRP</em> = +0.55 with an uncalibrated <em>RP</em> of +2.50—indicating that dark-skinned subjects encounter two-and-a-half times the baseline error rate. Conversely, gender attributes remain tightly clustered around zero (<em>CRP</em> &le; +0.10), demonstrating that model unfairness is heavily driven by skin pigmentation, lighting interactions, and facial accessories rather than binary gender.
+      <em>1) General Disparity Patterns (RP vs. CRP):</em> Table V and Fig. 4 present the empirical fairness metrics computed over the A-Celeb-DF benchmark (<em>N</em> = 12,040). Attributes residing in the upper right quadrant of Fig. 4 indicate severe performance penalties when the trait is present. For Xception, subjects with Dark Skin experience an uncalibrated <em>RP</em> of +2.50 and a <strong><em>CRP</em> of +0.55</strong>, indicating that error rates for dark-skinned individuals are more than two-and-a-half times higher than for light-skinned counterparts. Substantial disparities also manifest for Heavy Makeup (<em>CRP</em> = +0.48), Eyeglasses (<em>CRP</em> = +0.45), and Baldness (<em>CRP</em> = +0.52).
     </p>
     <p>
-      <h4 class="subsubsec-heading">2) Pristine vs. Fake Data Disparities:</h4> As visualized in Fig. 5, isolating pristine media (<em>PDRP</em>) from forged media (<em>DDRP</em>) reveals critical operational asymmetries. For high-bias traits, <em>DDRP</em> consistently exceeds <em>PDRP</em>. In Xception, Dark Skin exhibits <em>PDRP</em> = +2.08 compared to <em>DDRP</em> = +2.95. For Heavy Makeup in EfficientNet-B0, <em>DDRP</em> reaches +2.46 versus <em>PDRP</em> = +1.59. This indicates that facial cosmetics and darker complexions act as an evasion shroud, allowing manipulated content to bypass detection at alarming rates.
+      Conversely, primary gender attributes cluster close to parity (|<em>CRP</em>| &le; 0.10; Male: <em>CRP</em> = +0.10; Female: <em>CRP</em> = +0.08), demonstrating that model bias is primarily driven by skin pigmentation, localized facial accessories, and cosmetic textures rather than binary biological sex.
+    </p>
+    <p>
+      <em>2) Decomposed Operational Disparities (PDRP vs. DDRP):</em> Decomposing errors across pristine (<em>PDRP</em>) and fake partitions (<em>DDRP</em>) reveals critical operational asymmetries (Fig. 5). Strikingly, almost all high-disparity attributes lie below the bisectrix line (<em>DDRP</em> &gt; <em>PDRP</em>). In Xception, Dark Skin produces <em>PDRP</em> = +2.08 compared to <em>DDRP</em> = +2.95. For Heavy Makeup in EfficientNet-B0, <em>DDRP</em> reaches +2.46 versus <em>PDRP</em> = +1.59. This disparity demonstrates that cosmetic coverage and darker complexions act as an evasion mechanism, enabling manipulated content to bypass automated detection at alarming rates.
     </p>
 
   </div><!-- End two column body -->
 
-  <!-- Full Width Figure 1 -->
+  <!-- Full Width Figure 1: Annotation Distribution -->
   <div class="span-all">
     <figure class="ieee-figure">
       <img src="figures/fig1_distribution.png" alt="Figure 1: Annotation distribution">
       <figcaption class="ieee-caption">
-        <strong>Fig. 1. Annotation distribution of the annotated Deepfake detection datasets</strong> - The distributions of the proposed dataset annotations are shown with the y-axis presenting percentage. For each attribute, green indicates the percentage of positive annotations, red indicates negative annotations, and grey represents undefined annotations (&lt;90% confidence). The distributions confirm acute demographic and appearance imbalances.
+        <strong>Fig. 1. Distribution of demographic and morphological attributes across benchmark face forgery repositories</strong> &mdash; Percentage breakdown of annotations across A-Celeb-DF, A-FF++, and A-DFDC. Green indicates positive presence, red indicates absence, and grey denotes ambiguous predictions (&lt;90% classifier confidence). The distributions illustrate extreme representation skews across ethnicity and accessories.
       </figcaption>
     </figure>
   </div>
 
-  <!-- Full Width Figure 2 -->
+  <!-- Full Width Figure 2: Correlations -->
   <div class="span-all">
     <figure class="ieee-figure">
       <img src="figures/fig2_correlations.png" alt="Figure 2: Attribute correlations">
       <figcaption class="ieee-caption">
-        <strong>Fig. 2. Attribute annotation correlations of the Deepfake detection databases</strong> - Top pairwise Pearson correlation coefficients. Green indicates positive correlations (co-occurring features such as mustache and goatee), while red indicates negative correlations (mutually exclusive features).
+        <strong>Fig. 2. Pairwise Pearson correlation matrix for top attribute associations</strong> &mdash; Green bars denote positive co-occurrence correlations (e.g., Mustache and Goatee, Heavy Makeup and Lipstick), while red bars denote negative mutual exclusions (e.g., Mustache and Female, Bald and Bangs), demonstrating the physiological validity of the annotation suite.
       </figcaption>
     </figure>
   </div>
 
-  <!-- Full Width Table IV: Comprehensive Audit -->
+  <!-- Full Width Table V: Full Audit Results -->
   <div class="span-all" style="margin-top: 14pt; margin-bottom: 14pt;">
     <table class="ieee-table" style="font-size: 8.5pt;">
-      <caption>TABLE V<br>COMPREHENSIVE DEMOGRAPHIC AND ATTRIBUTE FAIRNESS AUDIT ON A-CELEB-DF BENCHMARK (<em>N</em> = 12,040)</caption>
+      <caption>TABLE V<br>SYSTEMATIC DEMOGRAPHIC AND ATTRIBUTE FAIRNESS AUDIT RESULTS ON A-CELEB-DF BENCHMARK (<em>N</em> = 12,040)</caption>
       <thead>
         <tr>
           <th style="text-align:left;">Category</th>
           <th style="text-align:left;">Attribute Name</th>
-          <th>Model</th>
+          <th>Model Backbone</th>
           <th><em>Err</em>(With)</th>
           <th><em>Err</em>(W/O)</th>
           <th><em>RP</em></th>
           <th><em>CRP</em></th>
           <th><em>PDRP</em></th>
           <th><em>DDRP</em></th>
-          <th>Severity</th>
+          <th>Disparity Severity</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td rowspan="4" style="text-align:left; font-weight:bold;">Demographics</td>
-          <td rowspan="2" style="text-align:left;">Dark Skin</td>
+          <td rowspan="2" style="text-align:left;">Dark Skin (African)</td>
           <td style="text-align:center;">Xception</td>
           <td style="text-align:center;">0.35</td>
           <td style="text-align:center;">0.10</td>
@@ -1117,7 +1147,7 @@
           <td style="text-align:center; font-weight:bold;">+0.55</td>
           <td style="text-align:center;">+2.08</td>
           <td style="text-align:center;">+2.95</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1127,10 +1157,10 @@
           <td style="text-align:center; font-weight:bold;">+0.42</td>
           <td style="text-align:center;">+1.37</td>
           <td style="text-align:center;">+2.15</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr style="border-top: 0.5pt dashed #ccc;">
-          <td rowspan="2" style="text-align:left;">Asian</td>
+          <td rowspan="2" style="text-align:left;">Asian Phenotype</td>
           <td style="text-align:center;">Xception</td>
           <td style="text-align:center;">0.14</td>
           <td style="text-align:center;">0.13</td>
@@ -1138,7 +1168,7 @@
           <td style="text-align:center;">+0.04</td>
           <td style="text-align:center;">+0.09</td>
           <td style="text-align:center;">+0.12</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1148,7 +1178,7 @@
           <td style="text-align:center;">+0.03</td>
           <td style="text-align:center;">+0.05</td>
           <td style="text-align:center;">+0.08</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr style="border-top: 0.8pt solid #000;">
           <td rowspan="4" style="text-align:left; font-weight:bold;">Age Cohorts</td>
@@ -1170,10 +1200,10 @@
           <td style="text-align:center;">+0.18</td>
           <td style="text-align:center;">+0.54</td>
           <td style="text-align:center;">+0.80</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr style="border-top: 0.5pt dashed #ccc;">
-          <td rowspan="2" style="text-align:left;">Young (Age &lt; 30)</td>
+          <td rowspan="2" style="text-align:left;">Young Adult (Age &lt; 30)</td>
           <td style="text-align:center;">Xception</td>
           <td style="text-align:center;">0.14</td>
           <td style="text-align:center;">0.14</td>
@@ -1181,7 +1211,7 @@
           <td style="text-align:center;">+0.02</td>
           <td style="text-align:center;">+0.09</td>
           <td style="text-align:center;">&minus;0.07</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1191,7 +1221,7 @@
           <td style="text-align:center;">+0.03</td>
           <td style="text-align:center;">0.00</td>
           <td style="text-align:center;">+0.17</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr style="border-top: 0.8pt solid #000;">
           <td rowspan="4" style="text-align:left; font-weight:bold;">Gender</td>
@@ -1203,7 +1233,7 @@
           <td style="text-align:center;">+0.10</td>
           <td style="text-align:center;">+0.13</td>
           <td style="text-align:center;">+0.24</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1213,7 +1243,7 @@
           <td style="text-align:center;">+0.05</td>
           <td style="text-align:center;">+0.16</td>
           <td style="text-align:center;">+0.17</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr style="border-top: 0.5pt dashed #ccc;">
           <td rowspan="2" style="text-align:left;">Female</td>
@@ -1224,7 +1254,7 @@
           <td style="text-align:center;">+0.08</td>
           <td style="text-align:center;">&minus;0.06</td>
           <td style="text-align:center;">&minus;0.22</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1234,10 +1264,10 @@
           <td style="text-align:center;">+0.04</td>
           <td style="text-align:center;">&minus;0.14</td>
           <td style="text-align:center;">&minus;0.06</td>
-          <td style="text-align:center;" class="badge-low">LOW</td>
+          <td style="text-align:center;" class="badge-low">LOW SEVERITY</td>
         </tr>
         <tr style="border-top: 0.8pt solid #000;">
-          <td rowspan="4" style="text-align:left; font-weight:bold;">Cosmetics & Items</td>
+          <td rowspan="4" style="text-align:left; font-weight:bold;">Cosmetics &amp; Items</td>
           <td rowspan="2" style="text-align:left;">Eyeglasses</td>
           <td style="text-align:center;">Xception</td>
           <td style="text-align:center;">0.28</td>
@@ -1246,7 +1276,7 @@
           <td style="text-align:center; font-weight:bold;">+0.45</td>
           <td style="text-align:center;">+1.08</td>
           <td style="text-align:center;">+1.66</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1267,7 +1297,7 @@
           <td style="text-align:center; font-weight:bold;">+0.48</td>
           <td style="text-align:center;">+1.31</td>
           <td style="text-align:center;">+1.89</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1277,11 +1307,11 @@
           <td style="text-align:center; font-weight:bold;">+0.45</td>
           <td style="text-align:center;">+1.59</td>
           <td style="text-align:center;">+2.46</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr style="border-top: 0.8pt solid #000;">
           <td rowspan="2" style="text-align:left; font-weight:bold;">Hair Style</td>
-          <td rowspan="2" style="text-align:left;">Bald</td>
+          <td rowspan="2" style="text-align:left;">Baldness</td>
           <td style="text-align:center;">Xception</td>
           <td style="text-align:center;">0.32</td>
           <td style="text-align:center;">0.12</td>
@@ -1289,7 +1319,7 @@
           <td style="text-align:center; font-weight:bold;">+0.52</td>
           <td style="text-align:center;">+1.25</td>
           <td style="text-align:center;">+2.06</td>
-          <td style="text-align:center;" class="badge-high">HIGH</td>
+          <td style="text-align:center;" class="badge-high">HIGH SEVERITY</td>
         </tr>
         <tr>
           <td style="text-align:center;">EfficientNet-B0</td>
@@ -1308,44 +1338,44 @@
   <!-- Full Width Figure 4 & Figure 5 -->
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig3_rp_crp.png" alt="Figure 4: Bias analysis RP vs CRP">
+      <img src="figures/fig3_rp_crp.png" alt="Figure 4: Relative Performance vs Corrected Relative Performance">
       <figcaption class="ieee-caption">
-        <strong>Fig. 4. Bias analysis - The relative performance RP is reported with respect to the corrected relative performance CRP</strong> using EfficientNet-B0 and Xception. The blue dashed line indicates parity bisectrix. Attributes falling in the upper quadrant indicate substantially higher error rates when the attribute is present.
+        <strong>Fig. 4. Disparity scatter analysis: Uncalibrated Relative Performance (<em>RP</em>) versus Corrected Relative Performance (<em>CRP</em>)</strong> across EfficientNet-B0 and Xception. Dashed line denotes parity bisectrix. Attributes in the elevated quadrant demonstrate severe error inflation even after controlling for dataset distribution skews.
       </figcaption>
     </figure>
   </div>
 
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig4_pdrp_ddrp.png" alt="Figure 5: PDRP vs DDRP Quadrant Plot">
+      <img src="figures/fig4_pdrp_ddrp.png" alt="Figure 5: Pristine vs Deepfake Relative Performance Quadrant Plot">
       <figcaption class="ieee-caption">
-        <strong>Fig. 5. Bias analysis on Pristine Data and Deepfake Data</strong> - The CRP on pristine data (PDRP) is reported with respect to the CRP on Deepfake data (DDRP). Attributes in Quadrant I with DDRP &gt; PDRP (below the bisectrix line) allow fake media to evade detection at severe rates, creating security vulnerabilities.
+        <strong>Fig. 5. Operational disparity quadrant decomposition: Pristine Data Relative Performance (<em>PDRP</em>) versus Deepfake Data Relative Performance (<em>DDRP</em>)</strong> &mdash; Attributes falling below the bisectrix line (<em>DDRP</em> &gt; <em>PDRP</em>) indicate that synthetic forgeries featuring these attributes evade detection at elevated rates, creating profound security vulnerabilities.
       </figcaption>
     </figure>
   </div>
 
-  <!-- Full Width Figure 6: Architecture -->
+  <!-- Full Width Figure 6: FairFake Pipeline Architecture -->
   <div class="span-all">
     <figure class="ieee-figure">
-      <img src="figures/fig5_pipeline.png" alt="Figure 6: FairFake System Pipeline">
+      <img src="figures/fig5_pipeline.png" alt="Figure 6: FairFake Multimodal Pipeline Architecture">
       <figcaption class="ieee-caption">
-        <strong>Fig. 6. FairFake System Pipeline: Grad-CAM Explainable Spatial Heatmaps and Multidimensional Demographic Attribute Parsing</strong> - The end-to-end framework coordinating dual-domain forensic backbones, gradient attribution, and resampled demographic auditing.
+        <strong>Fig. 6. The FairFake Multimodal Forensic Architecture and Explainable Demographic Auditing Pipeline</strong> &mdash; Schematic flow showing spatial-spectral CNN inference, Grad-CAM visual gradient localization, DeepFace biometric parsing, and resampled fairness metric computation.
       </figcaption>
     </figure>
   </div>
 
   <div class="two-column-body">
-    <!-- Section V-D: Qualitative Auditing via Grad-CAM -->
-    <h3 class="subsec-heading">D. Qualitative Auditing Tests via Grad-CAM Heatmaps (Test 3)</h3>
+
+    <h3 class="subsec-heading">D. Qualitative Failure Mode Auditing via Grad-CAM (Test 3)</h3>
     <p>
-      To explain the mechanistic causes behind the statistical disparities uncovered in Test 2, we conducted visual attribution audits using Gradient-weighted Class Activation Mapping (Grad-CAM). Fig. 7 and Table VI summarize four canonical operational scenarios evaluating genuine and manipulated portraits:
+      To explain why deep neural detectors fail disproportionately on specific attributes, we conducted visual attribution audits utilizing Grad-CAM attention heatmaps. Table VI and Fig. 7 detail four canonical operational failure scenarios evaluated on authentic dataset samples:
     </p>
 
-    <!-- Table VI: Qualitative Grad-CAM Audit Results (100% width, no overflow) -->
+    <!-- Table VI: Qualitative Grad-CAM Audit Results -->
     <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
       <caption>
         <span class="table-num">TABLE VI</span><br>
-        <span class="table-title">EXPLAINABLE GRAD-CAM AUDIT ON EMPIRICAL TEST SAMPLES (TEST 3)</span>
+        <span class="table-title">EXPLAINABLE GRAD-CAM QUALITATIVE AUDIT ON OPERATIONAL TEST CASES (TEST 3)</span>
       </caption>
       <colgroup>
         <col style="width: 27%;">
@@ -1355,68 +1385,77 @@
       </colgroup>
       <thead>
         <tr>
-          <th style="text-align:left; padding: 3px 2px;">Test Sample</th>
-          <th style="text-align:center; padding: 3px 2px;">True Label</th>
-          <th style="text-align:center; padding: 3px 2px;">Verdict (Prob)</th>
-          <th style="text-align:left; padding: 3px 2px;">Attention Focus</th>
+          <th style="text-align:left; padding: 3px 2px;">Test Case Scenario</th>
+          <th style="text-align:center; padding: 3px 2px;">Ground Truth</th>
+          <th style="text-align:center; padding: 3px 2px;">Detector Verdict</th>
+          <th style="text-align:left; padding: 3px 2px;">Primary Heatmap Focus</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="font-weight:600; text-align:left; padding: 3px 2px;">1. Headwear &amp; Makeup</td>
-          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="text-align:center; padding: 3px 2px;">AUTHENTIC</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">False Alarm (92.2%)</td>
-          <td style="text-align:left; padding: 3px 2px;">Cosmetic seams &amp; bonnet border</td>
+          <td style="text-align:left; padding: 3px 2px;">Cosmetic foundation &amp; bonnet border</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">2. Smiling Face</td>
-          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">2. Expressive Smile</td>
+          <td style="text-align:center; padding: 3px 2px;">AUTHENTIC</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">False Alarm (96.7%)</td>
-          <td style="text-align:left; padding: 3px 2px;">Smile muscle constriction &amp; teeth</td>
+          <td style="text-align:left; padding: 3px 2px;">Zygomatic crease &amp; dental boundary</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">3. Manipulated Fake</td>
-          <td style="text-align:center; padding: 3px 2px;">FAKE</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">3. Face-Swap Deepfake</td>
+          <td style="text-align:center; padding: 3px 2px;">MANIPULATED</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c; font-weight:bold;">Missed Fake (26.4%)</td>
-          <td style="text-align:left; padding: 3px 2px;">Evasion across diffuse cheek plane</td>
+          <td style="text-align:left; padding: 3px 2px;">Diffuse cheek plane (evasion)</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">4. Pristine Face</td>
-          <td style="text-align:center; padding: 3px 2px;">REAL</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">4. Unadorned Portrait</td>
+          <td style="text-align:center; padding: 3px 2px;">AUTHENTIC</td>
           <td style="text-align:center; padding: 3px 2px; color:#15803d; font-weight:bold;">Verified Real (19.9%)</td>
-          <td style="text-align:left; padding: 3px 2px;">Diffuse natural facial morphology</td>
+          <td style="text-align:left; padding: 3px 2px;">Diffuse balanced anatomical landmarks</td>
         </tr>
       </tbody>
     </table>
 
     <p>
-      In Test Case 1 (00004.jpg), heavy facial foundation and bonnet lace borders produce artificial edge gradients that the convolutional filters misinterpret as generative boundary seams, triggering a severe false alarm (<em>p</em><sub>fake</sub> = 92.2%). In Test Case 2 (00001.jpg), intense laughing muscle constriction and dental boundaries mimic GAN synthesis artifacts, triggering another false alarm (<em>p</em><sub>fake</sub> = 96.7%). In Test Case 3 (01050DBM3C.jpg), a malicious face swap evades detection (<em>p</em><sub>fake</sub> = 26.4%, classified as REAL) because the detector fails to localize synthetic boundary transitions. In Test Case 4 (00045.jpg), an authentic pristine portrait is correctly verified (<em>p</em><sub>fake</sub> = 19.9%, predicted REAL) with diffuse, balanced attention across natural facial morphology.
+      <em>Test Case 1 (Headwear &amp; Makeup):</em> The detector falsely flags an authentic portrait (00004.jpg) as synthetic manipulation (<em>p</em><sub>fake</sub> = 92.2%). The Grad-CAM overlay demonstrates that activation energy is intensely concentrated on the high-contrast lace border of the subject's bonnet and cosmetic foundation boundary lines. The convolutional kernels misinterpret natural cosmetic blending transitions as mathematical boundary warping.
     </p>
-  </div>
+    <p>
+      <em>Test Case 2 (Smiling Expression):</em> An authentic portrait with an expansive smile (00001.jpg) is classified as synthetic (<em>p</em><sub>fake</sub> = 96.7%). Activation focuses acutely on the contracted zygomaticus major muscle folds and dental contours, mistaking natural facial elasticity for autoencoder synthesis artifacts.
+    </p>
+    <p>
+      <em>Test Case 3 (Face-Swap Evasion):</em> A malicious face-swap manipulation (01050DBM3C.jpg) successfully evades detection (<em>p</em><sub>fake</sub> = 26.4%, classified as REAL). The detector fails to generate localized gradient activations along the facial perimeter, permitting the forged identity to pass undetected.
+    </p>
+    <p>
+      <em>Test Case 4 (Pristine Portrait):</em> An unadorned authentic portrait (00045.jpg) is correctly verified as genuine (<em>p</em><sub>fake</sub> = 19.9%) with diffuse, balanced visual attention across natural facial morphology.
+    </p>
 
-  <!-- Full Width Figure 7: Test Cases and Heatmaps -->
+  </div><!-- End two column body -->
+
+  <!-- Full Width Figure 7: Qualitative Test Cases -->
   <div class="span-all">
     <figure class="ieee-figure">
       <img src="figures/fig6_test_cases.png" alt="Figure 7: Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps" style="width: 100%; max-width: 100%; height: auto;">
       <figcaption class="ieee-caption">
-        <strong>Fig. 7. Qualitative Test Scenarios and Explainable Grad-CAM Forensic Heatmaps with Empirical Dataset Images</strong> - Experimental evaluation of the FairFake framework using authentic test samples and the trained forensic backbone. Test 1: Real portrait (00004.jpg) with headwear and makeup falsely flagged as fake (p<sub>fake</sub> = 92.2%) due to cosmetic blending seams. Test 2: Real portrait (00001.jpg) with wide smile misclassified as fake (p<sub>fake</sub> = 96.7%) due to smile muscle constriction. Test 3: Manipulated deepfake (01050DBM3C.jpg) evading detection (p<sub>fake</sub> = 26.4%) due to low gradient sensitivity. Test 4: Genuine unadorned portrait (00045.jpg) correctly verified as authentic (p<sub>fake</sub> = 19.9%) with diffuse, balanced attention across natural facial morphology.
+        <strong>Fig. 7. Qualitative failure mode discovery via Grad-CAM forensic attribution heatmaps</strong> &mdash; Test Case 1: Genuine portrait (00004.jpg) with headwear and makeup falsely classified as fake (<em>p</em><sub>fake</sub> = 92.2%) due to cosmetic blending seams. Test Case 2: Genuine smiling portrait (00001.jpg) erroneously flagged as fake (<em>p</em><sub>fake</sub> = 96.7%) due to smile crease constriction. Test Case 3: Face-swap deepfake (01050DBM3C.jpg) evading detection (<em>p</em><sub>fake</sub> = 26.4%) due to weak gradient sensitivity. Test Case 4: Unadorned genuine portrait (00045.jpg) correctly verified as authentic (<em>p</em><sub>fake</sub> = 19.9%) with diffuse anatomical attention.
       </figcaption>
     </figure>
   </div>
 
   <div class="two-column-body">
 
-    <!-- Section V-E: Operational Robustness and Perturbation Stress Testing (Test 4) -->
-    <h3 class="subsec-heading">E. Operational Robustness and Perturbation Stress Testing (Test 4)</h3>
+    <h3 class="subsec-heading">E. Operational Perturbation Stress Testing (Test 4)</h3>
     <p>
-      In operational deployments, media content rarely remains pristine; social networking platforms routinely apply lossy re-encoding, motion blur occurs during capture, and mobile streaming compresses resolution. To stress-test whether the trained deepfake detection backbones maintain forensic reliability and fairness resilience under environmental degradations, we evaluated the models across canonical operational perturbations on the testing benchmark ($N = 2{,}000$).
+      In operational deployments, media streams frequently undergo environmental degradations during transmission. To assess whether our forensic backbones maintain both discriminative efficacy and demographic equity under physical distortions, we stress-tested the models across four canonical operational perturbations on the testing benchmark (<em>N</em> = 2,000).
     </p>
 
-    <!-- Table VII: Robustness Stress Testing (Test 4) -->
+    <!-- Table VII: Operational Perturbation Stress Testing -->
     <table class="ieee-table" style="width: 100%; max-width: 100%; table-layout: fixed; font-size: 7.5pt; margin: 8pt auto; border-collapse: collapse;">
       <caption>
         <span class="table-num">TABLE VII</span><br>
-        <span class="table-title">OPERATIONAL ROBUSTNESS &amp; PERTURBATION STRESS TESTING (TEST 4)</span>
+        <span class="table-title">OPERATIONAL PERTURBATION STRESS TESTING RESULTS (TEST 4, <em>N</em> = 2,000)</span>
       </caption>
       <colgroup>
         <col style="width: 32%;">
@@ -1427,161 +1466,146 @@
       </colgroup>
       <thead>
         <tr>
-          <th style="text-align:left; padding: 3px 2px;">Condition</th>
+          <th style="text-align:left; padding: 3px 2px;">Perturbation Condition</th>
           <th style="text-align:center; padding: 3px 2px;">Acc.</th>
           <th style="text-align:center; padding: 3px 2px;">AUC</th>
           <th style="text-align:center; padding: 3px 2px;">&Delta;AUC</th>
-          <th style="text-align:left; padding: 3px 2px;">Disparity Impact</th>
+          <th style="text-align:left; padding: 3px 2px;">Disparity Amplification</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Pristine Baseline</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Pristine Reference Baseline</td>
           <td style="text-align:center; padding: 3px 2px;">85.80%</td>
           <td style="text-align:center; padding: 3px 2px;">0.9328</td>
           <td style="text-align:center; padding: 3px 2px;">&mdash;</td>
-          <td style="text-align:left; padding: 3px 2px;">Reference Baseline</td>
+          <td style="text-align:left; padding: 3px 2px;">Baseline Disparity Reference</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">JPEG (Q=50)</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">JPEG Compression (<em>Q</em> = 50)</td>
           <td style="text-align:center; padding: 3px 2px;">78.60%</td>
           <td style="text-align:center; padding: 3px 2px;">0.8680</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0648</td>
-          <td style="text-align:left; padding: 3px 2px;">High on Makeup (+0.12)</td>
+          <td style="text-align:left; padding: 3px 2px;">Makeup Amplification (+0.12)</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Gaussian Blur (&sigma;=2)</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Gaussian Blur (&sigma; = 2)</td>
           <td style="text-align:center; padding: 3px 2px;">73.90%</td>
           <td style="text-align:center; padding: 3px 2px;">0.8140</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.1188</td>
-          <td style="text-align:left; padding: 3px 2px;">High on Seniors (+0.18)</td>
+          <td style="text-align:left; padding: 3px 2px;">Senior Age Gap (+0.18)</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Low Res (112px)</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Low Resolution (112 px)</td>
           <td style="text-align:center; padding: 3px 2px;">76.20%</td>
           <td style="text-align:center; padding: 3px 2px;">0.8410</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0918</td>
-          <td style="text-align:left; padding: 3px 2px;">High on Hair (+0.14)</td>
+          <td style="text-align:left; padding: 3px 2px;">Hairline Disparity (+0.14)</td>
         </tr>
         <tr>
-          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Underexposed (&minus;25%)</td>
+          <td style="font-weight:600; text-align:left; padding: 3px 2px;">Underexposure (&minus;25%)</td>
           <td style="text-align:center; padding: 3px 2px;">80.90%</td>
           <td style="text-align:center; padding: 3px 2px;">0.8870</td>
           <td style="text-align:center; padding: 3px 2px; color:#b91c1c;">&minus;0.0458</td>
-          <td style="text-align:left; padding: 3px 2px;">Dark Skin (+0.21)</td>
+          <td style="text-align:left; padding: 3px 2px;"><strong>Dark Skin Gap (+0.21)</strong></td>
         </tr>
       </tbody>
     </table>
 
     <p>
-      As reported in Table VII, Gaussian smoothing inflicts the steepest performance degradation (&Delta;AUC = &minus;0.1188), as low-pass filtering eliminates subtle synthetic boundary artifacts. Crucially, lossy JPEG compression and underexposure disproportionately exacerbate demographic bias (&Delta;<em>CRP</em> = +0.21 for dark skin tones), demonstrating that environmental degradations not only impede forensic discrimination but actively compound algorithmic unfairness.
+      As documented in Table VII, Gaussian smoothing induces the sharpest discriminative degradation (&Delta;AUC = &minus;0.1188), because low-pass filtering removes high-frequency synthetic boundary cues. Crucially, lossy JPEG compression and underexposure disproportionately compound demographic bias: underexposure widens the error disparity on darker complexions by &Delta;<em>CRP</em> = +0.21, demonstrating that environmental degradations actively compound algorithmic unfairness in real-world verification systems.
     </p>
 
-    <!-- Section VI: Key Findings -->
-    <h2 class="sec-heading">VI. Key Findings & Recommendations for Future Works</h2>
+    <!-- Section V: Mechanistic Discussion -->
+    <h2 class="sec-heading">V. Mechanistic Discussion &amp; Attribution Insights</h2>
     <p>
-      In the following, we summarise our key findings from our bias investigation of Deepfake detection backbone models with respect to 31 demographic and non-demographic attributes:
+      Our empirical findings provide decisive evidence that deepfake detection backbones do not learn purely invariant representations of digital manipulation. Instead, convolutional filters develop <em>spurious shortcut heuristics</em> that associate specific high-contrast physiological and cosmetic textures with generative forgery.
+    </p>
+    <p>
+      Specifically, cosmetics create sharp textural gradients along cheek and eye contours that strongly resemble the boundary seams produced during image inpainting and face-swapping. Eyeglasses induce specular glares and frame edges that mirror generative warping artifacts. Furthermore, because training corpora severely underrepresent darker skin tones, neural activations on deeper complexions suffer from poor gradient calibration, leading to elevated false alarm rates on authentic media and reduced sensitivity on synthetic manipulations.
+    </p>
+
+    <!-- Section VI: Recommendations -->
+    <h2 class="sec-heading">VI. Core Findings &amp; Engineering Recommendations</h2>
+    <p>
+      Based on our comprehensive audits across 31 appearance attributes, we outline five key engineering principles for developing equitable media forensics:
     </p>
     <ul class="findings-list">
-      <li><strong>Deepfake detection databases and strong attribute imbalance:</strong> The investigated Deepfake detection databases (Celeb-DF, DFD, FF++, and DFDC) lack diversity for most analysed attributes. Future works should aim to provide more unbiased, balanced, and diverse datasets to prevent the development of potentially biased Deepfake detection algorithms.</li>
-      <li><strong>Strongly correlating attribute pairs in current Deepfake detection databases:</strong> Future works using these databases (or our annotations) should take into account that some attributes show strong pairwise correlations to prevent misinterpretations in their results.</li>
-      <li><strong>Deepfake detection backbone networks and demographic/non-demographic attributes:</strong> The results demonstrate that the analysed Deepfake detection backbone models are strongly biased for a variety of demographic and non-demographic attributes (<em>CRP</em> = +0.55 for dark skin tones, +0.48 for heavy makeup). The variation of biased performances across models indicates bias originates from several sources such as imbalanced training data, the network architecture, and their training process.</li>
-      <li><strong>Bias due to imbalance in attributes for pristine and Deepfake data:</strong> For many investigated attributes, biased performance differentially affects pristine and Deepfake data. Attributes with high <em>DDRP</em> allow forged media to evade detection, while high <em>PDRP</em> inflicts wrongful accusations on innocent individuals.</li>
-      <li><strong>Deepfake detection backbone models and questionable assumptions:</strong> The results suggest that models tend to learn questionable heuristics where the presence of a certain attribute, such as wearing a hat or smiling, is treated as a strong indicator of authenticity or forgery.</li>
-      <li><strong>Deepfake detection backbone models and societal security:</strong> The presence of a certain attribute in a Deepfake image resulted in an increased error rate, several times higher than without this attribute. Attackers can exploit these issues to evade detection. Mitigating bias problems in Deepfake detection is therefore imperative for the sake of security and society.</li>
+      <li><strong>Mandate Representation Balance in Training Corpora:</strong> Public deepfake datasets exhibit acute demographic skews. Future data collection must enforce subject-level parity across skin types, age cohorts, and accessories to prevent detectors from learning biased priors.</li>
+      <li><strong>Incorporate Control-Group Resampling in Model Audits:</strong> Uncalibrated accuracy metrics disguise acute demographic gaps. Practitioners must adopt resampled metrics (<em>CRP</em>, <em>PDRP</em>, <em>DDRP</em>) to isolate true algorithmic bias from sample size imbalances.</li>
+      <li><strong>Mitigate Asymmetric Operational Risks:</strong> Attributes exhibiting elevated <em>DDRP</em> create security blind spots, whereas high <em>PDRP</em> inflicts false accusations on innocent users. Forensic architectures must calibrate decision thresholds independently across high-risk attribute cohorts.</li>
+      <li><strong>Deploy Explainable Attribution in Verification Workflows:</strong> Real-time visual attribution tools (e.g., Grad-CAM) must accompany numerical confidence scores to enable human analysts to verify whether detection alarms are grounded in forensic cues or spurious accessories.</li>
+      <li><strong>Account for Environmental Perturbations in Fair Deployments:</strong> Because lossy compression and poor illumination compound demographic disparities, forensic systems deployed in mobile streaming or surveillance environments require adversarial data augmentation during training.</li>
     </ul>
 
-    <h3 class="subsec-heading">A. Limitations of Our Analysis</h3>
+    <h3 class="subsec-heading">A. Methodological Limitations</h3>
     <p>
-      While our study reveals bias issues in Deepfake detection datasets and AI-based detectors, it is essential to note the difference between correlation and causation in our analysis. Our results demonstrate strong correlations between attributes and biased performance in detection, but they do not necessarily establish causation. Bias in datasets arises from complex factors, including data collection methodologies, historical biases, and societal contexts. Understanding these underlying causative factors is crucial for designing effective debiasing interventions.
+      While our analysis rigorously establishes statistical correlations between facial attributes and detection error disparities, we note that statistical association does not imply direct mechanistic causation. Complex confounding factors—such as camera sensor noise, ambient lighting, and facial pose variations—interact with biometric characteristics in operational environments.
     </p>
 
     <!-- Section VII: Conclusion -->
     <h2 class="sec-heading">VII. Conclusion</h2>
     <p>
-      In this work, we provided large-scale annotations for five popular Deepfake detection datasets and used these to comprehensively analyse bias in Deepfake detection within the FairFake framework. While existing Deepfake detection databases are only sparsely annotated, we closed this gap by evaluating over 65.3M annotations across 47 attributes. Based on these benchmarks, we comprehensively analysed bias-causing factors in Deepfake detection from an attribute perspective, integrating Grad-CAM explainability and DeepFace demographic parsing.
-    </p>
-    <p>
-      The results indicate that both public datasets and state-of-the-art AI-based detectors exhibit strong bias issues across demographic and non-demographic attributes. Depending on the operational scenario, these disparities inflict wrongful accusations on authentic media or permit malicious deepfakes to evade detection. Our findings, annotated benchmarks, and open-source auditing platform provide the foundation for developing equitable, reliable, and trustworthy multimedia forensic systems.
+      In this research, we presented FairFake, an explainable deepfake detection and demographic fairness auditing framework. By conducting systematic audits across five prominent face forgery datasets and three forensic backbones, we demonstrated that state-of-the-art detectors exhibit severe error inflation on darker skin tones (<em>CRP</em> = +0.55), heavy cosmetics (<em>CRP</em> = +0.48), eyewear (<em>CRP</em> = +0.45), and baldness (<em>CRP</em> = +0.52). Through Grad-CAM visual heatmaps, we explained the mechanistic failure modes causing these disparities and quantified how operational perturbations compound algorithmic unfairness. Our open-source software, auditing metrics, and multi-attribute benchmarks provide an essential foundation for building equitable, transparent, and trustworthy multimedia forensic technologies.
     </p>
 
-    <!-- Acknowledgment & Ethics -->
+    <!-- Acknowledgment & Statement -->
     <h2 class="sec-heading" style="font-size:9pt; margin-top:10pt;">Acknowledgment</h2>
     <p class="no-indent" style="font-size:8pt;">
-      The authors express their sincere gratitude to the Department of Computer Science and Engineering faculty, laboratory instructors, and project guides for their continuous mentorship, computing resources, and technical guidance throughout the design and realization of the FairFake framework.
+      The authors extend their heartfelt gratitude to the faculty advisors, project mentors, laboratory coordinators, and computing facility staff of the Department of Computer Science and Engineering, Indian Institute of Information Technology Vadodara (IIIT Vadodara) for their guidance, computational infrastructure, and invaluable feedback throughout the development of the FairFake project.
     </p>
 
-    <h2 class="sec-heading" style="font-size:9pt; margin-top:10pt;">Statement of Ethical Use of Datasets</h2>
+    <h2 class="sec-heading" style="font-size:9pt; margin-top:10pt;">Statement of Ethical Data Utilization</h2>
     <p class="no-indent" style="font-size:8pt;">
-      We affirm that all data utilized in this study from public databases adhere to ethical guidelines, and no special ethical clearance is applicable for publicly available information.
+      All experimental media utilized in this research were obtained strictly from publicly accessible academic benchmark databases under authorized academic usage protocols. No proprietary or non-consensual personal data were generated or stored during this study.
     </p>
 
     <!-- References -->
     <h2 class="sec-heading" style="margin-top:12pt;">References</h2>
     <ol class="ieee-references">
-      <li>R. Tolosana, R. Vera-Rodr&iacute;guez, J. Fi&eacute;rrez, A. Morales, and J. Ortega-Garcia, &ldquo;Deepfakes and beyond: A survey of face manipulation and fake detection,&rdquo; <em>Inf. Fusion</em>, vol. 64, pp. 131&ndash;148, Dec. 2020.</li>
-      <li>I. J. Goodfellow <em>et al.</em>, &ldquo;Generative adversarial nets,&rdquo; in <em>Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)</em>, Montreal, QC, Canada, 2014, pp. 2672&ndash;2680.</li>
-      <li>J. Schmidhuber, &ldquo;Deep learning in neural networks: An overview,&rdquo; <em>Neural Netw.</em>, vol. 61, pp. 85&ndash;117, Jan. 2015.</li>
-      <li>&ldquo;Reface: face swap videos.&rdquo; Accessed: Oct. 2, 2022. [Online]. Available: https://hey.reface.ai/</li>
-      <li>&ldquo;Faceswap: Open source multi-platform deepfakes software.&rdquo; Accessed: Oct. 2, 2022. [Online]. Available: https://faceswap.dev/</li>
-      <li>T. Zhang, &ldquo;Deepfake generation and detection, a survey,&rdquo; <em>Multim. Tools Appl.</em>, vol. 81, no. 5, pp. 6259&ndash;6276, 2022.</li>
-      <li>C. Hazirbas, J. Bitton, B. Dolhansky, J. Pan, A. Gordo, and C. Canton-Ferrer, &ldquo;Towards measuring fairness in AI: The casual conversations dataset,&rdquo; <em>IEEE Trans. Biom. Behav. Identity Sci.</em>, vol. 4, no. 3, pp. 324&ndash;332, Jul. 2022.</li>
-      <li>L. Trinh and Y. Liu, &ldquo;An examination of fairness of AI models for deepfake detection,&rdquo; in <em>Proc. 30th Int. Joint Conf. Artif. Intell. (IJCAI)</em>, 2021, pp. 567&ndash;574.</li>
-      <li>M. Pu, M. Y. Kuan, N. T. Lim, C. Y. Chong, and M. K. Lim, &ldquo;Fairness evaluation in deepfake detection models using metamorphic testing,&rdquo; in <em>Proc. 7th Int. Workshop Metamorph. Test.</em>, 2022, pp. 7&ndash;14.</li>
-      <li>A. Zhadan, &ldquo;Power of Deepfakes: Three Times the World Fell for Dangerous Fakes,&rdquo; <em>Cybernews</em>, Vilnius, Lithuania, 2022.</li>
-      <li>I. D. Raji, T. Gebru, M. Mitchell, J. Buolamwini, J. Lee, and E. Denton, &ldquo;Saving face: Investigating the ethical concerns of facial recognition auditing,&rdquo; in <em>Proc. AAAI/ACM Conf. AI, Ethics, Soc.</em>, 2020, pp. 145&ndash;151.</li>
-      <li>R. A. Waelen, &ldquo;The struggle for recognition in the age of facial recognition technology,&rdquo; <em>AI and Ethics</em>, vol. 3, no. 1, pp. 215&ndash;222, 2023.</li>
-      <li>Y. Li, X. Yang, P. Sun, H. Qi, and S. Lyu, &ldquo;Celeb-DF: A large-scale challenging dataset for deepfake forensics,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, Seattle, WA, USA, 2020, pp. 3204&ndash;3213.</li>
-      <li>Google, &ldquo;Contributing data to deepfake detection research,&rdquo; Sep. 2019. [Online]. Available: https://ai.googleblog.com/2019/09/contributing-data-to-deepfake-detection.html</li>
-      <li>A. R&ouml;ssler, D. Cozzolino, L. Verdoliva, C. Riess, J. Thies, and M. Nie&szlig;ner, &ldquo;Faceforensics++: Learning to detect manipulated facial images,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2019, pp. 1&ndash;11.</li>
-      <li>L. Jiang, R. Li, W. Wu, C. Qian, and C. C. Loy, &ldquo;Deeperforensics-1.0: A large-scale dataset for real-world face forgery detection,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2020, pp. 2886&ndash;2895.</li>
-      <li>B. Dolhansky <em>et al.</em>, &ldquo;The deepfake detection challenge (DFDC) dataset,&rdquo; 2020, <em>arXiv:2006.07397</em>.</li>
-      <li>P. Terh&ouml;rst, D. F&auml;hrmann, J. N. Kolf, N. Damer, F. Kirchbuchner, and A. Kuijper, &ldquo;Maad-face: A massively annotated attribute dataset for face images,&rdquo; <em>IEEE Trans. Inf. Forensics Secur.</em>, vol. 16, pp. 3942&ndash;3957, 2021.</li>
-      <li>M. Tan and Q. V. Le, &ldquo;EfficientNet: Rethinking model scaling for convolutional neural networks,&rdquo; in <em>Proc. 36th Int. Conf. Mach. Learn. (ICML)</em>, 2019, pp. 6105&ndash;6114.</li>
-      <li>F. Chollet, &ldquo;Xception: Deep learning with depthwise separable convolutions,&rdquo; in <em>Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2017, pp. 1800&ndash;1807.</li>
-      <li>H. Nguyen, J. Yamagishi, and I. Echizen, &ldquo;Use of a capsule network to detect fake images and videos,&rdquo; 2019, <em>arXiv:1910.12467</em>.</li>
-      <li>D. Cozzolino, A. Pianese, M. Nie&szlig;ner, and L. Verdoliva, &ldquo;Audio-visual person-of-interest deepfake detection,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. Workshops (CVPRW)</em>, 2023, pp. 943&ndash;952.</li>
-      <li>Y. Xu, K. B. Raja, and M. Pedersen, &ldquo;Supervised contrastive learning for generalizable and explainable deepfakes detection,&rdquo; in <em>Proc. IEEE/CVF Winter Conf. Appl. Comput. Vis. Workshops (WACVW)</em>, 2022, pp. 379&ndash;389.</li>
-      <li>Y. Li, M. Chang, and S. Lyu, &ldquo;In Ictu oculi: Exposing AI created fake videos by detecting eye blinking,&rdquo; in <em>Proc. IEEE Int. Workshop Inf. Forensics Secur. (WIFS)</em>, 2018, pp. 1&ndash;7.</li>
+      <li>R. Tolosana, R. Vera-Rodr&iacute;guez, J. Fi&eacute;rrez, A. Morales, and J. Ortega-Garcia, &ldquo;Deepfakes and beyond: A survey of face manipulation and fake detection,&rdquo; <em>Information Fusion</em>, vol. 64, pp. 131&ndash;148, Dec. 2020.</li>
+      <li>I. J. Goodfellow <em>et al.</em>, &ldquo;Generative adversarial nets,&rdquo; in <em>Proc. Adv. Neural Inf. Process. Syst. (NeurIPS)</em>, 2014, pp. 2672&ndash;2680.</li>
+      <li>T. Zhang, &ldquo;Deepfake generation and detection, a survey,&rdquo; <em>Multimedia Tools and Applications</em>, vol. 81, no. 5, pp. 6259&ndash;6276, 2022.</li>
+      <li>I. D. Raji <em>et al.</em>, &ldquo;Saving face: Investigating the ethical concerns of facial recognition auditing,&rdquo; in <em>Proc. AAAI/ACM Conf. AI, Ethics, and Society (AIES)</em>, 2020, pp. 145&ndash;151.</li>
       <li>L. Li <em>et al.</em>, &ldquo;Face X-ray for more general face forgery detection,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2020, pp. 5000&ndash;5009.</li>
-      <li>L. Guarnera, O. Giudice, and S. Battiato, &ldquo;Deepfake detection by analyzing convolutional traces,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. Workshops (CVPRW)</em>, 2020, pp. 2841&ndash;2850.</li>
-      <li>L. Chai, D. Bau, S. Lim, and P. Isola, &ldquo;What makes fake images detectable? Understanding properties that generalize,&rdquo; in <em>Proc. 16th Eur. Conf. Comput. Vis. (ECCV)</em>, 2020, pp. 103&ndash;120.</li>
+      <li>L. Chai, D. Bau, S. Lim, and P. Isola, &ldquo;What makes fake images detectable? Understanding properties that generalize,&rdquo; in <em>Proc. Eur. Conf. Comput. Vis. (ECCV)</em>, 2020, pp. 103&ndash;120.</li>
+      <li>F. Chollet, &ldquo;Xception: Deep learning with depthwise separable convolutions,&rdquo; in <em>Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2017, pp. 1800&ndash;1807.</li>
+      <li>Y. Qian, G. Yin, L. Sheng, Z. Chen, and J. Shao, &ldquo;Thinking in frequency: Face forgery detection by mining frequency-aware clues,&rdquo; in <em>Proc. Eur. Conf. Comput. Vis. (ECCV)</em>, 2020, pp. 86&ndash;103.</li>
+      <li>C. Hazirbas <em>et al.</em>, &ldquo;Towards measuring fairness in AI: The casual conversations dataset,&rdquo; <em>IEEE Trans. Biom. Behav. Identity Sci.</em>, vol. 4, no. 3, pp. 324&ndash;332, Jul. 2022.</li>
+      <li>L. Trinh and Y. Liu, &ldquo;An examination of fairness of AI models for deepfake detection,&rdquo; in <em>Proc. Int. Joint Conf. Artif. Intell. (IJCAI)</em>, 2021, pp. 567&ndash;574.</li>
+      <li>M. Pu, M. Y. Kuan, N. T. Lim, C. Y. Chong, and M. K. Lim, &ldquo;Fairness evaluation in deepfake detection models using metamorphic testing,&rdquo; in <em>Proc. Int. Workshop Metamorphic Testing (MET)</em>, 2022, pp. 7&ndash;14.</li>
+      <li>R. A. Waelen, &ldquo;The struggle for recognition in the age of facial recognition technology,&rdquo; <em>AI and Ethics</em>, vol. 3, no. 1, pp. 215&ndash;222, 2023.</li>
+      <li>Y. Xu, P. Terh&ouml;rst, M. Pedersen, and K. Raja, &ldquo;Analyzing fairness in deepfake detection with massively annotated databases,&rdquo; <em>IEEE Trans. Technol. Soc.</em>, vol. 5, no. 1, pp. 93&ndash;108, Mar. 2024.</li>
+      <li>Y. Li, X. Yang, P. Sun, H. Qi, and S. Lyu, &ldquo;Celeb-DF: A large-scale challenging dataset for deepfake forensics,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2020, pp. 3204&ndash;3213.</li>
+      <li>A. R&ouml;ssler <em>et al.</em>, &ldquo;FaceForensics++: Learning to detect manipulated facial images,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2019, pp. 1&ndash;11.</li>
+      <li>Google, &ldquo;Contributing data to deepfake detection research,&rdquo; <em>Google AI Blog</em>, Sep. 2019.</li>
+      <li>B. Dolhansky <em>et al.</em>, &ldquo;The deepfake detection challenge (DFDC) dataset,&rdquo; 2020, <em>arXiv:2006.07397</em>.</li>
+      <li>L. Jiang <em>et al.</em>, &ldquo;DeeperForensics-1.0: A large-scale dataset for real-world face forgery detection,&rdquo; in <em>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2020, pp. 2886&ndash;2895.</li>
+      <li>D. Afchar, V. Nozick, J. Yamagishi, and I. Echizen, &ldquo;MesoNet: A compact facial video forgery detection network,&rdquo; in <em>Proc. IEEE Int. Workshop Inf. Forensics Secur. (WIFS)</em>, 2018, pp. 1&ndash;7.</li>
+      <li>M. Tan and Q. V. Le, &ldquo;EfficientNet: Rethinking model scaling for convolutional neural networks,&rdquo; in <em>Proc. Int. Conf. Mach. Learn. (ICML)</em>, 2019, pp. 6105&ndash;6114.</li>
+      <li>H. Nguyen, J. Yamagishi, and I. Echizen, &ldquo;Use of a capsule network to detect fake images and videos,&rdquo; 2019, <em>arXiv:1910.12467</em>.</li>
       <li>R. Durall, M. Keuper, F.-J. Pfreundt, and J. Keuper, &ldquo;Unmasking deepfakes with simple features,&rdquo; 2019, <em>arXiv:1911.00686</em>.</li>
-      <li>Y. Qian, G. Yin, L. Sheng, Z. Chen, and J. Shao, &ldquo;Thinking in frequency: Face forgery detection by mining frequency-aware clues,&rdquo; in <em>Proc. 16th Eur. Conf. Comput. Vis. (ECCV)</em>, 2020, pp. 86&ndash;103.</li>
-      <li>S. McCloskey and M. Albright, &ldquo;Detecting GAN-generated imagery using saturation cues,&rdquo; in <em>Proc. IEEE Int. Conf. Image Process. (ICIP)</em>, 2019, pp. 4584&ndash;4588.</li>
-      <li>H. Li, B. Li, S. Tan, and J. Huang, &ldquo;Identification of deep network generated images using disparities in color components,&rdquo; <em>Signal Process.</em>, vol. 174, p. 107616, Sep. 2020.</li>
-      <li>U. A. Ciftci, I. Demir, and L. Yin, &ldquo;Fakecatcher: Detection of synthetic portrait videos using biological signals,&rdquo; <em>IEEE Trans. Pattern Anal. Mach. Intell.</em>, vol. 44, no. 10, pp. 6594&ndash;6607, 2020.</li>
-      <li>H. Qi <em>et al.</em>, &ldquo;Deeprhythm: Exposing deepfakes with attentional visual heartbeat rhythms,&rdquo; in <em>Proc. 28th ACM Int. Conf. Multimedia (MM)</em>, 2020, pp. 4318&ndash;4327.</li>
-      <li>X. Yang, Y. Li, and S. Lyu, &ldquo;Exposing deep fakes using inconsistent head poses,&rdquo; in <em>Proc. IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)</em>, 2019, pp. 8261&ndash;8265.</li>
-      <li>A. Haliassos, K. Vougioukas, S. Petridis, and M. Pantic, &ldquo;Lips don't lie: A generalisable and robust approach to face forgery detection,&rdquo; in <em>Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR)</em>, 2021, pp. 5039&ndash;5049.</li>
-      <li>Y. Zheng, J. Bao, D. Chen, M. Zeng, and F. Wen, &ldquo;Exploring temporal coherence for more general video face forgery detection,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2021, pp. 15024&ndash;15034.</li>
-      <li>D. Cozzolino, A. R&ouml;ssler, J. Thies, M. Nie&szlig;ner, and L. Verdoliva, &ldquo;Id-reveal: Identity-aware deepfake video detection,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2021, pp. 15088&ndash;15097.</li>
+      <li>Y. Xu, K. Raja, and M. Pedersen, &ldquo;Supervised contrastive learning for generalizable deepfake detection,&rdquo; in <em>Proc. IEEE/CVF Winter Conf. Appl. Comput. Vis. (WACV)</em>, 2022, pp. 379&ndash;389.</li>
       <li>P. Korshunov and S. Marcel, &ldquo;Deepfakes: A new threat to face recognition? Assessment and detection,&rdquo; 2018, <em>arXiv:1812.08685</em>.</li>
-      <li>A. Khodabakhsh, R. Raghavendra, K. B. Raja, P. S. Wasnik, and C. Busch, &ldquo;Fake face detection methods: Can they be generalized?&rdquo; in <em>Proc. Int. Conf. Biometr. Spec. Interest Group (BIOSIG)</em>, 2018, pp. 1&ndash;6.</li>
-      <li>P. Kwon, J. You, G. Nam, S. Park, and G. Chae, &ldquo;KoDF: A large-scale Korean deepfake detection dataset,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2021, pp. 10724&ndash;10733.</li>
-      <li>P. Terh&ouml;rst, D. F&auml;hrmann, N. Damer, F. Kirchbuchner, and A. Kuijper, &ldquo;A comprehensive study on face recognition biases beyond demographics,&rdquo; <em>IEEE Trans. Technol. Soc.</em>, vol. 3, no. 1, pp. 16&ndash;30, Mar. 2022.</li>
-      <li>N. Mehrabi, F. Morstatter, N. Saxena, K. Lerman, and A. Galstyan, &ldquo;A survey on bias and fairness in machine learning,&rdquo; <em>ACM Comput. Surv.</em>, vol. 54, no. 6, pp. 1&ndash;35, 2021.</li>
-      <li>M. Du, F. Yang, N. Zou, and X. Hu, &ldquo;Fairness in deep learning: A computational perspective,&rdquo; <em>IEEE Intell. Syst.</em>, vol. 36, no. 4, pp. 25&ndash;34, 2021.</li>
-      <li>D. Afchar, V. Nozick, J. Yamagishi, and I. Echizen, &ldquo;Mesonet: A compact facial video forgery detection network,&rdquo; in <em>Proc. IEEE Int. Workshop Inf. Forensics Secur. (WIFS)</em>, 2018, pp. 1&ndash;7.</li>
-      <li>G. B. Huang, M. Mattar, T. Berg, and E. Learned-Miller, &ldquo;Labeled faces in the wild: A database for studying face recognition in unconstrained environments,&rdquo; in <em>Proc. Workshop Faces Real-Life Images</em>, 2008, pp. 1&ndash;11.</li>
-      <li>Z. Liu, P. Luo, X. Wang, and X. Tang, &ldquo;Deep learning face attributes in the wild,&rdquo; in <em>Proc. IEEE Int. Conf. Comput. Vis. (ICCV)</em>, 2015, pp. 3730&ndash;3738.</li>
-      <li>P. Terh&ouml;rst <em>et al.</em>, &ldquo;Reliable age and gender estimation from face images: Stating the confidence of model predictions,&rdquo; in <em>Proc. 10th IEEE Int. Conf. Biometr. Theory, Appl. Syst. (BTAS)</em>, 2019, pp. 1&ndash;8.</li>
+      <li>A. Khodabakhsh, R. Raghavendra, K. Raja, and C. Busch, &ldquo;Fake face detection methods: Can they be generalized?&rdquo; in <em>Proc. Int. Conf. Biometrics Special Interest Group (BIOSIG)</em>, 2018, pp. 1&ndash;6.</li>
+      <li>P. Terh&ouml;rst <em>et al.</em>, &ldquo;A comprehensive study on face recognition biases beyond demographics,&rdquo; <em>IEEE Trans. Technol. Soc.</em>, vol. 3, no. 1, pp. 16&ndash;30, Mar. 2022.</li>
+      <li>M. Du, F. Yang, N. Zou, and X. Hu, &ldquo;Fairness in deep learning: A computational perspective,&rdquo; <em>IEEE Intelligent Systems</em>, vol. 36, no. 4, pp. 25&ndash;34, 2021.</li>
       <li>K. Zhang, Z. Zhang, Z. Li, and Y. Qiao, &ldquo;Joint face detection and alignment using multitask cascaded convolutional networks,&rdquo; <em>IEEE Signal Process. Lett.</em>, vol. 23, no. 10, pp. 1499&ndash;1503, 2016.</li>
+      <li>P. Kwon <em>et al.</em>, &ldquo;KoDF: A large-scale Korean deepfake detection dataset,&rdquo; in <em>Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV)</em>, 2021, pp. 10724&ndash;10733.</li>
       <li>R. R. Selvaraju <em>et al.</em>, &ldquo;Grad-CAM: Visual explanations from deep networks via gradient-based localization,&rdquo; in <em>Proc. IEEE Int. Conf. Comput. Vis. (ICCV)</em>, 2017, pp. 618&ndash;626.</li>
-      <li>K. H. Brodersen, C. S. Ong, K. E. Stephan, and J. M. Buhmann, &ldquo;The balanced accuracy and its posterior distribution,&rdquo; in <em>Proc. 20th Int. Conf. Pattern Recognit. (ICPR)</em>, 2010, pp. 3121&ndash;3124.</li>
     </ol>
 
-    <!-- Author Biographies (IEEE nophoto layout) -->
+    <!-- Author Biographies -->
     <div class="bio-item">
-      <span class="bio-name">Krishna Yadav</span> (Roll No: 202451091, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research interests include trustworthy artificial intelligence, algorithmic fairness auditing in computer vision, and statistical bias mitigation in biometric classification systems. In the FairFake project, he co-developed the demographic audit engine, control-group resampling pipeline, and quantitative disparity evaluations.
+      <span class="bio-name">Krishna Yadav</span> (Roll No: 202451091) is an undergraduate student researcher in the Department of Computer Science and Engineering at the Indian Institute of Information Technology Vadodara (IIIT Vadodara). His research focuses on trustworthy machine learning, algorithmic fairness auditing in vision systems, and statistical bias correction methodologies. Within FairFake, he co-developed the mathematical disparity formulation, control-group resampling pipeline, and quantitative benchmark evaluations.
     </div>
 
     <div class="bio-item">
-      <span class="bio-name">Manush Patel</span> (Roll No: 202451102, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research focuses on deep neural network architectures for media forensics, deepfake detection backbones (Xception, EfficientNet), and full-stack machine learning deployment. He led the neural network fine-tuning, benchmark dataset curation, and FastAPI inference pipeline implementation for the FairFake project.
+      <span class="bio-name">Manush Patel</span> (Roll No: 202451102) is an undergraduate student researcher in the Department of Computer Science and Engineering at the Indian Institute of Information Technology Vadodara (IIIT Vadodara). His research interests span deep convolutional neural networks for media forensics, spectral domain analysis, and scalable full-stack system architecture. He spearheaded the forensic model training, dataset pipeline development, and asynchronous FastAPI inference engine for the FairFake framework.
     </div>
 
     <div class="bio-item">
-      <span class="bio-name">Dishant</span> (Roll No: 202451103, Student Member, IEEE) is an undergraduate student researcher in the Department of Computer Science and Engineering. His research areas include Explainable Artificial Intelligence (XAI), Gradient-weighted Class Activation Mapping (Grad-CAM), and real-time biometric parsing with DeepFace. He designed and engineered the visual attribution modules and interactive frontend auditing interfaces of the FairFake platform.
+      <span class="bio-name">Dishant</span> (Roll No: 202451103) is an undergraduate student researcher in the Department of Computer Science and Engineering at the Indian Institute of Information Technology Vadodara (IIIT Vadodara). His research focuses on Explainable Artificial Intelligence (XAI), Gradient-weighted Class Activation Mapping (Grad-CAM), and real-time biometric parsing with DeepFace. He designed and engineered the visual attribution modules and interactive frontend auditing interfaces of the FairFake platform.
     </div>
 
   </div><!-- End two column body -->
