@@ -48,6 +48,7 @@ def generate_benchmark_validation_df(n_samples: int = 4000, random_seed: int = 4
     Generates a statistically grounded validation dataset matching empirical
     distributions and error disparity correlations reported in the FairFake IEEE paper.
     Used when live MAAD-Face/Celeb-DF ground truth CSV is not mounted.
+    Uses continuous smooth score distributions reflecting real deepfake detector outputs.
     """
     rng = np.random.default_rng(random_seed)
     
@@ -80,58 +81,35 @@ def generate_benchmark_validation_df(n_samples: int = 4000, random_seed: int = 4
         
     df = pd.DataFrame(data)
     
-    # Simulate predicted probabilities with calibrated empirical bias offsets
+    # Continuous smooth logit generation reflecting convolutional model outputs
     predicted_probs = []
     for _, row in df.iterrows():
         is_real = (row["true_label"] == "REAL")
         
-        # Base error probability (~12% on pristine, ~14% on deepfakes)
-        base_err = 0.11 if is_real else 0.13
+        # Nominal logit center: Real faces ~ -1.5 (prob ~ 0.18), Fake faces ~ +1.5 (prob ~ 0.82)
+        nominal_logit = -1.45 if is_real else +1.45
         
-        # Attribute bias adjustments (matching empirical findings from Table III & IV)
+        # Attribute bias shifts in logit space
+        shift = 0.0
         if is_real:
-            # Genuine portraits falsely flagged due to accessories / cosmetics / skin
-            if row.get("Heavy_Makeup", 0) == 1:
-                base_err += 0.18
-            if row.get("Eyeglasses", 0) == 1:
-                base_err += 0.16
-            if row.get("Dark_Skin", 0) == 1 or row.get("Black", 0) == 1:
-                base_err += 0.20
-            if row.get("Wearing_Hat", 0) == 1:
-                base_err += 0.14
-            if row.get("Senior", 0) == 1:
-                base_err += 0.15
-            if row.get("Smiling", 0) == 1:
-                base_err += 0.08
+            # Genuine portraits getting pushed toward fake classification
+            if row.get("Heavy_Makeup", 0) == 1: shift += 0.85
+            if row.get("Eyeglasses", 0) == 1: shift += 0.75
+            if row.get("Dark_Skin", 0) == 1 or row.get("Black", 0) == 1: shift += 0.90
+            if row.get("Wearing_Hat", 0) == 1: shift += 0.60
+            if row.get("Senior", 0) == 1: shift += 0.70
+            if row.get("Smiling", 0) == 1: shift += 0.35
         else:
-            # Deepfakes evading detection due to smoothing or camouflage
-            if row.get("Dark_Skin", 0) == 1 or row.get("Black", 0) == 1:
-                base_err += 0.22
-            if row.get("Heavy_Makeup", 0) == 1:
-                base_err += 0.19
-            if row.get("Bald", 0) == 1:
-                base_err += 0.17
-            if row.get("Mustache", 0) == 1 or row.get("Goatee", 0) == 1:
-                base_err += 0.12
-                
-        base_err = float(np.clip(base_err, 0.02, 0.85))
-        is_misclassified = rng.random() < base_err
-        
-        if is_real:
-            if is_misclassified:
-                # False Alarm: predicted fake prob is high
-                prob = rng.beta(6, 2) * 0.45 + 0.52
-            else:
-                # Correct verification: predicted fake prob is low
-                prob = rng.beta(2, 6) * 0.48 + 0.01
-        else:
-            if is_misclassified:
-                # Missed detection: predicted fake prob is low
-                prob = rng.beta(2, 6) * 0.46 + 0.02
-            else:
-                # Caught deepfake: predicted fake prob is high
-                prob = rng.beta(6, 2) * 0.46 + 0.52
-                
+            # Deepfakes getting pulled toward real classification (evasion)
+            if row.get("Dark_Skin", 0) == 1 or row.get("Black", 0) == 1: shift -= 0.88
+            if row.get("Heavy_Makeup", 0) == 1: shift -= 0.78
+            if row.get("Bald", 0) == 1: shift -= 0.65
+            if row.get("Mustache", 0) == 1 or row.get("Goatee", 0) == 1: shift -= 0.50
+            if row.get("Wearing_Lipstick", 0) == 1: shift -= 0.40
+            
+        noise = rng.normal(loc=0.0, scale=0.85)
+        total_logit = nominal_logit + shift + noise
+        prob = 1.0 / (1.0 + np.exp(-total_logit))
         predicted_probs.append(float(round(np.clip(prob, 0.001, 0.999), 4)))
         
     df["predicted_prob"] = predicted_probs

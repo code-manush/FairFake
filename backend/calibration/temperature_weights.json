@@ -1,0 +1,620 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "global_temperature": 1.074,
+    "global_evaluation": {
+      "uncalibrated": {
+        "nll": 0.5778,
+        "brier": 0.1965,
+        "ece": 0.0248
+      },
+      "calibrated": {
+        "nll": 0.5773,
+        "brier": 0.1964,
+        "ece": 0.0188
+      },
+      "ece_reduction": 0.006
+    },
+    "generated_at": "2026-11-08T14:05:48.595034+00:00",
+    "total_cohorts_fitted": 35
+  },
+  "temperatures": {
+    "Male": 1.147,
+    "Female": 1.086,
+    "Young": 1.098,
+    "Senior": 2.679,
+    "Asian": 1.135,
+    "White": 1.099,
+    "Black": 3.5,
+    "Dark_Skin": 3.5,
+    "Shiny_Skin": 1.064,
+    "Bald": 2.226,
+    "Wavy_Hair": 0.99,
+    "Receding_Hairline": 1.191,
+    "Bangs": 1.082,
+    "Black_Hair": 1.053,
+    "Blond_Hair": 1.038,
+    "Brown_Hair": 1.158,
+    "No_Beard": 1.098,
+    "Mustache": 1.574,
+    "Goatee": 1.375,
+    "Oval_Face": 1.046,
+    "Square_Face": 1.193,
+    "Double_Chin": 1.072,
+    "Chubby": 1.086,
+    "Obstructed_Forehead": 1.216,
+    "Fully_Visible_Forehead": 1.104,
+    "Mouth_Closed": 0.963,
+    "Smiling": 1.276,
+    "Big_Lips": 1.079,
+    "Big_Nose": 1.17,
+    "Pointy_Nose": 1.079,
+    "Heavy_Makeup": 3.5,
+    "Wearing_Hat": 2.2,
+    "Wearing_Lipstick": 1.326,
+    "Eyeglasses": 2.953,
+    "Attractive": 1.103
+  },
+  "cohort_evaluations": {
+    "Male": {
+      "attribute": "Male",
+      "sample_count": 2372,
+      "temperature": 1.147,
+      "uncalibrated": {
+        "nll": 0.5907,
+        "brier": 0.2016,
+        "ece": 0.0285
+      },
+      "calibrated": {
+        "nll": 0.5891,
+        "brier": 0.2013,
+        "ece": 0.026
+      },
+      "ece_reduction": 0.0025
+    },
+    "Female": {
+      "attribute": "Female",
+      "sample_count": 1714,
+      "temperature": 1.086,
+      "uncalibrated": {
+        "nll": 0.5796,
+        "brier": 0.1982,
+        "ece": 0.0314
+      },
+      "calibrated": {
+        "nll": 0.579,
+        "brier": 0.198,
+        "ece": 0.0161
+      },
+      "ece_reduction": 0.0153
+    },
+    "Young": {
+      "attribute": "Young",
+      "sample_count": 2598,
+      "temperature": 1.098,
+      "uncalibrated": {
+        "nll": 0.5815,
+        "brier": 0.1977,
+        "ece": 0.0249
+      },
+      "calibrated": {
+        "nll": 0.5807,
+        "brier": 0.1976,
+        "ece": 0.023
+      },
+      "ece_reduction": 0.0019
+    },
+    "Senior": {
+      "attribute": "Senior",
+      "sample_count": 590,
+      "temperature": 2.679,
+      "uncalibrated": {
+        "nll": 0.72,
+        "brier": 0.2558,
+        "ece": 0.1225
+      },
+      "calibrated": {
+        "nll": 0.6711,
+        "brier": 0.2392,
+        "ece": 0.0434
+      },
+      "ece_reduction": 0.0791
+    },
+    "Asian": {
+      "attribute": "Asian",
+      "sample_count": 708,
+      "temperature": 1.135,
+      "uncalibrated": {
+        "nll": 0.5897,
+        "brier": 0.2008,
+        "ece": 0.0471
+      },
+      "calibrated": {
+        "nll": 0.5883,
+        "brier": 0.2006,
+        "ece": 0.0438
+      },
+      "ece_reduction": 0.0033
+    },
+    "White": {
+      "attribute": "White",
+      "sample_count": 2650,
+      "temperature": 1.099,
+      "uncalibrated": {
+        "nll": 0.5827,
+        "brier": 0.1988,
+        "ece": 0.0345
+      },
+      "calibrated": {
+        "nll": 0.5819,
+        "brier": 0.1986,
+        "ece": 0.0236
+      },
+      "ece_reduction": 0.0109
+    },
+    "Black": {
+      "attribute": "Black",
+      "sample_count": 482,
+      "temperature": 3.5,
+      "uncalibrated": {
+        "nll": 0.8873,
+        "brier": 0.3245,
+        "ece": 0.2257
+      },
+      "calibrated": {
+        "nll": 0.7267,
+        "brier": 0.2663,
+        "ece": 0.1109
+      },
+      "ece_reduction": 0.1148
+    },
+    "Dark_Skin": {
+      "attribute": "Dark_Skin",
+      "sample_count": 695,
+      "temperature": 3.5,
+      "uncalibrated": {
+        "nll": 0.8437,
+        "brier": 0.306,
+        "ece": 0.1951
+      },
+      "calibrated": {
+        "nll": 0.7134,
+        "brier": 0.2598,
+        "ece": 0.0763
+      },
+      "ece_reduction": 0.1188
+    },
+    "Shiny_Skin": {
+      "attribute": "Shiny_Skin",
+      "sample_count": 900,
+      "temperature": 1.064,
+      "uncalibrated": {
+        "nll": 0.5779,
+        "brier": 0.1964,
+        "ece": 0.0246
+      },
+      "calibrated": {
+        "nll": 0.5775,
+        "brier": 0.1964,
+        "ece": 0.024
+      },
+      "ece_reduction": 0.0006
+    },
+    "Bald": {
+      "attribute": "Bald",
+      "sample_count": 373,
+      "temperature": 2.226,
+      "uncalibrated": {
+        "nll": 0.6988,
+        "brier": 0.2484,
+        "ece": 0.094
+      },
+      "calibrated": {
+        "nll": 0.6667,
+        "brier": 0.2372,
+        "ece": 0.0553
+      },
+      "ece_reduction": 0.0387
+    },
+    "Wavy_Hair": {
+      "attribute": "Wavy_Hair",
+      "sample_count": 1113,
+      "temperature": 0.99,
+      "uncalibrated": {
+        "nll": 0.5623,
+        "brier": 0.1904,
+        "ece": 0.0476
+      },
+      "calibrated": {
+        "nll": 0.5623,
+        "brier": 0.1904,
+        "ece": 0.0505
+      },
+      "ece_reduction": -0.0029
+    },
+    "Receding_Hairline": {
+      "attribute": "Receding_Hairline",
+      "sample_count": 600,
+      "temperature": 1.191,
+      "uncalibrated": {
+        "nll": 0.5974,
+        "brier": 0.2037,
+        "ece": 0.0458
+      },
+      "calibrated": {
+        "nll": 0.5948,
+        "brier": 0.2033,
+        "ece": 0.0419
+      },
+      "ece_reduction": 0.0039
+    },
+    "Bangs": {
+      "attribute": "Bangs",
+      "sample_count": 759,
+      "temperature": 1.082,
+      "uncalibrated": {
+        "nll": 0.5811,
+        "brier": 0.1978,
+        "ece": 0.0209
+      },
+      "calibrated": {
+        "nll": 0.5805,
+        "brier": 0.1978,
+        "ece": 0.0195
+      },
+      "ece_reduction": 0.0014
+    },
+    "Black_Hair": {
+      "attribute": "Black_Hair",
+      "sample_count": 1916,
+      "temperature": 1.053,
+      "uncalibrated": {
+        "nll": 0.5785,
+        "brier": 0.1959,
+        "ece": 0.0289
+      },
+      "calibrated": {
+        "nll": 0.5782,
+        "brier": 0.196,
+        "ece": 0.0279
+      },
+      "ece_reduction": 0.001
+    },
+    "Blond_Hair": {
+      "attribute": "Blond_Hair",
+      "sample_count": 644,
+      "temperature": 1.038,
+      "uncalibrated": {
+        "nll": 0.5746,
+        "brier": 0.1965,
+        "ece": 0.0415
+      },
+      "calibrated": {
+        "nll": 0.5745,
+        "brier": 0.1964,
+        "ece": 0.0383
+      },
+      "ece_reduction": 0.0032
+    },
+    "Brown_Hair": {
+      "attribute": "Brown_Hair",
+      "sample_count": 1066,
+      "temperature": 1.158,
+      "uncalibrated": {
+        "nll": 0.5928,
+        "brier": 0.2025,
+        "ece": 0.0419
+      },
+      "calibrated": {
+        "nll": 0.591,
+        "brier": 0.2022,
+        "ece": 0.0373
+      },
+      "ece_reduction": 0.0046
+    },
+    "No_Beard": {
+      "attribute": "No_Beard",
+      "sample_count": 2769,
+      "temperature": 1.098,
+      "uncalibrated": {
+        "nll": 0.5826,
+        "brier": 0.1982,
+        "ece": 0.0319
+      },
+      "calibrated": {
+        "nll": 0.5819,
+        "brier": 0.1981,
+        "ece": 0.03
+      },
+      "ece_reduction": 0.0019
+    },
+    "Mustache": {
+      "attribute": "Mustache",
+      "sample_count": 658,
+      "temperature": 1.574,
+      "uncalibrated": {
+        "nll": 0.6498,
+        "brier": 0.2269,
+        "ece": 0.0715
+      },
+      "calibrated": {
+        "nll": 0.635,
+        "brier": 0.2222,
+        "ece": 0.0314
+      },
+      "ece_reduction": 0.0401
+    },
+    "Goatee": {
+      "attribute": "Goatee",
+      "sample_count": 540,
+      "temperature": 1.375,
+      "uncalibrated": {
+        "nll": 0.6306,
+        "brier": 0.2196,
+        "ece": 0.0625
+      },
+      "calibrated": {
+        "nll": 0.6231,
+        "brier": 0.2171,
+        "ece": 0.0306
+      },
+      "ece_reduction": 0.0319
+    },
+    "Oval_Face": {
+      "attribute": "Oval_Face",
+      "sample_count": 1376,
+      "temperature": 1.046,
+      "uncalibrated": {
+        "nll": 0.5745,
+        "brier": 0.1959,
+        "ece": 0.0216
+      },
+      "calibrated": {
+        "nll": 0.5743,
+        "brier": 0.1958,
+        "ece": 0.0155
+      },
+      "ece_reduction": 0.0061
+    },
+    "Square_Face": {
+      "attribute": "Square_Face",
+      "sample_count": 923,
+      "temperature": 1.193,
+      "uncalibrated": {
+        "nll": 0.5969,
+        "brier": 0.2027,
+        "ece": 0.0564
+      },
+      "calibrated": {
+        "nll": 0.5942,
+        "brier": 0.2025,
+        "ece": 0.049
+      },
+      "ece_reduction": 0.0074
+    },
+    "Double_Chin": {
+      "attribute": "Double_Chin",
+      "sample_count": 454,
+      "temperature": 1.072,
+      "uncalibrated": {
+        "nll": 0.5767,
+        "brier": 0.196,
+        "ece": 0.0411
+      },
+      "calibrated": {
+        "nll": 0.5763,
+        "brier": 0.196,
+        "ece": 0.031
+      },
+      "ece_reduction": 0.0101
+    },
+    "Chubby": {
+      "attribute": "Chubby",
+      "sample_count": 572,
+      "temperature": 1.086,
+      "uncalibrated": {
+        "nll": 0.5829,
+        "brier": 0.1956,
+        "ece": 0.0612
+      },
+      "calibrated": {
+        "nll": 0.5823,
+        "brier": 0.196,
+        "ece": 0.057
+      },
+      "ece_reduction": 0.0042
+    },
+    "Obstructed_Forehead": {
+      "attribute": "Obstructed_Forehead",
+      "sample_count": 802,
+      "temperature": 1.216,
+      "uncalibrated": {
+        "nll": 0.5989,
+        "brier": 0.2053,
+        "ece": 0.0401
+      },
+      "calibrated": {
+        "nll": 0.5956,
+        "brier": 0.2045,
+        "ece": 0.0272
+      },
+      "ece_reduction": 0.0129
+    },
+    "Fully_Visible_Forehead": {
+      "attribute": "Fully_Visible_Forehead",
+      "sample_count": 2795,
+      "temperature": 1.104,
+      "uncalibrated": {
+        "nll": 0.5838,
+        "brier": 0.1988,
+        "ece": 0.0264
+      },
+      "calibrated": {
+        "nll": 0.5829,
+        "brier": 0.1987,
+        "ece": 0.0195
+      },
+      "ece_reduction": 0.0069
+    },
+    "Mouth_Closed": {
+      "attribute": "Mouth_Closed",
+      "sample_count": 1912,
+      "temperature": 0.963,
+      "uncalibrated": {
+        "nll": 0.5591,
+        "brier": 0.1884,
+        "ece": 0.0305
+      },
+      "calibrated": {
+        "nll": 0.559,
+        "brier": 0.1883,
+        "ece": 0.0295
+      },
+      "ece_reduction": 0.001
+    },
+    "Smiling": {
+      "attribute": "Smiling",
+      "sample_count": 2096,
+      "temperature": 1.276,
+      "uncalibrated": {
+        "nll": 0.6138,
+        "brier": 0.2106,
+        "ece": 0.0469
+      },
+      "calibrated": {
+        "nll": 0.6091,
+        "brier": 0.2098,
+        "ece": 0.0352
+      },
+      "ece_reduction": 0.0117
+    },
+    "Big_Lips": {
+      "attribute": "Big_Lips",
+      "sample_count": 845,
+      "temperature": 1.079,
+      "uncalibrated": {
+        "nll": 0.5823,
+        "brier": 0.1979,
+        "ece": 0.035
+      },
+      "calibrated": {
+        "nll": 0.5818,
+        "brier": 0.1979,
+        "ece": 0.0271
+      },
+      "ece_reduction": 0.0079
+    },
+    "Big_Nose": {
+      "attribute": "Big_Nose",
+      "sample_count": 904,
+      "temperature": 1.17,
+      "uncalibrated": {
+        "nll": 0.588,
+        "brier": 0.1997,
+        "ece": 0.0446
+      },
+      "calibrated": {
+        "nll": 0.5857,
+        "brier": 0.1994,
+        "ece": 0.0379
+      },
+      "ece_reduction": 0.0067
+    },
+    "Pointy_Nose": {
+      "attribute": "Pointy_Nose",
+      "sample_count": 760,
+      "temperature": 1.079,
+      "uncalibrated": {
+        "nll": 0.5753,
+        "brier": 0.1945,
+        "ece": 0.0541
+      },
+      "calibrated": {
+        "nll": 0.5748,
+        "brier": 0.1946,
+        "ece": 0.0486
+      },
+      "ece_reduction": 0.0055
+    },
+    "Heavy_Makeup": {
+      "attribute": "Heavy_Makeup",
+      "sample_count": 1081,
+      "temperature": 3.5,
+      "uncalibrated": {
+        "nll": 0.825,
+        "brier": 0.2989,
+        "ece": 0.1884
+      },
+      "calibrated": {
+        "nll": 0.7071,
+        "brier": 0.2567,
+        "ece": 0.0683
+      },
+      "ece_reduction": 0.1201
+    },
+    "Wearing_Hat": {
+      "attribute": "Wearing_Hat",
+      "sample_count": 443,
+      "temperature": 2.2,
+      "uncalibrated": {
+        "nll": 0.6975,
+        "brier": 0.2456,
+        "ece": 0.119
+      },
+      "calibrated": {
+        "nll": 0.6645,
+        "brier": 0.2358,
+        "ece": 0.0501
+      },
+      "ece_reduction": 0.0689
+    },
+    "Wearing_Lipstick": {
+      "attribute": "Wearing_Lipstick",
+      "sample_count": 1410,
+      "temperature": 1.326,
+      "uncalibrated": {
+        "nll": 0.6185,
+        "brier": 0.2142,
+        "ece": 0.0486
+      },
+      "calibrated": {
+        "nll": 0.6122,
+        "brier": 0.2122,
+        "ece": 0.0185
+      },
+      "ece_reduction": 0.0301
+    },
+    "Eyeglasses": {
+      "attribute": "Eyeglasses",
+      "sample_count": 691,
+      "temperature": 2.953,
+      "uncalibrated": {
+        "nll": 0.73,
+        "brier": 0.2582,
+        "ece": 0.1262
+      },
+      "calibrated": {
+        "nll": 0.6751,
+        "brier": 0.241,
+        "ece": 0.0466
+      },
+      "ece_reduction": 0.0796
+    },
+    "Attractive": {
+      "attribute": "Attractive",
+      "sample_count": 2188,
+      "temperature": 1.103,
+      "uncalibrated": {
+        "nll": 0.5847,
+        "brier": 0.1993,
+        "ece": 0.0282
+      },
+      "calibrated": {
+        "nll": 0.5839,
+        "brier": 0.1991,
+        "ece": 0.0166
+      },
+      "ece_reduction": 0.0116
+    }
+  }
+}
