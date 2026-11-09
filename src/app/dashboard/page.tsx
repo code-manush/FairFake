@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { ThresholdSimulator } from "@/components/dashboard/threshold-simulator";
 import { getAuditSummaries, getAuditResults, getAvailableModels } from "@/lib/api/fairness";
 import { AuditSummary, AttributeBiasResult } from "@/lib/types";
 
@@ -328,6 +329,9 @@ export default function DashboardPage() {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Feature 1.8: Interactive Threshold Simulator */}
+            <ThresholdSimulator />
 
             {/* Table */}
             <Card>

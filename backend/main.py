@@ -13,12 +13,27 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict, Any, Union
+
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from deepfake_detector.src.model import XceptionDetector
 from deepfake_detector.src.dataset import eval_transform
 from fairness_audit import run_audit
-from deepface import DeepFace
+try:
+    from deepface import DeepFace
+except ImportError:
+    DeepFace = None
+
+try:
+    from backend.calibration.blender import evaluate_fair_verdict, blender_instance
+    from backend.calibration.fair_solver import load_calibrated_thresholds
+    from backend.calibration.temperature_scaler import load_temperature_weights
+except ImportError:
+    from calibration.blender import evaluate_fair_verdict, blender_instance
+    from calibration.fair_solver import load_calibrated_thresholds
+    from calibration.temperature_scaler import load_temperature_weights
 
 app = FastAPI(title="FairFake Deepfake API")
 
@@ -166,7 +181,10 @@ async def analyze_image(image: UploadFile = File(...)):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     
     prob, heatmap = analyze_image_array(img)
-    verdict = "FAKE" if prob > 0.5 else "REAL"
+    face_attrs = get_face_attributes(img)
+    calibration_eval = evaluate_fair_verdict(prob, face_attrs)
+
+    raw_verdict = "FAKE" if prob > 0.5 else "REAL"
     score = round((1.0 - prob) * 100, 1)
 
     return {
@@ -175,13 +193,17 @@ async def analyze_image(image: UploadFile = File(...)):
         "image_authenticity_score": score,
         "results": [{
             "fake_probability": prob,
-            "verdict": verdict,
+            "verdict": raw_verdict,
             "gradcam_base64": heatmap,
+            "calibrated": calibration_eval["calibrated"],
+            "comparison": calibration_eval["comparison"],
+            "explanation": calibration_eval["explanation"]
         }],
         "faces": [{
             "boundingBox": [10, 10, 100, 100], 
-            "attributes": get_face_attributes(img)
-        }]
+            "attributes": face_attrs
+        }],
+        "calibration": calibration_eval
     }
 
 @app.post("/api/analyze/video")
@@ -262,8 +284,12 @@ async def analyze_video(video: UploadFile = File(...)):
             
     frame_results.sort(key=lambda x: (x["second"], x["frame_index"]))
     
+    first_attrs = get_face_attributes(first_frame)
+    video_calibration = evaluate_fair_verdict(max_prob, first_attrs)
+
     return {
         "mediaType": "video",
+        "calibration": video_calibration,
         "duration_seconds": round(duration_s, 2),
         "total_frames_analyzed": len(all_probs),
         "anomaly_seconds": sorted(list(anomaly_seconds)),
@@ -280,6 +306,33 @@ async def analyze_video(video: UploadFile = File(...)):
 @app.get("/api/audit/results")
 async def get_audit_data():
     return run_audit()
+
+class CalibrationEvalRequest(BaseModel):
+    raw_probability: float
+    attributes: Optional[List[str]] = None
+    attributes_dict: Optional[Dict[str, Any]] = None
+    strategy: Optional[str] = "weighted_residual"
+
+@app.get("/api/calibration/thresholds")
+async def get_calibration_thresholds():
+    """Returns the active cohort threshold calibration matrix and metadata."""
+    return blender_instance.threshold_data
+
+@app.get("/api/calibration/temperatures")
+async def get_calibration_temperatures():
+    """Returns the active demographic temperature scaling parameters."""
+    return blender_instance.weights_data
+
+@app.post("/api/calibration/evaluate")
+async def evaluate_calibration(req: CalibrationEvalRequest):
+    """Evaluates fairness calibration on an arbitrary score and attribute combination."""
+    attrs = req.attributes if req.attributes is not None else req.attributes_dict
+    return blender_instance.evaluate(
+        raw_prob=req.raw_probability,
+        attributes=attrs,
+        strategy=req.strategy or "weighted_residual"
+    )
+
 
 if __name__ == "__main__":
     import uvicorn

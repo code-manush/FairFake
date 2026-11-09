@@ -1,11 +1,54 @@
 export type DetectionVerdict = "REAL" | "FAKE" | "LIKELY FAKE" | "UNCERTAIN";
 export type BiasSeverity = "low" | "moderate" | "high";
 export type MediaType = "image" | "video";
+export type VerdictShiftType = "FALSE_ALARM_PREVENTED" | "EVASION_PREVENTED" | "UNCHANGED";
+
+export type CalibratedDecision = {
+  probability: number;
+  effective_threshold: number;
+  verdict: DetectionVerdict;
+  confidence: number;
+  effective_temperature: number;
+};
+
+export type CalibrationComparison = {
+  is_verdict_flipped: boolean;
+  shift_type: VerdictShiftType;
+  headline: string;
+  threshold_delta: number;
+  probability_delta: number;
+};
+
+export type ContributingCohort = {
+  attribute: string;
+  cohort_threshold: number;
+  delta: number;
+};
+
+export type BiometricCalibrationContext = {
+  detected_attributes: string[];
+  contributing_cohorts: ContributingCohort[];
+};
+
+export type CalibrationEvaluation = {
+  raw: {
+    probability: number;
+    threshold: number;
+    verdict: DetectionVerdict;
+  };
+  calibrated: CalibratedDecision;
+  comparison: CalibrationComparison;
+  biometric_context: BiometricCalibrationContext;
+  explanation: string;
+};
 
 export type ImageResult = {
   fake_probability: number;
   verdict: DetectionVerdict;
   gradcam_base64: string;
+  calibrated?: CalibratedDecision;
+  comparison?: CalibrationComparison;
+  explanation?: string;
 };
 
 export type VideoFrameResult = {
@@ -39,6 +82,7 @@ export type DetectionResult = {
   frame_results?: VideoFrameResult[];
   
   faces: FaceResult[];
+  calibration?: CalibrationEvaluation;
 };
 
 export type AttributeBiasResult = {
@@ -62,4 +106,71 @@ export type AuditSummary = {
   overallFPR: number;
   overallFNR: number;
   highBiasAttributeCount: number;
+};
+
+export type ThresholdMatrixResponse = {
+  metadata: {
+    version: string;
+    criterion: string;
+    alpha: number;
+    global_default_threshold: number;
+    target_baseline: {
+      tpr: number;
+      fpr: number;
+    };
+    generated_at: string;
+    total_attributes_calibrated: number;
+  };
+  thresholds: Record<string, number>;
+  calibrations: Record<string, {
+    attribute: string;
+    sample_count_with: number;
+    uncalibrated_threshold: number;
+    calibrated_threshold: number;
+    uncalibrated_metrics: {
+      tpr: number;
+      fpr: number;
+      fnr: number;
+      accuracy: number;
+      pdrp: number;
+      ddrp: number;
+    };
+    calibrated_metrics: {
+      tpr: number;
+      fpr: number;
+      fnr: number;
+      accuracy: number;
+      pdrp: number;
+      ddrp: number;
+    };
+    improvements: {
+      delta_pdrp: number;
+      delta_ddrp: number;
+      delta_accuracy: number;
+    };
+    loss: number;
+  }>;
+};
+
+export type TemperatureWeightsResponse = {
+  metadata: {
+    version: string;
+    global_temperature: number;
+    global_evaluation: {
+      uncalibrated: { nll: number; brier: number; ece: number };
+      calibrated: { nll: number; brier: number; ece: number };
+      ece_reduction: number;
+    };
+    generated_at: string;
+    total_cohorts_fitted: number;
+  };
+  temperatures: Record<string, number>;
+  cohort_evaluations: Record<string, any>;
+};
+
+export type CalibrationEvaluateRequest = {
+  raw_probability: number;
+  attributes?: string[];
+  attributes_dict?: Record<string, any>;
+  strategy?: "weighted_residual" | "max_margin" | "mean";
 };
