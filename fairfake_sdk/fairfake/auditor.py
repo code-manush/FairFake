@@ -78,7 +78,8 @@ class Auditor:
     def run_audit(
         self,
         threshold: float = 0.5,
-        dataset: Optional[Union[str, pd.DataFrame]] = None
+        dataset: Optional[Union[str, pd.DataFrame]] = None,
+        calibration_map: Optional[Dict[str, float]] = None
     ) -> Any:
         from .report import FairnessReport
 
@@ -103,7 +104,20 @@ class Auditor:
             y_true = raw_lbl.astype(int).values
 
         y_prob = df[prob_col].values.astype(float)
-        y_pred = (y_prob >= threshold).astype(int)
+        
+        # Apply cohort-calibrated thresholds if calibration_map is provided
+        if calibration_map:
+            cal_thresholds = []
+            for _, row in df.iterrows():
+                active_t = [
+                    calibration_map[attr] for attr in self.attributes
+                    if attr in calibration_map and attr in row and row[attr] == 1
+                ]
+                cal_thresholds.append(float(np.mean(active_t)) if active_t else threshold)
+            y_pred = (y_prob >= np.array(cal_thresholds)).astype(int)
+        else:
+            y_pred = (y_prob >= threshold).astype(int)
+
         is_error = (y_pred != y_true).astype(int)
 
         df_eval = df.copy()

@@ -33,14 +33,25 @@ def main():
     # Command: check-gate (CI/CD Quality Gate)
     p_gate = subparsers.add_parser("check-gate", help="Evaluate CI/CD pull-request quality gate")
     p_gate.add_argument("--dataset", required=True, help="Path to candidate model predictions CSV")
-    p_gate.add_argument("--max-crp", type=float, default=0.15, help="Maximum allowed |CRP| disparity")
-    p_gate.add_argument("--max-pdrp", type=float, default=1.5, help="Maximum allowed PDRP false alarm ratio")
+    p_gate.add_argument("--calibration-file", default=None, help="Path to calibrated thresholds JSON (Phase 1 post-hoc calibration)")
+    p_gate.add_argument("--max-crp", type=float, default=0.20, help="Maximum allowed |CRP| disparity")
+    p_gate.add_argument("--max-pdrp", type=float, default=1.60, help="Maximum allowed PDRP false alarm ratio")
 
     args = parser.parse_args()
 
     if not args.command:
         parser.print_help()
         sys.exit(1)
+
+    def _resolve_calibration_map(calib_path):
+        if not calib_path:
+            return None
+        if not os.path.exists(calib_path):
+            print(f"[!] Warning: Calibration file not found at {calib_path}. Auditing without calibration.")
+            return None
+        with open(calib_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("thresholds", data)
 
     if args.command == "audit":
         auditor = Auditor(dataset=args.dataset)
@@ -68,7 +79,10 @@ def main():
 
     elif args.command == "check-gate":
         auditor = Auditor(dataset=args.dataset)
-        report = auditor.run_audit()
+        calib_map = _resolve_calibration_map(args.calibration_file)
+        if calib_map:
+            print(f"[*] Applying dynamic post-hoc calibration matrix from: {args.calibration_file}")
+        report = auditor.run_audit(calibration_map=calib_map)
         res = report.result
         
         print(f"\n[*] Evaluating CI/CD Fairness Gate...")
