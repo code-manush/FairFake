@@ -1,0 +1,1599 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-11T04:59:48.284939+00:00",
+    "total_samples": 4000,
+    "model_hardened": true,
+    "global_accuracy_clean": 0.6957,
+    "evaluated_cohorts": [
+      "Dark_Skin",
+      "Heavy_Makeup",
+      "Eyeglasses",
+      "Senior",
+      "Young",
+      "Male",
+      "Female",
+      "Smiling",
+      "Bald"
+    ]
+  },
+  "clean_baseline": {
+    "Dark_Skin": {
+      "count": 695,
+      "accuracy": 0.4806,
+      "error_rate": 0.5194,
+      "pdrp": 2.0507,
+      "ddrp": 1.9622,
+      "rp": 1.0055,
+      "crp": -0.0113
+    },
+    "Heavy_Makeup": {
+      "count": 1081,
+      "accuracy": 0.4903,
+      "error_rate": 0.5097,
+      "pdrp": 2.1724,
+      "ddrp": 2.3164,
+      "rp": 1.234,
+      "crp": 0.0817
+    },
+    "Eyeglasses": {
+      "count": 691,
+      "accuracy": 0.5687,
+      "error_rate": 0.4313,
+      "pdrp": 1.9051,
+      "ddrp": 1.1892,
+      "rp": 0.5528,
+      "crp": -0.2754
+    },
+    "Senior": {
+      "count": 590,
+      "accuracy": 0.5678,
+      "error_rate": 0.4322,
+      "pdrp": 1.9157,
+      "ddrp": 1.1088,
+      "rp": 0.532,
+      "crp": 0.0408
+    },
+    "Young": {
+      "count": 2598,
+      "accuracy": 0.6932,
+      "error_rate": 0.3068,
+      "pdrp": 1.1404,
+      "ddrp": 0.9049,
+      "rp": 0.024,
+      "crp": -0.0355
+    },
+    "Male": {
+      "count": 2372,
+      "accuracy": 0.688,
+      "error_rate": 0.312,
+      "pdrp": 1.061,
+      "ddrp": 1.0671,
+      "rp": 0.0648,
+      "crp": 0.048
+    },
+    "Female": {
+      "count": 1714,
+      "accuracy": 0.6908,
+      "error_rate": 0.3092,
+      "pdrp": 1.0004,
+      "ddrp": 1.0677,
+      "rp": 0.0289,
+      "crp": 0.0289
+    },
+    "Smiling": {
+      "count": 2096,
+      "accuracy": 0.6818,
+      "error_rate": 0.3182,
+      "pdrp": 1.366,
+      "ddrp": 0.8576,
+      "rp": 0.1016,
+      "crp": 0.0053
+    },
+    "Bald": {
+      "count": 373,
+      "accuracy": 0.5979,
+      "error_rate": 0.4021,
+      "pdrp": 1.0466,
+      "ddrp": 1.7605,
+      "rp": 0.367,
+      "crp": -0.1482
+    }
+  },
+  "stress_sweeps": {
+    "gamma": [
+      {
+        "parameter_value": 0.5,
+        "global_accuracy": 0.6975,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.482,
+            "error_rate": 0.518,
+            "pdrp": 2.0116,
+            "ddrp": 2.0206,
+            "rp": 1.014,
+            "crp": -0.0669,
+            "delta_crp": -0.0556
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4958,
+            "error_rate": 0.5042,
+            "pdrp": 2.1884,
+            "ddrp": 2.2431,
+            "rp": 1.213,
+            "crp": 0.0924,
+            "delta_crp": 0.0107
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.576,
+            "error_rate": 0.424,
+            "pdrp": 1.9352,
+            "ddrp": 1.1508,
+            "rp": 0.5301,
+            "crp": -0.2565,
+            "delta_crp": 0.0189
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 2.0151,
+            "ddrp": 1.1094,
+            "rp": 0.5586,
+            "crp": 0.0104,
+            "delta_crp": -0.0304
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6936,
+            "error_rate": 0.3064,
+            "pdrp": 1.1721,
+            "ddrp": 0.9139,
+            "rp": 0.0376,
+            "crp": -0.0349,
+            "delta_crp": 0.0006
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6906,
+            "error_rate": 0.3094,
+            "pdrp": 1.0298,
+            "ddrp": 1.0893,
+            "rp": 0.0583,
+            "crp": 0.0457,
+            "delta_crp": -0.0023
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6984,
+            "error_rate": 0.3016,
+            "pdrp": 0.9467,
+            "ddrp": 1.0511,
+            "rp": -0.005,
+            "crp": 0.0232,
+            "delta_crp": -0.0057
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6842,
+            "error_rate": 0.3158,
+            "pdrp": 1.3863,
+            "ddrp": 0.8567,
+            "rp": 0.0974,
+            "crp": 0.0025,
+            "delta_crp": -0.0028
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0466,
+            "ddrp": 1.7388,
+            "rp": 0.376,
+            "crp": -0.1391,
+            "delta_crp": 0.0091
+          }
+        }
+      },
+      {
+        "parameter_value": 0.8,
+        "global_accuracy": 0.6973,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4791,
+            "error_rate": 0.5209,
+            "pdrp": 2.0682,
+            "ddrp": 1.9894,
+            "rp": 1.0276,
+            "crp": -0.0528,
+            "delta_crp": -0.0415
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.494,
+            "error_rate": 0.506,
+            "pdrp": 2.175,
+            "ddrp": 2.2881,
+            "rp": 1.2245,
+            "crp": 0.1043,
+            "delta_crp": 0.0226
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5716,
+            "error_rate": 0.4284,
+            "pdrp": 1.9188,
+            "ddrp": 1.1812,
+            "rp": 0.5491,
+            "crp": -0.278,
+            "delta_crp": -0.0026
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5627,
+            "error_rate": 0.4373,
+            "pdrp": 1.9715,
+            "ddrp": 1.1344,
+            "rp": 0.5647,
+            "crp": 0.029,
+            "delta_crp": -0.0118
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6936,
+            "error_rate": 0.3064,
+            "pdrp": 1.161,
+            "ddrp": 0.9117,
+            "rp": 0.0351,
+            "crp": -0.0348,
+            "delta_crp": 0.0007
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6897,
+            "error_rate": 0.3103,
+            "pdrp": 1.0442,
+            "ddrp": 1.0844,
+            "rp": 0.0635,
+            "crp": 0.0424,
+            "delta_crp": -0.0056
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6943,
+            "error_rate": 0.3057,
+            "pdrp": 0.9749,
+            "ddrp": 1.0707,
+            "rp": 0.0173,
+            "crp": 0.0249,
+            "delta_crp": -0.004
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3696,
+            "ddrp": 0.8767,
+            "rp": 0.1101,
+            "crp": 0.0037,
+            "delta_crp": -0.0016
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.6005,
+            "error_rate": 0.3995,
+            "pdrp": 1.0716,
+            "ddrp": 1.7077,
+            "rp": 0.3643,
+            "crp": -0.1408,
+            "delta_crp": 0.0074
+          }
+        }
+      },
+      {
+        "parameter_value": 1.0,
+        "global_accuracy": 0.6967,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4763,
+            "error_rate": 0.5237,
+            "pdrp": 2.1047,
+            "ddrp": 1.9722,
+            "rp": 1.0388,
+            "crp": -0.0531,
+            "delta_crp": -0.0418
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4921,
+            "error_rate": 0.5079,
+            "pdrp": 2.1709,
+            "ddrp": 2.3153,
+            "rp": 1.2326,
+            "crp": 0.0712,
+            "delta_crp": -0.0105
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5716,
+            "error_rate": 0.4284,
+            "pdrp": 1.8846,
+            "ddrp": 1.1946,
+            "rp": 0.5458,
+            "crp": -0.2702,
+            "delta_crp": 0.0052
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.9389,
+            "ddrp": 1.1286,
+            "rp": 0.5537,
+            "crp": 0.042,
+            "delta_crp": 0.0012
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6928,
+            "error_rate": 0.3072,
+            "pdrp": 1.1513,
+            "ddrp": 0.9207,
+            "rp": 0.0377,
+            "crp": -0.0298,
+            "delta_crp": 0.0057
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.688,
+            "error_rate": 0.312,
+            "pdrp": 1.0625,
+            "ddrp": 1.0852,
+            "rp": 0.0738,
+            "crp": 0.0442,
+            "delta_crp": -0.0038
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6914,
+            "error_rate": 0.3086,
+            "pdrp": 0.9995,
+            "ddrp": 1.0747,
+            "rp": 0.0315,
+            "crp": 0.0239,
+            "delta_crp": -0.005
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3678,
+            "ddrp": 0.8636,
+            "rp": 0.106,
+            "crp": 0.0073,
+            "delta_crp": 0.002
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0876,
+            "ddrp": 1.7205,
+            "rp": 0.3721,
+            "crp": -0.1743,
+            "delta_crp": -0.0261
+          }
+        }
+      },
+      {
+        "parameter_value": 1.4,
+        "global_accuracy": 0.6973,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4806,
+            "error_rate": 0.5194,
+            "pdrp": 2.1497,
+            "ddrp": 1.8747,
+            "rp": 1.0196,
+            "crp": -0.0315,
+            "delta_crp": -0.0202
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4912,
+            "error_rate": 0.5088,
+            "pdrp": 2.1305,
+            "ddrp": 2.4166,
+            "rp": 1.2468,
+            "crp": 0.0643,
+            "delta_crp": -0.0174
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5673,
+            "error_rate": 0.4327,
+            "pdrp": 1.8788,
+            "ddrp": 1.2235,
+            "rp": 0.57,
+            "crp": -0.2312,
+            "delta_crp": 0.0442
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.926,
+            "ddrp": 1.1131,
+            "rp": 0.557,
+            "crp": 0.0628,
+            "delta_crp": 0.022
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6952,
+            "error_rate": 0.3048,
+            "pdrp": 1.1384,
+            "ddrp": 0.8897,
+            "rp": 0.02,
+            "crp": -0.0396,
+            "delta_crp": -0.0041
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.688,
+            "error_rate": 0.312,
+            "pdrp": 1.0689,
+            "ddrp": 1.0873,
+            "rp": 0.0783,
+            "crp": 0.0465,
+            "delta_crp": -0.0015
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6896,
+            "error_rate": 0.3104,
+            "pdrp": 1.0071,
+            "ddrp": 1.1019,
+            "rp": 0.045,
+            "crp": 0.0297,
+            "delta_crp": 0.0008
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3526,
+            "ddrp": 0.8648,
+            "rp": 0.1101,
+            "crp": 0.0128,
+            "delta_crp": 0.0075
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5925,
+            "error_rate": 0.4075,
+            "pdrp": 1.1015,
+            "ddrp": 1.7924,
+            "rp": 0.3957,
+            "crp": -0.1877,
+            "delta_crp": -0.0395
+          }
+        }
+      },
+      {
+        "parameter_value": 1.8,
+        "global_accuracy": 0.697,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.482,
+            "error_rate": 0.518,
+            "pdrp": 2.1204,
+            "ddrp": 1.8805,
+            "rp": 1.0093,
+            "crp": -0.0246,
+            "delta_crp": -0.0133
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4894,
+            "error_rate": 0.5106,
+            "pdrp": 2.0933,
+            "ddrp": 2.5235,
+            "rp": 1.2584,
+            "crp": 0.0326,
+            "delta_crp": -0.0491
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5673,
+            "error_rate": 0.4327,
+            "pdrp": 1.8602,
+            "ddrp": 1.2166,
+            "rp": 0.5683,
+            "crp": -0.201,
+            "delta_crp": 0.0744
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5661,
+            "error_rate": 0.4339,
+            "pdrp": 1.8996,
+            "ddrp": 1.0884,
+            "rp": 0.5477,
+            "crp": 0.0418,
+            "delta_crp": 0.001
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6971,
+            "error_rate": 0.3029,
+            "pdrp": 1.112,
+            "ddrp": 0.8653,
+            "rp": -0.0007,
+            "crp": -0.0383,
+            "delta_crp": -0.0028
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6855,
+            "error_rate": 0.3145,
+            "pdrp": 1.0749,
+            "ddrp": 1.1283,
+            "rp": 0.0987,
+            "crp": 0.0429,
+            "delta_crp": -0.0051
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6914,
+            "error_rate": 0.3086,
+            "pdrp": 0.9967,
+            "ddrp": 1.0937,
+            "rp": 0.033,
+            "crp": 0.0311,
+            "delta_crp": 0.0022
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6789,
+            "error_rate": 0.3211,
+            "pdrp": 1.3546,
+            "ddrp": 0.8907,
+            "rp": 0.1342,
+            "crp": 0.0099,
+            "delta_crp": 0.0046
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0794,
+            "ddrp": 1.8064,
+            "rp": 0.3734,
+            "crp": -0.173,
+            "delta_crp": -0.0248
+          }
+        }
+      }
+    ],
+    "jpeg": [
+      {
+        "parameter_value": 25,
+        "global_accuracy": 0.7005,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4878,
+            "error_rate": 0.5122,
+            "pdrp": 1.9655,
+            "ddrp": 2.0937,
+            "rp": 1.0106,
+            "crp": -0.0835,
+            "delta_crp": -0.0722
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4977,
+            "error_rate": 0.5023,
+            "pdrp": 2.2217,
+            "ddrp": 2.2783,
+            "rp": 1.2386,
+            "crp": 0.0666,
+            "delta_crp": -0.0151
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5702,
+            "error_rate": 0.4298,
+            "pdrp": 1.8712,
+            "ddrp": 1.2204,
+            "rp": 0.5785,
+            "crp": -0.1893,
+            "delta_crp": 0.0861
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.9395,
+            "ddrp": 1.1003,
+            "rp": 0.5785,
+            "crp": 0.0578,
+            "delta_crp": 0.017
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.7002,
+            "error_rate": 0.2998,
+            "pdrp": 1.1194,
+            "ddrp": 0.8636,
+            "rp": 0.0033,
+            "crp": -0.0397,
+            "delta_crp": -0.0042
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.688,
+            "error_rate": 0.312,
+            "pdrp": 1.0738,
+            "ddrp": 1.1558,
+            "rp": 0.1089,
+            "crp": 0.0434,
+            "delta_crp": -0.0046
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6925,
+            "error_rate": 0.3075,
+            "pdrp": 0.9983,
+            "ddrp": 1.1299,
+            "rp": 0.0475,
+            "crp": 0.0379,
+            "delta_crp": 0.009
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6803,
+            "error_rate": 0.3197,
+            "pdrp": 1.361,
+            "ddrp": 0.9158,
+            "rp": 0.1527,
+            "crp": 0.0069,
+            "delta_crp": 0.0016
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5952,
+            "error_rate": 0.4048,
+            "pdrp": 1.1022,
+            "ddrp": 1.8544,
+            "rp": 0.4024,
+            "crp": -0.1705,
+            "delta_crp": -0.0223
+          }
+        }
+      },
+      {
+        "parameter_value": 45,
+        "global_accuracy": 0.699,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4878,
+            "error_rate": 0.5122,
+            "pdrp": 2.0003,
+            "ddrp": 2.0055,
+            "rp": 0.9964,
+            "crp": -0.0379,
+            "delta_crp": -0.0266
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4949,
+            "error_rate": 0.5051,
+            "pdrp": 2.2283,
+            "ddrp": 2.2687,
+            "rp": 1.2407,
+            "crp": 0.0826,
+            "delta_crp": 0.0009
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5687,
+            "error_rate": 0.4313,
+            "pdrp": 1.9024,
+            "ddrp": 1.2041,
+            "rp": 0.5751,
+            "crp": -0.242,
+            "delta_crp": 0.0334
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5627,
+            "error_rate": 0.4373,
+            "pdrp": 1.9521,
+            "ddrp": 1.1174,
+            "rp": 0.5763,
+            "crp": 0.0496,
+            "delta_crp": 0.0088
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6967,
+            "error_rate": 0.3033,
+            "pdrp": 1.1486,
+            "ddrp": 0.8823,
+            "rp": 0.0222,
+            "crp": -0.0427,
+            "delta_crp": -0.0072
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6863,
+            "error_rate": 0.3137,
+            "pdrp": 1.0915,
+            "ddrp": 1.1313,
+            "rp": 0.1101,
+            "crp": 0.0449,
+            "delta_crp": -0.0031
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6931,
+            "error_rate": 0.3069,
+            "pdrp": 0.9866,
+            "ddrp": 1.1075,
+            "rp": 0.0347,
+            "crp": 0.0328,
+            "delta_crp": 0.0039
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6827,
+            "error_rate": 0.3173,
+            "pdrp": 1.3477,
+            "ddrp": 0.8843,
+            "rp": 0.1207,
+            "crp": 0.0076,
+            "delta_crp": 0.0023
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0816,
+            "ddrp": 1.7997,
+            "rp": 0.3839,
+            "crp": -0.2119,
+            "delta_crp": -0.0637
+          }
+        }
+      },
+      {
+        "parameter_value": 65,
+        "global_accuracy": 0.6965,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4791,
+            "error_rate": 0.5209,
+            "pdrp": 2.0512,
+            "ddrp": 1.9945,
+            "rp": 1.0205,
+            "crp": -0.0247,
+            "delta_crp": -0.0134
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4912,
+            "error_rate": 0.5088,
+            "pdrp": 2.2066,
+            "ddrp": 2.2833,
+            "rp": 1.2367,
+            "crp": 0.0713,
+            "delta_crp": -0.0104
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5702,
+            "error_rate": 0.4298,
+            "pdrp": 1.8937,
+            "ddrp": 1.184,
+            "rp": 0.551,
+            "crp": -0.249,
+            "delta_crp": 0.0264
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.561,
+            "error_rate": 0.439,
+            "pdrp": 1.938,
+            "ddrp": 1.1404,
+            "rp": 0.5675,
+            "crp": 0.0528,
+            "delta_crp": 0.012
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6936,
+            "error_rate": 0.3064,
+            "pdrp": 1.142,
+            "ddrp": 0.9058,
+            "rp": 0.0277,
+            "crp": -0.0322,
+            "delta_crp": 0.0033
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6859,
+            "error_rate": 0.3141,
+            "pdrp": 1.0805,
+            "ddrp": 1.0997,
+            "rp": 0.0902,
+            "crp": 0.0497,
+            "delta_crp": 0.0017
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.689,
+            "error_rate": 0.311,
+            "pdrp": 1.0112,
+            "ddrp": 1.0905,
+            "rp": 0.0439,
+            "crp": 0.0247,
+            "delta_crp": -0.0042
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6813,
+            "error_rate": 0.3187,
+            "pdrp": 1.366,
+            "ddrp": 0.8659,
+            "rp": 0.1114,
+            "crp": 0.0088,
+            "delta_crp": 0.0035
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5952,
+            "error_rate": 0.4048,
+            "pdrp": 1.0845,
+            "ddrp": 1.7619,
+            "rp": 0.3813,
+            "crp": -0.1916,
+            "delta_crp": -0.0434
+          }
+        }
+      },
+      {
+        "parameter_value": 85,
+        "global_accuracy": 0.6967,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4763,
+            "error_rate": 0.5237,
+            "pdrp": 2.1047,
+            "ddrp": 1.9722,
+            "rp": 1.0388,
+            "crp": -0.0531,
+            "delta_crp": -0.0418
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4921,
+            "error_rate": 0.5079,
+            "pdrp": 2.1709,
+            "ddrp": 2.3153,
+            "rp": 1.2326,
+            "crp": 0.0712,
+            "delta_crp": -0.0105
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5716,
+            "error_rate": 0.4284,
+            "pdrp": 1.8846,
+            "ddrp": 1.1946,
+            "rp": 0.5458,
+            "crp": -0.2702,
+            "delta_crp": 0.0052
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.9389,
+            "ddrp": 1.1286,
+            "rp": 0.5537,
+            "crp": 0.042,
+            "delta_crp": 0.0012
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6928,
+            "error_rate": 0.3072,
+            "pdrp": 1.1513,
+            "ddrp": 0.9207,
+            "rp": 0.0377,
+            "crp": -0.0298,
+            "delta_crp": 0.0057
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.688,
+            "error_rate": 0.312,
+            "pdrp": 1.0625,
+            "ddrp": 1.0852,
+            "rp": 0.0738,
+            "crp": 0.0442,
+            "delta_crp": -0.0038
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6914,
+            "error_rate": 0.3086,
+            "pdrp": 0.9995,
+            "ddrp": 1.0747,
+            "rp": 0.0315,
+            "crp": 0.0239,
+            "delta_crp": -0.005
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3678,
+            "ddrp": 0.8636,
+            "rp": 0.106,
+            "crp": 0.0073,
+            "delta_crp": 0.002
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0876,
+            "ddrp": 1.7205,
+            "rp": 0.3721,
+            "crp": -0.1743,
+            "delta_crp": -0.0261
+          }
+        }
+      },
+      {
+        "parameter_value": 100,
+        "global_accuracy": 0.6967,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4763,
+            "error_rate": 0.5237,
+            "pdrp": 2.1047,
+            "ddrp": 1.9722,
+            "rp": 1.0388,
+            "crp": -0.0531,
+            "delta_crp": -0.0418
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4921,
+            "error_rate": 0.5079,
+            "pdrp": 2.1709,
+            "ddrp": 2.3153,
+            "rp": 1.2326,
+            "crp": 0.0712,
+            "delta_crp": -0.0105
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5716,
+            "error_rate": 0.4284,
+            "pdrp": 1.8846,
+            "ddrp": 1.1946,
+            "rp": 0.5458,
+            "crp": -0.2702,
+            "delta_crp": 0.0052
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.9389,
+            "ddrp": 1.1286,
+            "rp": 0.5537,
+            "crp": 0.042,
+            "delta_crp": 0.0012
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6928,
+            "error_rate": 0.3072,
+            "pdrp": 1.1513,
+            "ddrp": 0.9207,
+            "rp": 0.0377,
+            "crp": -0.0298,
+            "delta_crp": 0.0057
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.688,
+            "error_rate": 0.312,
+            "pdrp": 1.0625,
+            "ddrp": 1.0852,
+            "rp": 0.0738,
+            "crp": 0.0442,
+            "delta_crp": -0.0038
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6914,
+            "error_rate": 0.3086,
+            "pdrp": 0.9995,
+            "ddrp": 1.0747,
+            "rp": 0.0315,
+            "crp": 0.0239,
+            "delta_crp": -0.005
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3678,
+            "ddrp": 0.8636,
+            "rp": 0.106,
+            "crp": 0.0073,
+            "delta_crp": 0.002
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5979,
+            "error_rate": 0.4021,
+            "pdrp": 1.0876,
+            "ddrp": 1.7205,
+            "rp": 0.3721,
+            "crp": -0.1743,
+            "delta_crp": -0.0261
+          }
+        }
+      }
+    ],
+    "blur": [
+      {
+        "parameter_value": 3,
+        "global_accuracy": 0.6967,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4763,
+            "error_rate": 0.5237,
+            "pdrp": 2.1157,
+            "ddrp": 1.9609,
+            "rp": 1.0388,
+            "crp": -0.0531,
+            "delta_crp": -0.0418
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4931,
+            "error_rate": 0.5069,
+            "pdrp": 2.1841,
+            "ddrp": 2.2793,
+            "rp": 1.2252,
+            "crp": 0.1012,
+            "delta_crp": 0.0195
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5716,
+            "error_rate": 0.4284,
+            "pdrp": 1.892,
+            "ddrp": 1.1969,
+            "rp": 0.5458,
+            "crp": -0.2702,
+            "delta_crp": 0.0052
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5627,
+            "error_rate": 0.4373,
+            "pdrp": 1.9593,
+            "ddrp": 1.1368,
+            "rp": 0.5614,
+            "crp": 0.0257,
+            "delta_crp": -0.0151
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.694,
+            "error_rate": 0.306,
+            "pdrp": 1.1362,
+            "ddrp": 0.9161,
+            "rp": 0.0264,
+            "crp": -0.0358,
+            "delta_crp": -0.0003
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6889,
+            "error_rate": 0.3111,
+            "pdrp": 1.0522,
+            "ddrp": 1.0812,
+            "rp": 0.0664,
+            "crp": 0.0474,
+            "delta_crp": -0.0006
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6943,
+            "error_rate": 0.3057,
+            "pdrp": 0.9734,
+            "ddrp": 1.0665,
+            "rp": 0.0143,
+            "crp": 0.0219,
+            "delta_crp": -0.007
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6832,
+            "error_rate": 0.3168,
+            "pdrp": 1.3539,
+            "ddrp": 0.8674,
+            "rp": 0.0987,
+            "crp": 0.004,
+            "delta_crp": -0.0013
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.6005,
+            "error_rate": 0.3995,
+            "pdrp": 1.0661,
+            "ddrp": 1.7112,
+            "rp": 0.3617,
+            "crp": -0.1433,
+            "delta_crp": 0.0049
+          }
+        }
+      },
+      {
+        "parameter_value": 7,
+        "global_accuracy": 0.698,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4806,
+            "error_rate": 0.5194,
+            "pdrp": 2.1536,
+            "ddrp": 1.9006,
+            "rp": 1.0268,
+            "crp": -0.0599,
+            "delta_crp": -0.0486
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4931,
+            "error_rate": 0.5069,
+            "pdrp": 2.2311,
+            "ddrp": 2.2574,
+            "rp": 1.242,
+            "crp": 0.118,
+            "delta_crp": 0.0363
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5789,
+            "error_rate": 0.4211,
+            "pdrp": 1.8605,
+            "ddrp": 1.1939,
+            "rp": 0.5196,
+            "crp": -0.244,
+            "delta_crp": 0.0314
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5661,
+            "error_rate": 0.4339,
+            "pdrp": 1.9821,
+            "ddrp": 1.1284,
+            "rp": 0.5542,
+            "crp": 0.0394,
+            "delta_crp": -0.0014
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6952,
+            "error_rate": 0.3048,
+            "pdrp": 1.155,
+            "ddrp": 0.9089,
+            "rp": 0.0274,
+            "crp": -0.0255,
+            "delta_crp": 0.01
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6922,
+            "error_rate": 0.3078,
+            "pdrp": 1.0298,
+            "ddrp": 1.0676,
+            "rp": 0.0482,
+            "crp": 0.0461,
+            "delta_crp": -0.0019
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6972,
+            "error_rate": 0.3028,
+            "pdrp": 0.9718,
+            "ddrp": 1.043,
+            "rp": 0.0046,
+            "crp": 0.0236,
+            "delta_crp": -0.0053
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.4143,
+            "ddrp": 0.8685,
+            "rp": 0.1162,
+            "crp": 0.0018,
+            "delta_crp": -0.0035
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5952,
+            "error_rate": 0.4048,
+            "pdrp": 1.0859,
+            "ddrp": 1.7232,
+            "rp": 0.3891,
+            "crp": -0.1361,
+            "delta_crp": 0.0121
+          }
+        }
+      },
+      {
+        "parameter_value": 11,
+        "global_accuracy": 0.6973,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4835,
+            "error_rate": 0.5165,
+            "pdrp": 2.175,
+            "ddrp": 1.8403,
+            "rp": 1.0037,
+            "crp": -0.0245,
+            "delta_crp": -0.0132
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4931,
+            "error_rate": 0.5069,
+            "pdrp": 2.2647,
+            "ddrp": 2.2,
+            "rp": 1.2319,
+            "crp": 0.1079,
+            "delta_crp": 0.0262
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5832,
+            "error_rate": 0.4168,
+            "pdrp": 1.8136,
+            "ddrp": 1.2009,
+            "rp": 0.4942,
+            "crp": -0.2727,
+            "delta_crp": 0.0027
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5644,
+            "error_rate": 0.4356,
+            "pdrp": 1.9927,
+            "ddrp": 1.1462,
+            "rp": 0.557,
+            "crp": 0.0628,
+            "delta_crp": 0.022
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6936,
+            "error_rate": 0.3064,
+            "pdrp": 1.1863,
+            "ddrp": 0.9046,
+            "rp": 0.0351,
+            "crp": -0.03,
+            "delta_crp": 0.0055
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6931,
+            "error_rate": 0.3069,
+            "pdrp": 1.012,
+            "ddrp": 1.0579,
+            "rp": 0.0345,
+            "crp": 0.0428,
+            "delta_crp": -0.0052
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6954,
+            "error_rate": 0.3046,
+            "pdrp": 0.9707,
+            "ddrp": 1.0534,
+            "rp": 0.0105,
+            "crp": 0.0237,
+            "delta_crp": -0.0052
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6794,
+            "error_rate": 0.3206,
+            "pdrp": 1.4488,
+            "ddrp": 0.8843,
+            "rp": 0.1325,
+            "crp": 0.0027,
+            "delta_crp": -0.0026
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5925,
+            "error_rate": 0.4075,
+            "pdrp": 1.0931,
+            "ddrp": 1.7091,
+            "rp": 0.3957,
+            "crp": -0.1553,
+            "delta_crp": -0.0071
+          }
+        }
+      },
+      {
+        "parameter_value": 15,
+        "global_accuracy": 0.694,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4734,
+            "error_rate": 0.5266,
+            "pdrp": 2.2254,
+            "ddrp": 1.8516,
+            "rp": 1.0285,
+            "crp": 0.0285,
+            "delta_crp": 0.0398
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.4903,
+            "error_rate": 0.5097,
+            "pdrp": 2.2836,
+            "ddrp": 2.1419,
+            "rp": 1.2108,
+            "crp": 0.1077,
+            "delta_crp": 0.026
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5832,
+            "error_rate": 0.4168,
+            "pdrp": 1.7581,
+            "ddrp": 1.2261,
+            "rp": 0.4734,
+            "crp": -0.2307,
+            "delta_crp": 0.0447
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5627,
+            "error_rate": 0.4373,
+            "pdrp": 2.0302,
+            "ddrp": 1.1232,
+            "rp": 0.5436,
+            "crp": 0.026,
+            "delta_crp": -0.0148
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6905,
+            "error_rate": 0.3095,
+            "pdrp": 1.1863,
+            "ddrp": 0.9099,
+            "rp": 0.033,
+            "crp": -0.0312,
+            "delta_crp": 0.0043
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6918,
+            "error_rate": 0.3082,
+            "pdrp": 0.9815,
+            "ddrp": 1.0542,
+            "rp": 0.0177,
+            "crp": 0.044,
+            "delta_crp": -0.004
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6914,
+            "error_rate": 0.3086,
+            "pdrp": 0.9552,
+            "ddrp": 1.0744,
+            "rp": 0.0152,
+            "crp": 0.0264,
+            "delta_crp": -0.0025
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6775,
+            "error_rate": 0.3225,
+            "pdrp": 1.4471,
+            "ddrp": 0.8826,
+            "rp": 0.1206,
+            "crp": 0.0056,
+            "delta_crp": 0.0003
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5845,
+            "error_rate": 0.4155,
+            "pdrp": 1.084,
+            "ddrp": 1.72,
+            "rp": 0.4099,
+            "crp": -0.1247,
+            "delta_crp": 0.0235
+          }
+        }
+      }
+    ],
+    "compound": [
+      {
+        "parameter_value": 1.0,
+        "global_accuracy": 0.7025,
+        "cohort_metrics": {
+          "Dark_Skin": {
+            "count": 695,
+            "accuracy": 0.4935,
+            "error_rate": 0.5065,
+            "pdrp": 2.1813,
+            "ddrp": 1.7732,
+            "rp": 0.9975,
+            "crp": -0.061,
+            "delta_crp": -0.0497
+          },
+          "Heavy_Makeup": {
+            "count": 1081,
+            "accuracy": 0.5088,
+            "error_rate": 0.4912,
+            "pdrp": 2.2794,
+            "ddrp": 2.05,
+            "rp": 1.1758,
+            "crp": 0.0347,
+            "delta_crp": -0.047
+          },
+          "Eyeglasses": {
+            "count": 691,
+            "accuracy": 0.5774,
+            "error_rate": 0.4226,
+            "pdrp": 1.822,
+            "ddrp": 1.2272,
+            "rp": 0.5571,
+            "crp": -0.2565,
+            "delta_crp": 0.0189
+          },
+          "Senior": {
+            "count": 590,
+            "accuracy": 0.5661,
+            "error_rate": 0.4339,
+            "pdrp": 1.8997,
+            "ddrp": 1.1534,
+            "rp": 0.5841,
+            "crp": 0.0232,
+            "delta_crp": -0.0176
+          },
+          "Young": {
+            "count": 2598,
+            "accuracy": 0.6994,
+            "error_rate": 0.3006,
+            "pdrp": 1.1244,
+            "ddrp": 0.9123,
+            "rp": 0.0305,
+            "crp": -0.0404,
+            "delta_crp": -0.0049
+          },
+          "Male": {
+            "count": 2372,
+            "accuracy": 0.6889,
+            "error_rate": 0.3111,
+            "pdrp": 1.0843,
+            "ddrp": 1.1698,
+            "rp": 0.1206,
+            "crp": 0.0299,
+            "delta_crp": -0.0181
+          },
+          "Female": {
+            "count": 1714,
+            "accuracy": 0.6937,
+            "error_rate": 0.3063,
+            "pdrp": 1.0184,
+            "ddrp": 1.1138,
+            "rp": 0.0529,
+            "crp": 0.0355,
+            "delta_crp": 0.0066
+          },
+          "Smiling": {
+            "count": 2096,
+            "accuracy": 0.6823,
+            "error_rate": 0.3177,
+            "pdrp": 1.3658,
+            "ddrp": 0.9121,
+            "rp": 0.1546,
+            "crp": 0.0076,
+            "delta_crp": 0.0023
+          },
+          "Bald": {
+            "count": 373,
+            "accuracy": 0.5925,
+            "error_rate": 0.4075,
+            "pdrp": 1.1217,
+            "ddrp": 1.8863,
+            "rp": 0.4239,
+            "crp": -0.1931,
+            "delta_crp": -0.0449
+          }
+        }
+      }
+    ]
+  },
+  "disparity_amplification_summary": {
+    "Dark_Skin": {
+      "clean_crp": -0.0113,
+      "max_abs_delta_crp": 0.0722,
+      "resilience_status": "HIGH"
+    },
+    "Heavy_Makeup": {
+      "clean_crp": 0.0817,
+      "max_abs_delta_crp": 0.0491,
+      "resilience_status": "HIGH"
+    },
+    "Eyeglasses": {
+      "clean_crp": -0.2754,
+      "max_abs_delta_crp": 0.0861,
+      "resilience_status": "HIGH"
+    },
+    "Senior": {
+      "clean_crp": 0.0408,
+      "max_abs_delta_crp": 0.0304,
+      "resilience_status": "HIGH"
+    },
+    "Young": {
+      "clean_crp": -0.0355,
+      "max_abs_delta_crp": 0.01,
+      "resilience_status": "HIGH"
+    },
+    "Male": {
+      "clean_crp": 0.048,
+      "max_abs_delta_crp": 0.0181,
+      "resilience_status": "HIGH"
+    },
+    "Female": {
+      "clean_crp": 0.0289,
+      "max_abs_delta_crp": 0.009,
+      "resilience_status": "HIGH"
+    },
+    "Smiling": {
+      "clean_crp": 0.0053,
+      "max_abs_delta_crp": 0.0075,
+      "resilience_status": "HIGH"
+    },
+    "Bald": {
+      "clean_crp": -0.1482,
+      "max_abs_delta_crp": 0.0637,
+      "resilience_status": "HIGH"
+    }
+  }
+}

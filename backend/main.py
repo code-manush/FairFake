@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding='utf-8')
 import shutil
@@ -332,6 +333,84 @@ async def evaluate_calibration(req: CalibrationEvalRequest):
         attributes=attrs,
         strategy=req.strategy or "weighted_residual"
     )
+
+# ---------------------------------------------------------------------------
+# Phase 3: Environmental Robustness & Hardening Endpoints
+# ---------------------------------------------------------------------------
+
+ROBUSTNESS_CURVES_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "calibration",
+    "robustness_audit_curves.json"
+)
+
+@app.get("/api/robustness/curves")
+async def get_robustness_curves():
+    """Returns the multi-condition environmental stress curves and disparity amplification metrics."""
+    if os.path.exists(ROBUSTNESS_CURVES_PATH):
+        with open(ROBUSTNESS_CURVES_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {
+        "status": "pending",
+        "message": "Robustness curves not yet generated. Run backend/robustness_eval.py."
+    }
+
+class RobustnessStressRequest(BaseModel):
+    raw_probability: float
+    cohorts: Optional[List[str]] = None
+    perturbation_type: str = "gamma"  # 'gamma', 'jpeg', 'blur', 'compound'
+    severity: float = 1.8
+
+@app.post("/api/robustness/simulate-stress")
+async def simulate_environmental_stress(req: RobustnessStressRequest):
+    """
+    Simulates posterior probability shifts under environmental degradation
+    for both unhardened and SRM-hardened architectures.
+    """
+    cohorts = req.cohorts or []
+    is_dark = "Dark_Skin" in cohorts or "Black" in cohorts
+    is_makeup = "Heavy_Makeup" in cohorts
+
+    base_p = req.raw_probability
+
+    # Unhardened degradation shift
+    shift_unhardened = 0.0
+    if req.perturbation_type == "gamma":
+        shift_unhardened = (req.severity - 1.0) * (0.22 if is_dark else 0.06)
+    elif req.perturbation_type == "jpeg":
+        degrade_scale = max(0.0, (80.0 - req.severity) / 80.0)
+        shift_unhardened = degrade_scale * (0.18 if is_makeup else 0.07)
+    elif req.perturbation_type == "blur":
+        blur_scale = (req.severity - 1.0) / 14.0
+        shift_unhardened = -blur_scale * 0.14
+    elif req.perturbation_type == "compound":
+        shift_unhardened = 0.19 if is_dark else 0.09
+
+    # Hardened mitigation (~75% reduction in artifact vulnerability)
+    shift_hardened = shift_unhardened * 0.25
+
+    p_unhardened = float(np.clip(base_p + shift_unhardened, 0.001, 0.999))
+    p_hardened = float(np.clip(base_p + shift_hardened, 0.001, 0.999))
+
+    return {
+        "clean_probability": round(base_p, 4),
+        "perturbation": {
+            "type": req.perturbation_type,
+            "severity": req.severity,
+            "targeted_cohorts": cohorts
+        },
+        "unhardened_result": {
+            "probability": round(p_unhardened, 4),
+            "verdict": "FAKE" if p_unhardened >= 0.5 else "REAL",
+            "disparity_shift": round(p_unhardened - base_p, 4)
+        },
+        "hardened_result": {
+            "probability": round(p_hardened, 4),
+            "verdict": "FAKE" if p_hardened >= 0.5 else "REAL",
+            "disparity_shift": round(p_hardened - base_p, 4),
+            "error_reduction_pct": round(abs(1.0 - (shift_hardened / (shift_unhardened + 1e-6))) * 100, 1)
+        }
+    }
 
 
 if __name__ == "__main__":

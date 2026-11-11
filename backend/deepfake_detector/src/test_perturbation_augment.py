@@ -3,9 +3,15 @@ Unit tests for Environmental Perturbation Augmentation Suite (Phase 3: Task 3.1)
 """
 
 import unittest
+import sys
+from pathlib import Path
 from PIL import Image
 import numpy as np
 import torch
+
+src_dir = Path(__file__).parent
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
 
 from perturbation_augment import (
     GammaCorrection,
