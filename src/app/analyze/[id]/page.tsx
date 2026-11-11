@@ -14,7 +14,12 @@ import {
   Sparkles,
   Info,
   SlidersHorizontal,
-  Layers
+  Layers,
+  Activity,
+  Eye,
+  Heart,
+  Waves,
+  Radio
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -450,6 +455,150 @@ export default function AnalysisReport() {
                 )}
               </CardContent>
             </Card>
+
+            {/* Feature 4.2: Frequency-Domain Spectral Auditing */}
+            {result.spectral && (
+              <Card className="border shadow-md">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Waves className="w-5 h-5 text-indigo-500" />
+                    Frequency-Domain Spectral Audit (2D-FFT)
+                  </CardTitle>
+                  <CardDescription>
+                    Analyzes periodic synthetic upsampling checkerboards invariant to subject skin tone.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="relative aspect-square max-w-[200px] mx-auto bg-muted rounded-lg overflow-hidden border">
+                      {result.spectral.spectral_heatmap_b64 ? (
+                        <img src={result.spectral.spectral_heatmap_b64} alt="2D Fourier Spectrum" className="object-cover w-full h-full" />
+                      ) : (
+                        <Radio className="w-8 h-8 text-muted-foreground/30" />
+                      )}
+                      <div className="absolute bottom-1 right-1 bg-black/70 px-1.5 py-0.5 rounded text-[10px] text-white font-mono">
+                        2D-FFT Power
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-2 space-y-3 justify-center flex flex-col">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold uppercase text-muted-foreground">Spectral Verdict:</span>
+                        <Badge variant={result.spectral.spectral_verdict === "SYNTHETIC_UPSAMPLING" ? "destructive" : "secondary"}>
+                          {result.spectral.spectral_verdict === "SYNTHETIC_UPSAMPLING" ? "Synthetic Upsampling Grid" : "Natural Spectral Decay"}
+                        </Badge>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span>Checkerboard Artifact Index:</span>
+                          <span className="font-mono font-bold">{(result.spectral.checkerboard_score * 100).toFixed(1)}%</span>
+                        </div>
+                        <Progress value={result.spectral.checkerboard_score * 100} className="h-2" />
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span>High-Frequency Energy Ratio:</span>
+                          <span className="font-mono font-bold">{(result.spectral.high_freq_energy_ratio * 100).toFixed(1)}%</span>
+                        </div>
+                        <Progress value={result.spectral.high_freq_energy_ratio * 100} className="h-2" />
+                      </div>
+                      <p className="text-[11px] text-muted-foreground">
+                        {result.spectral.spectral_verdict === "SYNTHETIC_UPSAMPLING"
+                          ? "Elevated high-frequency harmonics indicate transposed convolution or diffusion upsampling artifacts."
+                          : "Frequency distribution conforms to standard 1/f^α natural optical power decay."}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Feature 4.1: Spatio-Temporal Video & Biological Forensics */}
+            {result.mediaType === "video" && (result.spatio_temporal || result.biological_signals) && (
+              <Card className="border shadow-md">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Activity className="w-5 h-5 text-emerald-500" />
+                    Spatio-Temporal & Biological Signals
+                  </CardTitle>
+                  <CardDescription>
+                    Temporal continuity, eye-blink dynamics, and cardiovascular pulse (rPPG) synchronization.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Blinks */}
+                    {result.biological_signals?.blinks && (
+                      <div className="p-3.5 rounded-xl border bg-muted/30 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold flex items-center gap-1.5">
+                            <Eye className="w-4 h-4 text-primary" /> Eye-Blink Dynamics
+                          </span>
+                          <Badge variant={result.biological_signals.blinks.biological_risk === "HIGH" ? "destructive" : "secondary"}>
+                            {result.biological_signals.blinks.blink_status}
+                          </Badge>
+                        </div>
+                        <div className="text-2xl font-bold">
+                          {result.biological_signals.blinks.blinks_per_minute} <span className="text-xs font-normal text-muted-foreground">blinks / min</span>
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          {result.biological_signals.blinks.biological_risk === "HIGH"
+                            ? "Abnormal blink frequency: generative models often fail to produce natural blink kinetics."
+                            : "Blink cadence conforms to natural physiological intervals (15–20/min)."}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* rPPG Pulse */}
+                    {result.biological_signals?.rppg_pulse && (
+                      <div className="p-3.5 rounded-xl border bg-muted/30 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold flex items-center gap-1.5">
+                            <Heart className="w-4 h-4 text-rose-500" /> rPPG Blood Volume Pulse
+                          </span>
+                          <Badge variant={result.biological_signals.rppg_pulse.rppg_verdict === "DESYNCHRONIZED_PULSE_ARTIFACT" ? "destructive" : "secondary"}>
+                            {result.biological_signals.rppg_pulse.estimated_heart_rate_bpm} BPM
+                          </Badge>
+                        </div>
+                        <div className="text-2xl font-bold">
+                          {(result.biological_signals.rppg_pulse.pulse_synchrony_score * 100).toFixed(0)}% <span className="text-xs font-normal text-muted-foreground">synchrony score</span>
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          Forehead vs. cheek cardiovascular micro-fluctuation correlation: r = {result.biological_signals.rppg_pulse.bvp_correlation.toFixed(2)}.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Per-second Timeline Scrubber */}
+                  {result.per_second_timeline && result.per_second_timeline.length > 0 && (
+                    <div className="space-y-2 pt-2">
+                      <div className="flex justify-between items-center text-xs font-semibold uppercase text-muted-foreground">
+                        <span>Per-Second Anomaly Timeline</span>
+                        <span>{result.per_second_timeline.length} seconds</span>
+                      </div>
+                      <div className="flex gap-1 overflow-x-auto pb-2">
+                        {result.per_second_timeline.map((secEntry) => (
+                          <div
+                            key={secEntry.second}
+                            className={`min-w-[42px] p-1.5 rounded-md text-center text-[10px] font-mono border transition-all ${
+                              secEntry.risk_level === "CRITICAL"
+                                ? "bg-rose-500/20 border-rose-500 text-rose-600 font-bold"
+                                : secEntry.risk_level === "ELEVATED"
+                                ? "bg-amber-500/20 border-amber-500 text-amber-600"
+                                : "bg-muted border-border/60 text-muted-foreground"
+                            }`}
+                          >
+                            <div>0:{secEntry.second.toString().padStart(2, "0")}</div>
+                            <div className="text-[9px]">{(secEntry.max_fake_probability * 100).toFixed(0)}%</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Sidebar / Attribute Panel */}

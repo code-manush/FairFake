@@ -36,6 +36,10 @@ except ImportError:
     from calibration.fair_solver import load_calibrated_thresholds
     from calibration.temperature_scaler import load_temperature_weights
 
+from spectral_analyzer import compute_spectral_metrics
+from video_processor import VideoForensicsProcessor
+from multimodal_sync import AudioVisualSyncAuditor
+
 app = FastAPI(title="FairFake Deepfake API")
 
 app.add_middleware(
@@ -184,6 +188,7 @@ async def analyze_image(image: UploadFile = File(...)):
     prob, heatmap = analyze_image_array(img)
     face_attrs = get_face_attributes(img)
     calibration_eval = evaluate_fair_verdict(prob, face_attrs)
+    spectral_eval = compute_spectral_metrics(img)
 
     raw_verdict = "FAKE" if prob > 0.5 else "REAL"
     score = round((1.0 - prob) * 100, 1)
@@ -204,8 +209,34 @@ async def analyze_image(image: UploadFile = File(...)):
             "boundingBox": [10, 10, 100, 100], 
             "attributes": face_attrs
         }],
-        "calibration": calibration_eval
+        "calibration": calibration_eval,
+        "spectral": spectral_eval
     }
+
+@app.post("/api/analyze/spectral")
+async def analyze_spectral(image: UploadFile = File(...)):
+    """Frequency-domain spectral auditing for synthetic upsampling checkerboards."""
+    contents = await image.read()
+    nparr = np.frombuffer(contents, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    if img is None:
+        return JSONResponse(status_code=400, content={"error": "Invalid image file"})
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    return compute_spectral_metrics(img_rgb)
+
+class LipSyncAuditRequest(BaseModel):
+    visual_mouth_apertures: List[float]
+    audio_envelope: List[float]
+    fps: Optional[float] = 30.0
+
+@app.post("/api/analyze/lip-sync")
+async def analyze_lip_sync(req: LipSyncAuditRequest):
+    """Audio-Visual Phoneme-Viseme desynchronization auditor."""
+    auditor = AudioVisualSyncAuditor(fps=req.fps or 30.0)
+    return auditor.audit_sync(
+        req.visual_mouth_apertures,
+        np.array(req.audio_envelope, dtype=np.float32)
+    )
 
 @app.post("/api/analyze/video")
 async def analyze_video(video: UploadFile = File(...)):
@@ -224,6 +255,7 @@ async def analyze_video(video: UploadFile = File(...)):
     
     frame_results = []
     all_probs = []
+    sampled_frames = []
     anomaly_seconds = set()
     first_frame = None
     
@@ -247,6 +279,7 @@ async def analyze_video(video: UploadFile = File(...)):
             if first_frame is None:
                 first_frame = frame
             
+            sampled_frames.append(frame)
             prob, heatmap = analyze_image_array(frame)
             all_probs.append(prob)
             if prob > 0.7:
@@ -288,6 +321,10 @@ async def analyze_video(video: UploadFile = File(...)):
     first_attrs = get_face_attributes(first_frame)
     video_calibration = evaluate_fair_verdict(max_prob, first_attrs)
 
+    # Spatio-Temporal & Biological forensics
+    v_proc = VideoForensicsProcessor()
+    st_report = v_proc.process_frames_sequence(sampled_frames, all_probs, fps=video_fps)
+
     return {
         "mediaType": "video",
         "calibration": video_calibration,
@@ -298,6 +335,9 @@ async def analyze_video(video: UploadFile = File(...)):
         "video_authenticity_score": auth_score,
         "verdict": verdict,
         "frame_results": frame_results,
+        "spatio_temporal": st_report.get("temporal_consistency", {}),
+        "biological_signals": st_report.get("biological_signals", {}),
+        "per_second_timeline": st_report.get("per_second_timeline", []),
         "faces": [{
             "boundingBox": [10, 10, 100, 100],
             "attributes": get_face_attributes(first_frame)

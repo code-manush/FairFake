@@ -83,6 +83,10 @@ export type DetectionResult = {
   
   faces: FaceResult[];
   calibration?: CalibrationEvaluation;
+  spectral?: SpectralMetrics;
+  spatio_temporal?: SpatioTemporalMetrics;
+  biological_signals?: BiologicalSignals;
+  per_second_timeline?: SecondTimelineEntry[];
 };
 
 export type AttributeBiasResult = {
@@ -173,4 +177,54 @@ export type CalibrationEvaluateRequest = {
   attributes?: string[];
   attributes_dict?: Record<string, any>;
   strategy?: "weighted_residual" | "max_margin" | "mean";
+};
+
+// ---------------------------------------------------------------------------
+// Phase 4: Spatio-Temporal & Multimodal Video Forensics Types
+// ---------------------------------------------------------------------------
+
+export type SpectralMetrics = {
+  checkerboard_score: number;
+  high_freq_energy_ratio: number;
+  spectral_verdict: "SYNTHETIC_UPSAMPLING" | "NATURAL_SPECTRUM";
+  radial_profile: number[];
+  radial_frequencies: number[];
+  spectral_heatmap_b64: string;
+};
+
+export type SpatioTemporalMetrics = {
+  flicker_score: number;
+  motion_continuity: string;
+  mean_optical_flow_mag: number;
+};
+
+export type BiologicalSignals = {
+  blinks: {
+    blink_count: number;
+    blinks_per_minute: number;
+    blink_status: string;
+    biological_risk: "LOW" | "MEDIUM" | "HIGH";
+  };
+  rppg_pulse: {
+    bvp_correlation: number;
+    estimated_heart_rate_bpm: number;
+    rppg_verdict: string;
+    pulse_synchrony_score: number;
+  };
+};
+
+export type SecondTimelineEntry = {
+  second: number;
+  max_fake_probability: number;
+  mean_fake_probability: number;
+  risk_level: "LOW" | "ELEVATED" | "CRITICAL";
+  detected_anomalies: string[];
+};
+
+export type LipSyncAuditResponse = {
+  sync_correlation: number;
+  zero_lag_correlation: number;
+  temporal_offset_ms: number;
+  multimodal_verdict: string;
+  sync_confidence: number;
 };
