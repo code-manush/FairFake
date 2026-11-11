@@ -1,0 +1,3 @@
+[console_scripts]
+fairfake = fairfake.cli:main
+fairfake-cli = fairfake.cli:main

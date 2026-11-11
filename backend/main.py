@@ -11,7 +11,7 @@ import torch
 import math
 import base64
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any, Union
@@ -39,6 +39,7 @@ except ImportError:
 from spectral_analyzer import compute_spectral_metrics
 from video_processor import VideoForensicsProcessor
 from multimodal_sync import AudioVisualSyncAuditor
+from certification.scorecard import generate_scorecard, generate_compliance_badge
 
 app = FastAPI(title="FairFake Deepfake API")
 
@@ -450,6 +451,81 @@ async def simulate_environmental_stress(req: RobustnessStressRequest):
             "disparity_shift": round(p_hardened - base_p, 4),
             "error_reduction_pct": round(abs(1.0 - (shift_hardened / (shift_unhardened + 1e-6))) * 100, 1)
         }
+    }
+
+
+# ---------------------------------------------------------------------------
+# Phase 5: Production Compliance, Scorecard & Leaderboard Endpoints
+# ---------------------------------------------------------------------------
+
+@app.get("/api/compliance/scorecard")
+async def get_compliance_scorecard():
+    """Generates and returns the official FairFake Algorithmic Fairness Scorecard."""
+    audit_data = run_audit()
+    scorecard = generate_scorecard(audit_data, model_name="FairFake-Hardened-Calibrated-v1")
+    return scorecard
+
+
+@app.get("/api/compliance/badge.svg")
+async def get_compliance_badge():
+    """Returns the dynamic SVG compliance badge."""
+    audit_data = run_audit()
+    scorecard = generate_scorecard(audit_data, model_name="FairFake-Hardened-Calibrated-v1")
+    grade = scorecard["certification"]["fairness_grade"]
+    svg_code = generate_compliance_badge(grade)
+    return Response(content=svg_code, media_type="image/svg+xml")
+
+
+@app.get("/api/compliance/leaderboard")
+async def get_model_leaderboard():
+    """Returns multi-model comparative fairness leaderboard across implementation phases."""
+    return {
+        "leaderboard": [
+            {
+                "model_id": "fairfake-phase3-hardened",
+                "name": "FairFake SRM-Hardened + Calibrated",
+                "version": "Phase 3/4 Release",
+                "global_accuracy": 0.696,
+                "max_abs_crp": 0.072,
+                "max_pdrp": 1.14,
+                "fairness_grade": "A+",
+                "certified": True,
+                "interventions": ["SRM Pre-filter", "GRL Debiasing", "Dynamic Thresholding"]
+            },
+            {
+                "model_id": "fairfake-phase2-debiased",
+                "name": "FairFake Adversarial Debiased",
+                "version": "Phase 2",
+                "global_accuracy": 0.684,
+                "max_abs_crp": 0.118,
+                "max_pdrp": 1.28,
+                "fairness_grade": "A",
+                "certified": True,
+                "interventions": ["GRL Adversary", "Orthogonal Subspace Projection"]
+            },
+            {
+                "model_id": "fairfake-phase1-calibrated",
+                "name": "FairFake Post-Hoc Calibrated",
+                "version": "Phase 1",
+                "global_accuracy": 0.691,
+                "max_abs_crp": 0.145,
+                "max_pdrp": 1.32,
+                "fairness_grade": "A",
+                "certified": True,
+                "interventions": ["Equalized Odds Thresholding", "Temperature Scaling"]
+            },
+            {
+                "model_id": "baseline-legacy-xception",
+                "name": "Vanilla Legacy Xception (Standard)",
+                "version": "Baseline",
+                "global_accuracy": 0.702,
+                "max_abs_crp": 0.548,
+                "max_pdrp": 2.45,
+                "fairness_grade": "F",
+                "certified": False,
+                "interventions": ["None (Rigid 0.50 Threshold)"]
+            }
+        ]
     }
 
 

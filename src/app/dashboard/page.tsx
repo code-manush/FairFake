@@ -14,6 +14,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ThresholdSimulator } from "@/components/dashboard/threshold-simulator";
+import { ComplianceSection } from "@/components/dashboard/compliance-section";
 import { getAuditSummaries, getAuditResults, getAvailableModels } from "@/lib/api/fairness";
 import { AuditSummary, AttributeBiasResult } from "@/lib/types";
 
@@ -332,6 +333,9 @@ export default function DashboardPage() {
 
             {/* Feature 1.8: Interactive Threshold Simulator */}
             <ThresholdSimulator />
+
+            {/* Feature 5.4: Production Algorithmic Fairness Certification & Leaderboard */}
+            <ComplianceSection />
 
             {/* Table */}
             <Card>

@@ -1,0 +1,13 @@
+setup.py
+fairfake/__init__.py
+fairfake/__main__.py
+fairfake/auditor.py
+fairfake/certification.py
+fairfake/cli.py
+fairfake/report.py
+fairfake.egg-info/PKG-INFO
+fairfake.egg-info/SOURCES.txt
+fairfake.egg-info/dependency_links.txt
+fairfake.egg-info/entry_points.txt
+fairfake.egg-info/requires.txt
+fairfake.egg-info/top_level.txt

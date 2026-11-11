@@ -1,0 +1,138 @@
+{
+  "certification": {
+    "model_name": "FairFake-Hardened-Ensemble",
+    "certification_id": "FF-20261111-78339",
+    "issued_at": "2026-11-11T08:35:31.881767+00:00",
+    "certifier": "FairFake Automated Audit Engine v1.0",
+    "fairness_grade": "F",
+    "status": "CRITICAL_FAIRNESS_VIOLATION",
+    "status_description": "Fails basic non-discrimination criteria. Disparate mistreatment exceeds safe operational thresholds.",
+    "badge_color": "#ef4444",
+    "is_certified": false
+  },
+  "metrics_summary": {
+    "global_accuracy": 0.6957,
+    "max_abs_crp": 0.2754,
+    "max_pdrp": 2.1724,
+    "max_ddrp": 2.3871,
+    "total_cohorts_evaluated": 35,
+    "equitable_cohorts_count": 29,
+    "vulnerable_cohorts_count": 6
+  },
+  "vulnerable_cohorts": [
+    {
+      "attribute": "Senior",
+      "crp": 0.0408,
+      "pdrp": 1.9157,
+      "ddrp": 1.1088,
+      "accuracy": 0.5678
+    },
+    {
+      "attribute": "Black",
+      "crp": 0.0612,
+      "pdrp": 1.8039,
+      "ddrp": 2.3871,
+      "accuracy": 0.444
+    },
+    {
+      "attribute": "Dark_Skin",
+      "crp": -0.0113,
+      "pdrp": 2.0507,
+      "ddrp": 1.9622,
+      "accuracy": 0.4806
+    },
+    {
+      "attribute": "Heavy_Makeup",
+      "crp": 0.0817,
+      "pdrp": 2.1724,
+      "ddrp": 2.3164,
+      "accuracy": 0.4903
+    },
+    {
+      "attribute": "Wearing_Hat",
+      "crp": 0.135,
+      "pdrp": 1.716,
+      "ddrp": 1.0012,
+      "accuracy": 0.5937
+    },
+    {
+      "attribute": "Eyeglasses",
+      "crp": -0.2754,
+      "pdrp": 1.9051,
+      "ddrp": 1.1892,
+      "accuracy": 0.5687
+    }
+  ],
+  "equitable_cohorts": [
+    {
+      "attribute": "Male",
+      "crp": 0.048,
+      "pdrp": 1.061,
+      "ddrp": 1.0671,
+      "accuracy": 0.688
+    },
+    {
+      "attribute": "Female",
+      "crp": 0.0289,
+      "pdrp": 1.0004,
+      "ddrp": 1.0677,
+      "accuracy": 0.6908
+    },
+    {
+      "attribute": "Young",
+      "crp": -0.0355,
+      "pdrp": 1.1404,
+      "ddrp": 0.9049,
+      "accuracy": 0.6932
+    },
+    {
+      "attribute": "Asian",
+      "crp": 0.026,
+      "pdrp": 0.9765,
+      "ddrp": 1.032,
+      "accuracy": 0.6949
+    },
+    {
+      "attribute": "White",
+      "crp": -0.0545,
+      "pdrp": 1.0906,
+      "ddrp": 0.9794,
+      "accuracy": 0.6917
+    },
+    {
+      "attribute": "Shiny_Skin",
+      "crp": -0.014,
+      "pdrp": 1.0468,
+      "ddrp": 0.9555,
+      "accuracy": 0.6956
+    },
+    {
+      "attribute": "Bald",
+      "crp": -0.1482,
+      "pdrp": 1.0466,
+      "ddrp": 1.7605,
+      "accuracy": 0.5979
+    },
+    {
+      "attribute": "Wavy_Hair",
+      "crp": 0.0357,
+      "pdrp": 0.9846,
+      "ddrp": 1.019,
+      "accuracy": 0.6954
+    },
+    {
+      "attribute": "Receding_Hairline",
+      "crp": -0.0014,
+      "pdrp": 0.983,
+      "ddrp": 1.1252,
+      "accuracy": 0.6833
+    },
+    {
+      "attribute": "Bangs",
+      "crp": -0.1436,
+      "pdrp": 0.9071,
+      "ddrp": 1.1065,
+      "accuracy": 0.697
+    }
+  ]
+}

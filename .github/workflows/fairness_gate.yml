@@ -1,0 +1,64 @@
+name: FairFake Algorithmic Fairness Quality Gate
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  fairness-audit-gate:
+    name: Demographic Equity CI/CD Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e fairfake_sdk
+          pip install pandas numpy scikit-learn pytest
+
+      - name: Run FairFake SDK Unit Tests
+        run: |
+          python -m unittest backend/test_fairfake_sdk.py
+
+      - name: Execute Model Fairness Audit
+        run: |
+          python -m fairfake audit \
+            --dataset data/audit_dataset.csv \
+            --output fairness_audit_report.json
+
+      - name: Evaluate Pull Request Fairness Gate
+        run: |
+          python -m fairfake check-gate \
+            --dataset data/audit_dataset.csv \
+            --max-crp 0.20 \
+            --max-pdrp 1.60
+
+      - name: Issue Formal Compliance Scorecard & Badge
+        if: always()
+        run: |
+          python -m fairfake certify \
+            --dataset data/audit_dataset.csv \
+            --model-name "FairFake-CI-Build-${{ github.sha }}" \
+            --badge-out compliance_badge.svg \
+            --scorecard-out compliance_scorecard.json
+
+      - name: Upload Compliance Certification Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fairness-compliance-certification
+          path: |
+            compliance_scorecard.json
+            compliance_badge.svg
+            fairness_audit_report.json
